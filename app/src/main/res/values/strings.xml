@@ -1,3 +1,73 @@
 <resources>
     <string name="app_name">FlavorQuest</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_query_hint">Informe aqui o seu ingrediente!</string>
+    <string name="introduction_text">Bem-vindo, aventureiro culinário! Antes de iniciar a sua jornada...</string>
+    <string name="health_specs">Saúde</string>
+    <string name="cuisine_type">Culinária</string>
+    <string name="meal_type">Refeicao</string>
+    <string name="dish_type">Tipo</string>
+    
+    <string-array name="health">
+        <item>Baixo Açúcar</item>
+        <item>Baixo Sal</item>
+        <item>Sem Álcool</item>
+        <item>Sem Amendoim</item>
+        <item>Sem Glúten</item>
+        <item>Sem Lactose</item>
+        <item>Vegano</item>
+        <item>Vegetariano</item>
+    </string-array>
+
+    <string-array name="cuisine">
+        <item>Americana</item>
+        <item>Asiática</item>
+        <item>Britânica</item>
+        <item>Caribenha</item>
+        <item>Centro-Europeia</item>
+        <item>Coreana</item>
+        <item>Francesa</item>
+        <item>Grega</item>
+        <item>Indiana</item>
+        <item>Italiana</item>
+        <item>Leste-Europeia</item>
+        <item>Japonesa</item>
+        <item>Mediterrânea</item>
+        <item>Nórdica</item>
+        <item>Sulamericana</item>
+    </string-array>
+
+    <string-array name="meal">
+        <item>Almoco/Jantar</item>
+        <item>Brunch</item>
+        <item>Café da Manhã</item>
+        <item>Chá da Tarde</item>
+        <item>Lanche</item>
+    </string-array>
+
+    <string-array name="dish">
+        <item>Acompanhamentos</item>
+        <item>Biscoitos</item>
+        <item>Cereais</item>
+        <item>Confeitaria</item>
+        <item>Coquetéis</item>
+        <item>Doces</item>
+        <item>Drinks</item>
+        <item>Entradas</item>
+        <item>Frutos do Mar</item>
+        <item>Massas</item>
+        <item>Molhos</item>
+        <item>Ovo</item>
+        <item>Pães</item>
+        <item>Panqueca</item>
+        <item>Pizzas</item>
+        <item>Prato Principal</item>
+        <item>Saladas</item>
+        <item>Sanduíches</item>
+        <item>Sobremesas</item>
+        <item>Sopas</item>
+        <item>Sorvete</item>
+        <item>Tortas</item>
+    </string-array>
 </resources>
