@@ -1,4 +1,4 @@
-package com.example.flavorquest.data
+package com.example.flavorquest.data.repository
 
 import com.example.flavorquest.data.mappers.toRecipe
 import com.example.flavorquest.data.remote.network.RecipeServices
