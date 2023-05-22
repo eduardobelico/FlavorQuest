@@ -12,9 +12,9 @@ interface RecipeServices {
     @GET("api/recipes/v2")
     suspend fun getRecipeFromQuery(
         @Query("type") type: String = TYPE,
-        @Query("q") query: String,
         @Query("app_id") appId: String = APP_ID,
-        @Query("app_key") appKey: String = APP_KEY
+        @Query("app_key") appKey: String = APP_KEY,
+        @Query("q") query: String
     ): RecipeRequest
 
     @GET("api/recipes/v2")
@@ -36,18 +36,18 @@ interface RecipeServices {
     @GET("api/recipes/v2")
     suspend fun getRecipeFromQueryCuisine(
         @Query("type") type: String = TYPE,
-        @Query("q") query: String,
         @Query("app_id") appId: String = APP_ID,
         @Query("app_key") appKey: String = APP_KEY,
+        @Query("q") query: String,
         @Query("cuisineType") cuisineType: String
     ): RecipeRequest
 
     @GET("api/recipes/v2")
     suspend fun getRecipeFromQueryDish(
         @Query("type") type: String = TYPE,
-        @Query("q") query: String,
         @Query("app_id") appId: String = APP_ID,
         @Query("app_key") appKey: String = APP_KEY,
+        @Query("q") query: String,
         @Query("dishType") dishType: String
     ): RecipeRequest
 
@@ -63,9 +63,9 @@ interface RecipeServices {
     @GET("api/recipes/v2")
     suspend fun getRecipeFromQueryCuisineDish(
         @Query("type") type: String = TYPE,
-        @Query("q") query: String,
         @Query("app_id") appId: String = APP_ID,
         @Query("app_key") appKey: String = APP_KEY,
+        @Query("q") query: String,
         @Query("cuisineType") cuisineType: String,
         @Query("dishType") dishType: String
     ): RecipeRequest

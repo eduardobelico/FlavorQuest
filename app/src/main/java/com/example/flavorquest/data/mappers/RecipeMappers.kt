@@ -1,14 +1,15 @@
 package com.example.flavorquest.data.mappers
 
+import com.example.flavorquest.core.getRecipeId
 import com.example.flavorquest.data.remote.model.RecipeDto
 import com.example.flavorquest.domain.Recipe
 
 
 fun RecipeDto.toRecipe(): Recipe {
     return Recipe(
-        id = id,
+        id = uri.getRecipeId(),
         imageUrl = imageUrl,
-        name = name,
+        name = label,
         ingredients = ingredients,
         cuisineType = cuisineType,
         mealType = mealType,

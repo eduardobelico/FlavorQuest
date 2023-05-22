@@ -1,5 +1,8 @@
 package com.example.flavorquest.data.remote.model
 
+import com.squareup.moshi.Json
+
 data class RecipeRequest(
-    val hits: HitsDto
+    @field:Json(name = "hits")
+    val recipeList: List<RecipeDto>
 )
