@@ -2,7 +2,7 @@ package com.example.flavorquest.data.mappers
 
 import com.example.flavorquest.core.getRecipeId
 import com.example.flavorquest.data.remote.model.RecipeDto
-import com.example.flavorquest.domain.Recipe
+import com.example.flavorquest.domain.model.Recipe
 
 
 fun RecipeDto.toRecipe(): Recipe {

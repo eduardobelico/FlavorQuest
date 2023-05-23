@@ -5,7 +5,7 @@ import com.example.flavorquest.core.Constants.BASE_URL
 import com.example.flavorquest.core.Constants.OK_HTTP
 import com.example.flavorquest.data.remote.network.RecipeServices
 import com.example.flavorquest.data.repository.RecipeRepositoryImpl
-import com.example.flavorquest.domain.RecipeRepository
+import com.example.flavorquest.domain.repository.RecipeRepository
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient

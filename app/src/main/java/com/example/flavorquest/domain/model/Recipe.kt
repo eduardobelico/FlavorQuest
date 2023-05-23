@@ -1,4 +1,4 @@
-package com.example.flavorquest.domain
+package com.example.flavorquest.domain.model
 
 class Recipe(
     val id: String?,

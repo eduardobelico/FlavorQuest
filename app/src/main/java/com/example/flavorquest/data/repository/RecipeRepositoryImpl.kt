@@ -1,61 +1,136 @@
 package com.example.flavorquest.data.repository
 
+import android.util.Log
+import com.example.flavorquest.core.Resource
 import com.example.flavorquest.data.mappers.toRecipe
 import com.example.flavorquest.data.remote.network.RecipeServices
-import com.example.flavorquest.domain.Recipe
-import com.example.flavorquest.domain.RecipeRepository
+import com.example.flavorquest.domain.model.Recipe
+import com.example.flavorquest.domain.repository.RecipeRepository
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
 class RecipeRepositoryImpl(
-    private val recipeServices: RecipeServices
+    private val service: RecipeServices
 ) : RecipeRepository {
 
     /**
-     * Pega lista de receitas de acordo com cada combinação de parâmetros
+     * Pega a lista de receitas de acordo com cada combinação de parâmetros
      */
 
-    override suspend fun getRecipeFromQuery(query: String): List<Recipe> {
-        val queryResponse = recipeServices.getRecipeFromQuery(query = query)
+    override suspend fun getRecipeFromQuery(
+        query: String
+    ): Flow<Resource<List<Recipe>>> = flow {
+        try {
+            emit(Resource.Loading())
 
-        return queryResponse.recipeList.map { it.toRecipe() }
+            val queryResponse = service.getRecipeFromQuery(query = query)
+            emit(Resource.Success(queryResponse.recipeList.map { it.toRecipe() }))
+
+        } catch (e: Exception) {
+            Log.e("RecipeRepository", "$e")
+            emit(Resource.Error("Insira o ingrediente novamente"))
+        }
     }
 
-    override suspend fun getRecipeFromCuisine(cuisineType: String): List<Recipe> {
-        val cuisineResponse = recipeServices.getRecipeFromCuisine(cuisineType = cuisineType)
+    override suspend fun getRecipeFromCuisine(
+        cuisineType: String
+    ): Flow<Resource<List<Recipe>>> = flow {
+        try {
+            emit(Resource.Loading())
 
-        return cuisineResponse.recipeList.map { it.toRecipe() }
+            val cuisineResponse = service.getRecipeFromCuisine(cuisineType = cuisineType)
+            emit(Resource.Success(cuisineResponse.recipeList.map { it.toRecipe() }))
+
+        } catch (e: Exception) {
+            Log.e("RecipeRepository", "$e")
+            emit(Resource.Error("Insira as informações novamente"))
+        }
     }
 
-    override suspend fun getRecipeFromDish(dishType: String): List<Recipe> {
-        val dishResponse = recipeServices.getRecipeFromDish(dishType = dishType)
+    override suspend fun getRecipeFromDish(
+        dishType: String
+    ): Flow<Resource<List<Recipe>>> = flow {
+        try {
+            emit(Resource.Loading())
 
-        return dishResponse.recipeList.map { it.toRecipe() }
+            val dishResponse = service.getRecipeFromDish(dishType = dishType)
+            emit(Resource.Success(dishResponse.recipeList.map { it.toRecipe() }))
+
+        } catch (e: Exception) {
+            Log.e("RecipeRepository", "$e")
+            emit(Resource.Error("Insira as informações novamente"))
+        }
     }
 
-    override suspend fun getRecipeFromQueryCuisine(query: String, cuisineType: String): List<Recipe> {
-        val queryCuisineResponse = recipeServices.getRecipeFromQueryCuisine(query = query, cuisineType = cuisineType)
+    override suspend fun getRecipeFromQueryCuisine(
+        query: String,
+        cuisineType: String
+    ): Flow<Resource<List<Recipe>>> = flow {
+        try {
+            emit(Resource.Loading())
 
-        return queryCuisineResponse.recipeList.map { it.toRecipe() }
+            val queryCuisineResponse =
+                service.getRecipeFromQueryCuisine(query = query, cuisineType = cuisineType)
+            emit(Resource.Success(queryCuisineResponse.recipeList.map { it.toRecipe() }))
+
+        } catch (e: Exception) {
+            Log.e("RecipeRepository", "$e")
+            emit(Resource.Error("Insira as informações novamente"))
+        }
     }
 
-    override suspend fun getRecipeFromQueryDish(query: String, dishType: String): List<Recipe> {
-        val queryDishResponse = recipeServices.getRecipeFromQueryDish(query = query, dishType = dishType)
+    override suspend fun getRecipeFromQueryDish(
+        query: String,
+        dishType: String
+    ): Flow<Resource<List<Recipe>>> = flow {
+        try {
+            emit(Resource.Loading())
 
-        return queryDishResponse.recipeList.map { it.toRecipe() }
+            val queryDishResponse =
+                service.getRecipeFromQueryDish(query = query, dishType = dishType)
+            emit(Resource.Success(queryDishResponse.recipeList.map { it.toRecipe() }))
+
+        } catch (e: Exception) {
+            Log.e("RecipeRepository", "$e")
+            emit(Resource.Error("Insira as informações novamente"))
+        }
     }
 
-    override suspend fun getRecipeFromCuisineDish(cuisineType: String, dishType: String): List<Recipe> {
-        val cuisineDishResponse = recipeServices.getRecipeFromCuisineDish(cuisineType = cuisineType, dishType = dishType)
+    override suspend fun getRecipeFromCuisineDish(
+        cuisineType: String,
+        dishType: String
+    ): Flow<Resource<List<Recipe>>> = flow {
+        try {
+            emit(Resource.Loading())
 
-        return cuisineDishResponse.recipeList.map { it.toRecipe() }
+            val cuisineDishResponse =
+                service.getRecipeFromCuisineDish(cuisineType = cuisineType, dishType = dishType)
+            emit(Resource.Success(cuisineDishResponse.recipeList.map { it.toRecipe() }))
+
+        } catch (e: Exception) {
+            Log.e("RecipeRepository", "$e")
+            emit(Resource.Error("Insira as informações novamente"))
+        }
     }
 
     override suspend fun getRecipeFromQueryCuisineDish(
         query: String,
         cuisineType: String,
         dishType: String
-    ): List<Recipe> {
-        val queryCuisineDishResponse = recipeServices.getRecipeFromQueryCuisineDish(query = query, cuisineType = cuisineType, dishType = dishType)
+    ): Flow<Resource<List<Recipe>>> = flow {
+        try {
+            emit(Resource.Loading())
 
-        return queryCuisineDishResponse.recipeList.map { it.toRecipe() }
+            val queryCuisineDishResponse = service.getRecipeFromQueryCuisineDish(
+                query = query,
+                cuisineType = cuisineType,
+                dishType = dishType
+            )
+            emit(Resource.Success(queryCuisineDishResponse.recipeList.map { it.toRecipe() }))
+
+        } catch (e: Exception) {
+            Log.e("RecipeRepository", "$e")
+            emit(Resource.Error("Insira as informações novamente"))
+        }
     }
 }
