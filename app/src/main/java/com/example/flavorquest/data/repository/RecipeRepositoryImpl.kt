@@ -18,7 +18,7 @@ class RecipeRepositoryImpl(
      */
 
     override suspend fun getRecipeFromQuery(
-        query: String
+        query: String?
     ): Flow<Resource<List<Recipe>>> = flow {
         try {
             emit(Resource.Loading())
@@ -33,7 +33,7 @@ class RecipeRepositoryImpl(
     }
 
     override suspend fun getRecipeFromCuisine(
-        cuisineType: String
+        cuisineType: String?
     ): Flow<Resource<List<Recipe>>> = flow {
         try {
             emit(Resource.Loading())
@@ -48,7 +48,7 @@ class RecipeRepositoryImpl(
     }
 
     override suspend fun getRecipeFromDish(
-        dishType: String
+        dishType: String?
     ): Flow<Resource<List<Recipe>>> = flow {
         try {
             emit(Resource.Loading())
@@ -63,8 +63,8 @@ class RecipeRepositoryImpl(
     }
 
     override suspend fun getRecipeFromQueryCuisine(
-        query: String,
-        cuisineType: String
+        query: String?,
+        cuisineType: String?
     ): Flow<Resource<List<Recipe>>> = flow {
         try {
             emit(Resource.Loading())
@@ -80,8 +80,8 @@ class RecipeRepositoryImpl(
     }
 
     override suspend fun getRecipeFromQueryDish(
-        query: String,
-        dishType: String
+        query: String?,
+        dishType: String?
     ): Flow<Resource<List<Recipe>>> = flow {
         try {
             emit(Resource.Loading())
@@ -97,8 +97,8 @@ class RecipeRepositoryImpl(
     }
 
     override suspend fun getRecipeFromCuisineDish(
-        cuisineType: String,
-        dishType: String
+        cuisineType: String?,
+        dishType: String?
     ): Flow<Resource<List<Recipe>>> = flow {
         try {
             emit(Resource.Loading())

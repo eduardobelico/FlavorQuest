@@ -1,5 +1,6 @@
 package com.example.flavorquest.di
 
+import com.example.flavorquest.domain.useCases.RecipeUseCases
 import com.example.flavorquest.domain.useCases.recipeUseCases.*
 import org.koin.core.context.loadKoinModules
 import org.koin.core.module.Module
@@ -13,13 +14,25 @@ object DomainModule {
 
     private fun useCaseModule(): Module {
         return module {
-            factory { GetFromQueryUseCase(repository = get())}
-            factory { GetFromCuisineUseCase(repository = get())}
-            factory { GetFromDishUseCase(repository = get())}
-            factory { GetFromQueryCuisineUseCase(repository = get())}
-            factory { GetFromQueryDishUseCase(repository = get())}
-            factory { GetFromCuisineDishUseCase(repository = get())}
-            factory { GetFromQueryCuisineDishUseCase(repository = get())}
+            factory { GetFromQueryUseCase(repository = get()) }
+            factory { GetFromCuisineUseCase(repository = get()) }
+            factory { GetFromDishUseCase(repository = get()) }
+            factory { GetFromQueryCuisineUseCase(repository = get()) }
+            factory { GetFromQueryDishUseCase(repository = get()) }
+            factory { GetFromCuisineDishUseCase(repository = get()) }
+            factory { GetFromQueryCuisineDishUseCase(repository = get()) }
+
+            factory {
+                RecipeUseCases(
+                    getRecipeFromQuery = get(),
+                    getRecipefromCuisine = get(),
+                    getRecipefromDish = get(),
+                    getRecipefromQueryCuisine = get(),
+                    getRecipefromQueryDish = get(),
+                    getRecipefromCuisineDish = get(),
+                    getRecipefromQueryCuisineDish = get()
+                )
+            }
         }
     }
 }

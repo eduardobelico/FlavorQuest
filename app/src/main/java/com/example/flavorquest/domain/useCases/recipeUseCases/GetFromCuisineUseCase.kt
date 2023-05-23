@@ -9,6 +9,6 @@ class GetFromCuisineUseCase(
     private val repository: RecipeRepository
 ) {
     suspend operator fun invoke(
-        cuisineType: String
-    ): Flow<Resource<List<Recipe>>> = repository.getRecipeFromCuisine(cuisineType = cuisineType)
+        cuisineType: String?
+    ): Flow<Resource<List<Recipe>>> = repository.getRecipeFromCuisine(cuisineType)
 }
