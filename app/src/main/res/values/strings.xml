@@ -8,7 +8,8 @@
     <string name="cuisine_type">Culinária</string>
     <string name="meal_type">Refeicao</string>
     <string name="dish_type">Tipo</string>
-    
+    <string name="msg_error">Falha na conexão</string>
+
     <string-array name="health">
         <item>Baixo Açúcar</item>
         <item>Baixo Sal</item>

@@ -7,6 +7,7 @@ import com.example.flavorquest.data.remote.network.RecipeServices
 import com.example.flavorquest.domain.model.Recipe
 import com.example.flavorquest.domain.repository.RecipeRepository
 import kotlinx.coroutines.flow.Flow
+
 import kotlinx.coroutines.flow.flow
 
 class RecipeRepositoryImpl(
@@ -17,23 +18,23 @@ class RecipeRepositoryImpl(
      * Pega a lista de receitas de acordo com cada combinação de parâmetros
      */
 
-    override suspend fun getRecipeFromQuery(
-        query: String?
+    override fun getRecipeFromQuery(
+        query: String
     ): Flow<Resource<List<Recipe>>> = flow {
         try {
             emit(Resource.Loading())
-
+            
             val queryResponse = service.getRecipeFromQuery(query = query)
             emit(Resource.Success(queryResponse.recipeList.map { it.toRecipe() }))
-
+            
         } catch (e: Exception) {
             Log.e("RecipeRepository", "$e")
             emit(Resource.Error("Insira o ingrediente novamente"))
         }
     }
 
-    override suspend fun getRecipeFromCuisine(
-        cuisineType: String?
+    override fun getRecipeFromCuisine(
+        cuisineType: String
     ): Flow<Resource<List<Recipe>>> = flow {
         try {
             emit(Resource.Loading())
@@ -47,8 +48,8 @@ class RecipeRepositoryImpl(
         }
     }
 
-    override suspend fun getRecipeFromDish(
-        dishType: String?
+    override fun getRecipeFromDish(
+        dishType: String
     ): Flow<Resource<List<Recipe>>> = flow {
         try {
             emit(Resource.Loading())
@@ -62,9 +63,9 @@ class RecipeRepositoryImpl(
         }
     }
 
-    override suspend fun getRecipeFromQueryCuisine(
-        query: String?,
-        cuisineType: String?
+    override fun getRecipeFromQueryCuisine(
+        query: String,
+        cuisineType: String
     ): Flow<Resource<List<Recipe>>> = flow {
         try {
             emit(Resource.Loading())
@@ -79,9 +80,9 @@ class RecipeRepositoryImpl(
         }
     }
 
-    override suspend fun getRecipeFromQueryDish(
-        query: String?,
-        dishType: String?
+    override fun getRecipeFromQueryDish(
+        query: String,
+        dishType: String
     ): Flow<Resource<List<Recipe>>> = flow {
         try {
             emit(Resource.Loading())
@@ -96,9 +97,9 @@ class RecipeRepositoryImpl(
         }
     }
 
-    override suspend fun getRecipeFromCuisineDish(
-        cuisineType: String?,
-        dishType: String?
+    override fun getRecipeFromCuisineDish(
+        cuisineType: String,
+        dishType: String
     ): Flow<Resource<List<Recipe>>> = flow {
         try {
             emit(Resource.Loading())
@@ -113,7 +114,7 @@ class RecipeRepositoryImpl(
         }
     }
 
-    override suspend fun getRecipeFromQueryCuisineDish(
+    override fun getRecipeFromQueryCuisineDish(
         query: String,
         cuisineType: String,
         dishType: String

@@ -8,66 +8,66 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface RecipeServices {
-
+    
     @GET("api/recipes/v2")
     suspend fun getRecipeFromQuery(
+        @Query("q") query: String,
         @Query("type") type: String = TYPE,
         @Query("app_id") appId: String = APP_ID,
-        @Query("app_key") appKey: String = APP_KEY,
-        @Query("q") query: String
+        @Query("app_key") appKey: String = APP_KEY
     ): RecipeRequest
-
+    
     @GET("api/recipes/v2")
     suspend fun getRecipeFromCuisine(
+        @Query("cuisineType") cuisineType: String,
         @Query("type") type: String = TYPE,
         @Query("app_id") appId: String = APP_ID,
-        @Query("app_key") appKey: String = APP_KEY,
-        @Query("cuisineType") cuisineType: String
+        @Query("app_key") appKey: String = APP_KEY
     ): RecipeRequest
-
+    
     @GET("api/recipes/v2")
     suspend fun getRecipeFromDish(
+        @Query("dishType") dishType: String,
         @Query("type") type: String = TYPE,
         @Query("app_id") appId: String = APP_ID,
-        @Query("app_key") appKey: String = APP_KEY,
-        @Query("dishType") dishType: String
+        @Query("app_key") appKey: String = APP_KEY
     ): RecipeRequest
-
+    
     @GET("api/recipes/v2")
     suspend fun getRecipeFromQueryCuisine(
+        @Query("q") query: String,
+        @Query("cuisineType") cuisineType: String,
         @Query("type") type: String = TYPE,
         @Query("app_id") appId: String = APP_ID,
-        @Query("app_key") appKey: String = APP_KEY,
-        @Query("q") query: String,
-        @Query("cuisineType") cuisineType: String
+        @Query("app_key") appKey: String = APP_KEY
     ): RecipeRequest
-
+    
     @GET("api/recipes/v2")
     suspend fun getRecipeFromQueryDish(
+        @Query("q") query: String,
+        @Query("dishType") dishType: String,
         @Query("type") type: String = TYPE,
         @Query("app_id") appId: String = APP_ID,
-        @Query("app_key") appKey: String = APP_KEY,
-        @Query("q") query: String,
-        @Query("dishType") dishType: String
+        @Query("app_key") appKey: String = APP_KEY
     ): RecipeRequest
-
+    
     @GET("api/recipes/v2")
     suspend fun getRecipeFromCuisineDish(
+        @Query("cuisineType") cuisineType: String,
+        @Query("dishType") dishType: String,
         @Query("type") type: String = TYPE,
         @Query("app_id") appId: String = APP_ID,
-        @Query("app_key") appKey: String = APP_KEY,
-        @Query("cuisineType") cuisineType: String,
-        @Query("dishType") dishType: String
+        @Query("app_key") appKey: String = APP_KEY
     ): RecipeRequest
-
+    
     @GET("api/recipes/v2")
     suspend fun getRecipeFromQueryCuisineDish(
-        @Query("type") type: String = TYPE,
-        @Query("app_id") appId: String = APP_ID,
-        @Query("app_key") appKey: String = APP_KEY,
         @Query("q") query: String,
         @Query("cuisineType") cuisineType: String,
-        @Query("dishType") dishType: String
+        @Query("dishType") dishType: String,
+        @Query("type") type: String = TYPE,
+        @Query("app_id") appId: String = APP_ID,
+        @Query("app_key") appKey: String = APP_KEY
     ): RecipeRequest
-
+    
 }

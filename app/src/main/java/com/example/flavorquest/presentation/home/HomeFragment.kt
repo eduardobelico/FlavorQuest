@@ -5,56 +5,117 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import androidx.lifecycle.lifecycleScope
 import com.example.flavorquest.R
+import com.example.flavorquest.core.visibilityGone
+import com.example.flavorquest.core.visibilityVisible
+import com.example.flavorquest.databinding.FragmentHomeBinding
+import com.example.flavorquest.presentation.RecipeListState
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
+    
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
+    
+    private val viewModel by viewModel<HomeViewModel>()
+    
+    private var selectedQuery: String? = null
+    private var selectedCuisineType: String? = null
+    private var selectedDishType: String? = null
+    
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+    ): View {
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        
+        setSearchButton()
+    
+        return binding.root
     }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HomeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+    
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    
+        bindDropdownItens()
+    
+        bindViewModel()
+    }
+    
+    private suspend fun bindViewModel() {
+        lifecycleScope.launch {
+            viewModel.recipeList.collectLatest { result ->
+                when (result) {
+                    is RecipeListState.Loading -> {
+                        with(binding.searchError) {
+                            progressBar.visibilityVisible()
+                            errorMessage.visibilityGone()
+                        }
+                
+                    }
+                    is RecipeListState.Error -> {
+                        with(binding.searchError) {
+                            progressBar.visibilityGone()
+                            errorMessage.visibilityVisible()
+                        }
+                    }
+                    is RecipeListState.Data -> {
+                        with(binding.searchError) {
+                            progressBar.visibilityGone()
+                            errorMessage.visibilityGone()
+                        }
+//                        TODO abrir o list fragment
+                    }
+                
+                    }
                 }
             }
+        }
     }
+    
+    private fun setSearchButton() {
+        val searchButton = binding.searchButton
+        searchButton.setOnClickListener {
+            performSearch()
+        }
+    }
+    
+    private fun bindDropdownItens() {
+        val dishTypes = resources.getStringArray(R.array.dish)
+        val dishArrayAdapter =
+            ArrayAdapter(requireContext(), R.layout.dropdown_item, dishTypes)
+        binding.dishTypeAutocompleteTextview.setAdapter(dishArrayAdapter)
+    
+        val cuisineTypes = resources.getStringArray(R.array.cuisine)
+        val cuisineArrayAdapter =
+            ArrayAdapter(requireContext(), R.layout.dropdown_item, cuisineTypes)
+        binding.cuisineTypeAutocompleteTextview.setAdapter(cuisineArrayAdapter)
+    }
+    
+    private fun performSearch() {
+        selectedQuery = binding.searchQuery.text.toString()
+        
+        val cuisineTypeTextView = binding.cuisineTypeAutocompleteTextview
+        cuisineTypeTextView.setOnItemClickListener { parent, _, position, _ ->
+            selectedCuisineType = parent.getItemAtPosition(position).toString()
+        }
+        
+        val dishTypeTextView = binding.dishTypeAutocompleteTextview
+        dishTypeTextView.setOnItemClickListener { parent, _, position, _ ->
+            selectedDishType = parent.getItemAtPosition(position).toString()
+        }
+        
+        viewModel.checkForNullValues(selectedQuery, selectedCuisineType, selectedDishType)
+        
+    }
+    
 }

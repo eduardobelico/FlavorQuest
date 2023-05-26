@@ -46,6 +46,7 @@
         android:layout_height="60dp"
         android:layout_margin="16dp"
         android:background="@drawable/parchment_drawable"
+        android:hint="@string/search_query_hint"
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,48 +59,23 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:fontFamily="@font/old_school_adventures"
-            android:hint="@string/search_query_hint"
             android:inputType="text"
             android:textSize="12sp"
             android:textStyle="bold" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/health_menu"
+        android:id="@+id/dish_type_menu_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_margin="16dp"
-        android:hint="@string/health_specs"
+        android:hint="@string/dish_type"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/search_query_inputLayout">
 
         <AutoCompleteTextView
-            android:id="@+id/health_menu_textView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/parchment_drawable"
-            android:fontFamily="@font/old_school_adventures"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            app:boxStrokeWidth="0dp"
-            app:boxStrokeWidthFocused="0dp"
-            android:inputType="none"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/cuisine_type_menu"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_marginHorizontal="16dp"
-        android:hint="@string/cuisine_type"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/health_menu">
-
-        <AutoCompleteTextView
-            android:id="@+id/cuisine_type_menu_textView"
+            android:id="@+id/dish_type_autocomplete_textview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/parchment_drawable"
@@ -113,41 +89,17 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/meal_type_menu"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_margin="16dp"
-        android:hint="@string/meal_type"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/health_menu">
-
-        <AutoCompleteTextView
-            android:id="@+id/meal_type_menu_textView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/parchment_drawable"
-            android:fontFamily="@font/old_school_adventures"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            app:boxStrokeWidth="0dp"
-            app:boxStrokeWidthFocused="0dp"
-            android:inputType="none"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/dish_type_menu"
+        android:id="@+id/cuisine_type_menu_layout"
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_marginHorizontal="16dp"
-        android:hint="@string/dish_type"
+        android:hint="@string/cuisine_type"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/meal_type_menu">
+        app:layout_constraintTop_toTopOf="@+id/dish_type_menu_layout">
 
         <AutoCompleteTextView
-            android:id="@+id/dish_type_menu_textView"
+            android:id="@+id/cuisine_type_autocomplete_textview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/parchment_drawable"
@@ -186,5 +138,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         style="@style/Widget.MaterialComponents.Button.TextButton"
         />
+
+    <include
+        android:id="@+id/search_error"
+        layout="@layout/connection_sort"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

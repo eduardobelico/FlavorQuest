@@ -1,4 +1,4 @@
-package com.example.flavorquest.presentation.home
+package com.example.flavorquest.presentation
 
 import com.example.flavorquest.domain.model.Recipe
 
