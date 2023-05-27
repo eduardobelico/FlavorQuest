@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.flavorquest.R
 import com.example.flavorquest.core.visibilityGone
 import com.example.flavorquest.core.visibilityVisible
@@ -34,7 +35,7 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         
         setSearchButton()
-    
+        
         return binding.root
     }
     
@@ -43,65 +44,19 @@ class HomeFragment : Fragment() {
         _binding = null
     }
     
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    
-        bindDropdownItens()
-    
-        bindViewModel()
-    }
-    
-    private suspend fun bindViewModel() {
-        lifecycleScope.launch {
-            viewModel.recipeList.collectLatest { result ->
-                when (result) {
-                    is RecipeListState.Loading -> {
-                        with(binding.searchError) {
-                            progressBar.visibilityVisible()
-                            errorMessage.visibilityGone()
-                        }
-                
-                    }
-                    is RecipeListState.Error -> {
-                        with(binding.searchError) {
-                            progressBar.visibilityGone()
-                            errorMessage.visibilityVisible()
-                        }
-                    }
-                    is RecipeListState.Data -> {
-                        with(binding.searchError) {
-                            progressBar.visibilityGone()
-                            errorMessage.visibilityGone()
-                        }
-//                        TODO abrir o list fragment
-                    }
-                
-                    }
-                }
+    private fun setSearchButton() {
+        val searchButton = binding.searchButton
+        searchButton.setOnClickListener {
+            lifecycleScope.launch {
+                parametersBinding()
+                searchList()
+                torRecipeListFragment()
             }
         }
     }
     
-    private fun setSearchButton() {
-        val searchButton = binding.searchButton
-        searchButton.setOnClickListener {
-            performSearch()
-        }
-    }
-    
-    private fun bindDropdownItens() {
-        val dishTypes = resources.getStringArray(R.array.dish)
-        val dishArrayAdapter =
-            ArrayAdapter(requireContext(), R.layout.dropdown_item, dishTypes)
-        binding.dishTypeAutocompleteTextview.setAdapter(dishArrayAdapter)
-    
-        val cuisineTypes = resources.getStringArray(R.array.cuisine)
-        val cuisineArrayAdapter =
-            ArrayAdapter(requireContext(), R.layout.dropdown_item, cuisineTypes)
-        binding.cuisineTypeAutocompleteTextview.setAdapter(cuisineArrayAdapter)
-    }
-    
-    private fun performSearch() {
+    private fun parametersBinding() {
+        
         selectedQuery = binding.searchQuery.text.toString()
         
         val cuisineTypeTextView = binding.cuisineTypeAutocompleteTextview
@@ -114,8 +69,67 @@ class HomeFragment : Fragment() {
             selectedDishType = parent.getItemAtPosition(position).toString()
         }
         
-        viewModel.checkForNullValues(selectedQuery, selectedCuisineType, selectedDishType)
+        viewModel.checkParameters(
+            query = selectedQuery,
+            cuisineType = selectedCuisineType,
+            dishType = selectedDishType
+        )
+    }
+    
+    private fun searchList() {
+        lifecycleScope.launch {
+            viewModel.recipeList.collectLatest { result ->
+                when (result) {
+                    is RecipeListState.Loading -> {
+                        with(binding.searchError) {
+                            progressBar.visibilityVisible()
+                            errorMessage.visibilityGone()
+                        }
+                    }
+                    is RecipeListState.Error -> {
+                        with(binding.searchError) {
+                            progressBar.visibilityGone()
+                            errorMessage.visibilityVisible()
+                        }
+                    }
+                    is RecipeListState.Data -> {
+                        with(binding.searchError) {
+                            progressBar.visibilityGone()
+                            errorMessage.visibilityGone()
+                        }
+                    }
+                    else -> {}
+                }
+            }
+        }
+    }
+    
+    private fun torRecipeListFragment() {
+        val navController = findNavController()
+        val action = HomeFragmentDirections.actionHomeFragmentToRecipeListFragment(
+            selectedQuery,
+            selectedCuisineType,
+            selectedDishType
+        )
+        navController.navigate(action)
+    }
+    
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         
+        dropdownItemsBinding()
+    }
+    
+    private fun dropdownItemsBinding() {
+        val dishTypes = resources.getStringArray(R.array.dish)
+        val dishArrayAdapter =
+            ArrayAdapter(requireContext(), R.layout.dropdown_item, dishTypes)
+        binding.dishTypeAutocompleteTextview.setAdapter(dishArrayAdapter)
+        
+        val cuisineTypes = resources.getStringArray(R.array.cuisine)
+        val cuisineArrayAdapter =
+            ArrayAdapter(requireContext(), R.layout.dropdown_item, cuisineTypes)
+        binding.cuisineTypeAutocompleteTextview.setAdapter(cuisineArrayAdapter)
     }
     
 }

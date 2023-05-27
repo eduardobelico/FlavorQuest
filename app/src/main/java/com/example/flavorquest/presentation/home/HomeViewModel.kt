@@ -13,55 +13,50 @@ import kotlinx.coroutines.launch
 class HomeViewModel(
     private val requestUseCase: RequestUseCase
 ) : ViewModel() {
-
+    
     private val _recipeList = MutableStateFlow<RecipeListState>(RecipeListState.Loading)
     val recipeList: StateFlow<RecipeListState> get() = _recipeList
-
-    fun checkForNullValues(
-        query: String?,
-        cuisineType: String?,
-        dishType: String?
+    
+   init {
+       checkParameters()
+   }
+    
+    
+    fun checkParameters(
+        query: String? = null,
+        cuisineType: String? = null,
+        dishType: String? = null
     ) {
         
         /**
          * Verificação para garantir que pelo menos um campo esteja preenchido.
          * */
-
+        
         if (query.isNullOrBlank() && cuisineType.isNullOrBlank() && dishType.isNullOrBlank()) {
             viewModelScope.launch {
                 _recipeList.value = RecipeListState.Error("Insira algum dado sobre a receita!")
             }
         } else {
-            performSearch(query, cuisineType, dishType)
+            viewModelScope.launch {
+                requestUseCase(query, cuisineType, dishType).collectLatest { result ->
+                    
+                    when (result) {
+                        is Resource.Loading -> {
+                            _recipeList.value = RecipeListState.Loading
+                        }
+                        is Resource.Error -> {
+                            result.message?.let { message ->
+                                _recipeList.value = RecipeListState.Error(message)
+                            }
+                        }
+                        is Resource.Success -> {
+                            result.data?.let { recipeList ->
+                                _recipeList.value = RecipeListState.Data(recipeList)
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
-    
-    private fun performSearch(
-        query: String?,
-        cuisineType: String?,
-        dishType: String?
-    ) {
-        viewModelScope.launch {
-           requestUseCase(query, cuisineType, dishType).collectLatest { result ->
-               
-               when(result) {
-                   is Resource.Loading -> {
-                       _recipeList.value = RecipeListState.Loading
-                   }
-                   is Resource.Error -> {
-                       result.message?.let { message ->
-                           _recipeList.value = RecipeListState.Error(message)
-                       }
-                   }
-                   is Resource.Success -> {
-                       result.data?.let { recipeList ->
-                           _recipeList.value = RecipeListState.Data(recipeList)
-                       }
-                   }
-               }
-           }
-        }
-    }
-    
-    
 }
