@@ -106,7 +106,7 @@ class HomeFragment : Fragment() {
     
     private fun torRecipeListFragment() {
         val navController = findNavController()
-        val action = HomeFragmentDirections.actionHomeFragmentToRecipeListFragment(
+        val action = HomeFragmentDirections.homeFragmentToRecipeListFragment(
             selectedQuery,
             selectedCuisineType,
             selectedDishType

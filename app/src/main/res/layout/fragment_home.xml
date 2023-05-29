@@ -19,9 +19,9 @@
     <ImageView
         android:id="@+id/app_logo"
         android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_height="220dp"
         android:layout_margin="16dp"
-        android:background="@drawable/ijjrpi6mjcuue6kfgoapl8ddr3"
+        android:background="@drawable/flavorquestlogo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

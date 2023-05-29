@@ -22,17 +22,17 @@
         <argument
             android:name="query"
             app:argType="string"
-            android:defaultValue="@null" />
+            app:nullable="true" />
 
         <argument
             android:name="cuisineType"
             app:argType="string"
-            android:defaultValue="@null" />
+            app:nullable="true" />
 
         <argument
             android:name="dishType"
             app:argType="string"
-            android:defaultValue="@null" />
+            app:nullable="true" />
         <action
             android:id="@+id/action_recipeListFragment_to_recipeDetailsFragment"
             app:destination="@id/recipeDetailsFragment" />
