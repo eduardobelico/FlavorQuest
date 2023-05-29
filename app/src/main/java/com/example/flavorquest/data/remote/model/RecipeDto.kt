@@ -8,10 +8,11 @@ data class RecipeDto(
     val label: String,
     @field:Json(name = "image")
     val imageUrl: String?,
-    val ingredients: String,
-    val cuisineType: String,
-    val mealType: String,
-    val dishType: String,
+    @field:Json(name = "ingredientLines")
+    val ingredients: List<String> = emptyList(),
+    val cuisineType: List<String> = emptyList(),
+    val mealType: List<String> = emptyList(),
+    val dishType: List<String> = emptyList(),
     val source: String,
     val url: String?
 )

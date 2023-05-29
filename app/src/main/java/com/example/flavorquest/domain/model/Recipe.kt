@@ -4,10 +4,10 @@ class Recipe(
     val id: String?,
     val name: String,
     val imageUrl: String?,
-    val ingredients: String,
-    val cuisineType: String,
-    val mealType: String,
-    val dishType: String,
+    val ingredients: List<String>,
+    val cuisineType: List<String>,
+    val mealType: List<String>,
+    val dishType: List<String>,
     val source: String,
     val url: String?
 ) {

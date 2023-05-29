@@ -10,5 +10,6 @@ object Constants {
     const val APP_ID = BuildConfig.APP_ID
     const val APP_KEY = BuildConfig.APP_KEY
     const val OK_HTTP = "Ok http"
+    const val TOOLBAR_TITLE = "Receitas"
 
 }
