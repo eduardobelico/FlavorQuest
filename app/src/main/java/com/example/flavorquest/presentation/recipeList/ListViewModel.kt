@@ -1,5 +1,6 @@
 package com.example.flavorquest.presentation.recipeList
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.flavorquest.core.Resource
@@ -10,6 +11,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+
 class ListViewModel(
     private val requestUseCase: RequestUseCase
 ) : ViewModel() {
@@ -17,19 +19,24 @@ class ListViewModel(
     private val _recipeList = MutableStateFlow<RecipeListState>(RecipeListState.Loading)
     val recipeList: StateFlow<RecipeListState> get() = _recipeList
     
+    init {
+        getRecipes()
+    }
+    
     fun getRecipes(
-        query: String?,
-        cuisineType: String?,
-        dishType: String?
+        query: String? = null,
+        cuisineType: String? = null,
+        dishType: String? = null
     ) {
         viewModelScope.launch {
-            requestUseCase.invoke(
+            Log.i("oi", "getRecipes: Query=$query, CuisineType=$cuisineType, DishType=$dishType")
+            requestUseCase(
                 query = query,
                 cuisineType = cuisineType,
                 dishType = dishType
             ).collectLatest { result ->
-                
-                when(result) {
+                Log.i("oii", "getRecipes: Result=$result")
+                when (result) {
                     is Resource.Loading -> {
                         _recipeList.value = RecipeListState.Loading
                     }
@@ -41,7 +48,7 @@ class ListViewModel(
                     is Resource.Success -> {
                         result.data?.let { recipeList ->
                             _recipeList.value = RecipeListState.Data(recipeList)
-                            
+                            Log.i("oi", "getRecipes: $recipeList")
                         }
                     }
                 }

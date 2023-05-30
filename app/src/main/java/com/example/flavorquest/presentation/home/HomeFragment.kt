@@ -1,11 +1,12 @@
 package com.example.flavorquest.presentation.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.flavorquest.R
@@ -44,13 +45,20 @@ class HomeFragment : Fragment() {
         _binding = null
     }
     
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        
+        dropdownItemsBinding()
+    }
+    
     private fun setSearchButton() {
         val searchButton = binding.searchButton
         searchButton.setOnClickListener {
             lifecycleScope.launch {
                 parametersBinding()
                 searchList()
-                torRecipeListFragment()
+                toRecipeListFragment()
+                Log.i("oi", "setSearchButton: $selectedQuery, $selectedCuisineType, $selectedDishType")
             }
         }
     }
@@ -74,6 +82,7 @@ class HomeFragment : Fragment() {
             cuisineType = selectedCuisineType,
             dishType = selectedDishType
         )
+        Log.i("oi", "parametersBinding: $selectedQuery, $selectedCuisineType, $selectedDishType")
     }
     
     private fun searchList() {
@@ -84,18 +93,21 @@ class HomeFragment : Fragment() {
                         with(binding.searchError) {
                             progressBar.visibilityVisible()
                             errorMessage.visibilityGone()
+                            Log.i("oi", "searchList: $result")
                         }
                     }
                     is RecipeListState.Error -> {
                         with(binding.searchError) {
                             progressBar.visibilityGone()
                             errorMessage.visibilityVisible()
+                            Log.i("oi", "searchList: $result")
                         }
                     }
                     is RecipeListState.Data -> {
                         with(binding.searchError) {
                             progressBar.visibilityGone()
                             errorMessage.visibilityGone()
+                            Log.i("oi", "searchList: $result")
                         }
                     }
                     else -> {}
@@ -104,7 +116,7 @@ class HomeFragment : Fragment() {
         }
     }
     
-    private fun torRecipeListFragment() {
+    private fun toRecipeListFragment() {
         val navController = findNavController()
         val action = HomeFragmentDirections.homeFragmentToRecipeListFragment(
             selectedQuery,
@@ -112,12 +124,7 @@ class HomeFragment : Fragment() {
             selectedDishType
         )
         navController.navigate(action)
-    }
-    
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        
-        dropdownItemsBinding()
+        Log.i("oi", "toRecipeListFragment: $selectedQuery, $selectedCuisineType, $selectedDishType")
     }
     
     private fun dropdownItemsBinding() {
@@ -125,11 +132,12 @@ class HomeFragment : Fragment() {
         val dishArrayAdapter =
             ArrayAdapter(requireContext(), R.layout.dropdown_item, dishTypes)
         binding.dishTypeAutocompleteTextview.setAdapter(dishArrayAdapter)
+        Log.i("oi", "dropdownItemsBinding: $dishTypes")
         
         val cuisineTypes = resources.getStringArray(R.array.cuisine)
         val cuisineArrayAdapter =
             ArrayAdapter(requireContext(), R.layout.dropdown_item, cuisineTypes)
         binding.cuisineTypeAutocompleteTextview.setAdapter(cuisineArrayAdapter)
+        Log.i("oi", "dropdownItemsBinding: $cuisineTypes")
     }
-    
 }

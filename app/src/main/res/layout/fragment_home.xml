@@ -4,23 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/xxx"
     tools:context=".presentation.home.HomeFragment">
 
-    <ImageView
-        android:id="@+id/favorite_banner"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginEnd="4dp"
-        android:background="@drawable/pngtreemedieval_flag_with_wood_handle_7151013"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <!--    <ImageView-->
+    <!--        android:id="@+id/favorite_banner"-->
+    <!--        android:layout_width="100dp"-->
+    <!--        android:layout_height="100dp"-->
+    <!--        android:layout_marginHorizontal="16dp"-->
+    <!--        android:layout_marginEnd="4dp"-->
+    <!--        android:background="@drawable/pngtreemedieval_flag_with_wood_handle_7151013"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <ImageView
         android:id="@+id/app_logo"
         android:layout_width="200dp"
         android:layout_height="220dp"
-        android:layout_margin="16dp"
+        android:layout_margin="40dp"
         android:background="@drawable/flavorquestlogo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,114 +31,142 @@
         android:id="@+id/introduction_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="40dp"
         android:fontFamily="@font/old_school_adventures"
         android:text="@string/introduction_text"
-        android:textSize="12sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/app_logo" />
 
+    <ImageView
+        android:id="@+id/ingredient_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="10dp"
+        android:background="@drawable/chicken_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/search_query_inputLayout" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/search_query_inputLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_margin="16dp"
-        android:background="@drawable/parchment_drawable"
         android:hint="@string/search_query_hint"
-        app:boxStrokeWidth="0dp"
-        app:boxStrokeWidthFocused="0dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ingredient_icon"
         app:layout_constraintTop_toBottomOf="@id/introduction_text">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/search_query"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
             android:fontFamily="@font/old_school_adventures"
             android:inputType="text"
             android:textSize="12sp"
             android:textStyle="bold" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <ImageView
+        android:id="@+id/dish_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="10dp"
+        android:background="@drawable/food_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/dish_type_menu_layout" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/dish_type_menu_layout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
         android:layout_margin="16dp"
-        android:hint="@string/dish_type"
-        app:layout_constraintStart_toStartOf="parent"
+        app:boxStrokeColor="@color/white"
+        app:boxStrokeWidth="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/dish_icon"
         app:layout_constraintTop_toBottomOf="@id/search_query_inputLayout">
 
         <AutoCompleteTextView
             android:id="@+id/dish_type_autocomplete_textview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/parchment_drawable"
+            android:hint="Tipo"
+            android:background="@null"
             android:fontFamily="@font/old_school_adventures"
+            android:inputType="none"
             android:textSize="12sp"
-            android:textStyle="bold"
-            app:boxStrokeWidth="0dp"
-            app:boxStrokeWidthFocused="0dp"
-            android:inputType="none" />
+            android:textStyle="bold" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <ImageView
+        android:id="@+id/cuisine_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="10dp"
+        android:background="@drawable/globe_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/cuisine_type_menu_layout"/>
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/cuisine_type_menu_layout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_marginHorizontal="16dp"
-        android:hint="@string/cuisine_type"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_margin="16dp"
+        app:boxStrokeColor="@color/white"
+        app:boxStrokeWidth="1dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/dish_type_menu_layout">
+        app:layout_constraintStart_toEndOf="@id/cuisine_icon"
+        app:layout_constraintTop_toBottomOf="@id/dish_type_menu_layout">
 
         <AutoCompleteTextView
             android:id="@+id/cuisine_type_autocomplete_textview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/parchment_drawable"
+            android:hint="Culinária"
+            android:background="@null"
             android:fontFamily="@font/old_school_adventures"
+            android:inputType="none"
             android:textSize="12sp"
-            android:textStyle="bold"
-            app:boxStrokeWidth="0dp"
-            app:boxStrokeWidthFocused="0dp"
-            android:inputType="none" />
-
+            android:textStyle="bold" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-        android:id="@+id/tags_text"
+        android:id="@+id/search_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:fontFamily="@font/akaya_telivigala"
-        android:text=""
-        android:textSize="16sp"
+        android:layout_margin="16dp"
+        android:fontFamily="@font/old_school_adventures"
+        android:text="Com esses dados, encontraremos a receita que procura. Vamos lá, pressione o botão! "
+        android:textSize="14sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/search_query_inputLayout" />
+        app:layout_constraintTop_toBottomOf="@id/cuisine_type_menu_layout" />
 
     <Button
         android:id="@+id/search_button"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/old_school_adventures"
         android:text="Encontrar receita"
         android:textColor="@color/black"
-        android:fontFamily="@font/old_school_adventures"
         android:textSize="12sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <include
         android:id="@+id/search_error"

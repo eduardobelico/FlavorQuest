@@ -1,6 +1,5 @@
 package com.example.flavorquest.di
 
-import com.example.flavorquest.domain.useCases.recipeUseCases.RequestUseCase
 import com.example.flavorquest.presentation.home.HomeViewModel
 import com.example.flavorquest.presentation.recipeList.ListViewModel
 import org.koin.core.context.loadKoinModules

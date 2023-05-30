@@ -2,8 +2,8 @@
     <string name="app_name">FlavorQuest</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="search_query_hint">Informe aqui o seu ingrediente!</string>
-    <string name="introduction_text">Bem-vindo, aventureiro culinário! Antes de iniciar a sua jornada...</string>
+    <string name="search_query_hint">Ingrediente</string>
+    <string name="introduction_text">Olá, aventureiro! Antes de iniciar a sua jornada, nos diga o que procura em uma receita...</string>
     <string name="health_specs">Saúde</string>
     <string name="cuisine_type">Culinária</string>
     <string name="meal_type">Refeicao</string>

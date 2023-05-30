@@ -1,5 +1,6 @@
 package com.example.flavorquest.presentation.home
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.flavorquest.core.Resource
@@ -17,11 +18,6 @@ class HomeViewModel(
     private val _recipeList = MutableStateFlow<RecipeListState>(RecipeListState.Loading)
     val recipeList: StateFlow<RecipeListState> get() = _recipeList
     
-   init {
-       checkParameters()
-   }
-    
-    
     fun checkParameters(
         query: String? = null,
         cuisineType: String? = null,
@@ -35,6 +31,7 @@ class HomeViewModel(
         if (query.isNullOrBlank() && cuisineType.isNullOrBlank() && dishType.isNullOrBlank()) {
             viewModelScope.launch {
                 _recipeList.value = RecipeListState.Error("Insira algum dado sobre a receita!")
+                Log.i("oi", "getRecipes: $recipeList")
             }
         } else {
             viewModelScope.launch {
@@ -53,6 +50,7 @@ class HomeViewModel(
                             result.data?.let { recipeList ->
                                 _recipeList.value = RecipeListState.Data(recipeList)
                             }
+                            Log.i("oi", "getRecipes: $recipeList")
                         }
                     }
                 }
