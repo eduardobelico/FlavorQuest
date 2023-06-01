@@ -3,6 +3,7 @@ package com.example.flavorquest.data.remote.model
 import com.google.gson.annotations.SerializedName
 
 data class RecipeDto(
+    
     val uri: String?,
     val label: String?,
     @SerializedName("image")

@@ -25,7 +25,13 @@ class RecipeRepositoryImpl(
             emit(Resource.Loading())
             
             val queryResponse = service.getRecipeFromQuery(query = query)
-            emit(Resource.Success(queryResponse.recipeList.map { it.toRecipe() }))
+            
+            emit(Resource.Success(queryResponse.recipeList.map { recipeDto ->
+                Log.i("oioi", "Calling toRecipe() for RecipeDto: $recipeDto")
+                recipeDto.toRecipe()
+                
+            }))
+            Log.i("oi", "getRecipeFromQuery: ${queryResponse.recipeList.map { it.toRecipe() }}")
             
         } catch (e: Exception) {
             Log.e("RecipeRepository", "$e")

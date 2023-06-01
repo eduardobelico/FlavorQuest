@@ -1,5 +1,6 @@
 package com.example.flavorquest.presentation.recipeList
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -28,6 +29,7 @@ class RecipeAdapter(
         
         fun bindView(recipe: Recipe) {
             this.recipe = recipe
+            Log.i("oi", "bindView: $recipe")
             with(binding) {
                 recipeImageUrl.loadImage(recipe.imageUrl)
                 recipeName.text = recipe.name
