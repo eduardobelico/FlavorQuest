@@ -1,8 +1,10 @@
 package com.example.flavorquest.data.remote.model
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
+
 
 data class RecipeRequest(
-    @field:Json(name = "hits")
+    
+    @SerializedName("hits")
     val recipeList: List<RecipeDto>
 )

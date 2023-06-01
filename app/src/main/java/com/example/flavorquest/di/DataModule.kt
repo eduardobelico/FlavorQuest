@@ -6,15 +6,13 @@ import com.example.flavorquest.core.Constants.OK_HTTP
 import com.example.flavorquest.data.remote.network.RecipeServices
 import com.example.flavorquest.data.repository.RecipeRepositoryImpl
 import com.example.flavorquest.domain.repository.RecipeRepository
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.core.context.loadKoinModules
 import org.koin.core.module.Module
 import org.koin.dsl.module
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 
 object DataModule {
 
@@ -25,7 +23,7 @@ object DataModule {
     private fun repositoryModule(): Module {
         return module {
             single<RecipeRepository> {
-                RecipeRepositoryImpl(get())
+                RecipeRepositoryImpl(service =  get())
             }
         }
     }
@@ -33,12 +31,7 @@ object DataModule {
     private fun networkModule(): Module {
         return module {
             single<RecipeServices> {
-                createService(get(), get())
-            }
-            single {
-                Moshi.Builder()
-                    .add(KotlinJsonAdapterFactory())
-                    .build()
+                createService(client = get())
             }
             single {
                 val interceptor = HttpLoggingInterceptor {
@@ -52,15 +45,14 @@ object DataModule {
         }
     }
 
-    private inline fun <reified T> createService(
-        factory: Moshi,
+    private fun createService(
         client: OkHttpClient
-    ): T {
+    ): RecipeServices {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .addConverterFactory(MoshiConverterFactory.create(factory))
+            .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
-            .create(T::class.java)
+            .create(RecipeServices::class.java)
     }
 }

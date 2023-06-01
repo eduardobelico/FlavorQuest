@@ -3,6 +3,7 @@ package com.example.flavorquest.core
 import android.view.View
 import android.widget.ImageView
 import coil.load
+import com.example.flavorquest.R
 import com.example.flavorquest.core.Constants.BASE_RECIPE_URI
 
 fun String.getRecipeId(): String {
@@ -14,6 +15,8 @@ fun ImageView.loadImage(url: String? = null) {
       visibilityVisible()
       
       load(url) {
+         error(R.drawable.erro)
+         placeholder(R.drawable.placeholder)
          crossfade(1000)
       }
    }

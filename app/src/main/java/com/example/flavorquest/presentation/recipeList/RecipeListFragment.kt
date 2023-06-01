@@ -1,10 +1,10 @@
 package com.example.flavorquest.presentation.recipeList
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -13,7 +13,6 @@ import com.example.flavorquest.core.Constants.TOOLBAR_TITLE
 import com.example.flavorquest.core.visibilityGone
 import com.example.flavorquest.core.visibilityVisible
 import com.example.flavorquest.databinding.FragmentRecipeListBinding
-import com.example.flavorquest.presentation.RecipeListState
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -35,7 +34,6 @@ class RecipeListFragment : Fragment() {
         getSearchArgs()
         setToolbar()
         initRecyclerView()
-        Log.i("oi", "onCreateView")
         
         return binding.root
     }
@@ -47,14 +45,11 @@ class RecipeListFragment : Fragment() {
     
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getSearchArgs()
         populateRecyclerView()
-        Log.i("oi", "onViewCreated")
     }
     
     private fun getSearchArgs() {
-        viewModel.getRecipes(args.query, args.cuisineType, args.dishType)
-        Log.i("oi", "getSearchArgs: ${args.query}, ${args.cuisineType}, ${args.dishType}")
+        viewModel.getRecipes(query = args.query ?: "apple", cuisineType = args.cuisineType, dishType = args.dishType)
     }
     
     private fun setToolbar() {
@@ -67,40 +62,35 @@ class RecipeListFragment : Fragment() {
         recipeAdapter = RecipeAdapter()
         binding.recipeListRecyclerview.adapter = recipeAdapter
         binding.recipeListRecyclerview.setHasFixedSize(true)
-        Log.i("oi", "initRecyclerView")
     }
     
     private fun populateRecyclerView() {
-        
         lifecycleScope.launch {
-            Log.i("oi", "populateRecyclerView")
             viewModel.recipeList.collectLatest { result ->
-                Log.i("oi", "populateRecyclerView - RecipeListState: $result")
                 when (result) {
                     is RecipeListState.Data -> {
+                        Toast.makeText(requireContext(), "Data", Toast.LENGTH_SHORT).show()
                         with(binding.searchError) {
-                            progressBar.visibilityGone()
                             errorMessage.visibilityGone()
+                            progressBar.visibilityGone()
                         }
-                        Log.i("oi", "RecipeListState.Data - Recipe List: ${result.recipeList}")
                         recipeAdapter.setData(result.recipeList)
-                        Log.i("oi", "RecipeListState.Data")
                     }
                     is RecipeListState.Error -> {
+                        Toast.makeText(requireContext(), "Erro", Toast.LENGTH_SHORT).show()
                         with(binding.searchError) {
                             errorMessage.visibilityVisible()
                             progressBar.visibilityGone()
                             errorMessage.text = result.message
-                            
                         }
                     }
                     RecipeListState.Loading -> {
+                        Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
                         with(binding.searchError) {
                             errorMessage.visibilityGone()
                             progressBar.visibilityVisible()
                         }
                     }
-                    else -> {}
                 }
             }
         }
