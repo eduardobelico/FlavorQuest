@@ -10,7 +10,7 @@ fun RecipeDto.toRecipe(): Recipe {
     
     Log.i("oioi", "uri: $uri")
     Log.i("oioi", "imageUrl: $imageUrl")
-    Log.i("oioi", "label: $label")
+    Log.i("oioi", "label: $name")
     Log.i("oioi", "ingredients: $ingredients")
     Log.i("oioi", "cuisineType: $cuisineType")
     Log.i("oioi", "mealType: $mealType")
@@ -20,7 +20,7 @@ fun RecipeDto.toRecipe(): Recipe {
     return Recipe(
         id = uri?.getRecipeId(),
         imageUrl = imageUrl?: "",
-        name = label ?: "",
+        name = name ?: "",
         ingredients = ingredients?: emptyList(),
         cuisineType = cuisineType?: emptyList(),
         mealType = mealType?: emptyList(),

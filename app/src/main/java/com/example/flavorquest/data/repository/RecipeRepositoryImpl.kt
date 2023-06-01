@@ -25,14 +25,14 @@ class RecipeRepositoryImpl(
             emit(Resource.Loading())
             
             val queryResponse = service.getRecipeFromQuery(query = query)
-            
-            emit(Resource.Success(queryResponse.recipeList.map { recipeDto ->
-                Log.i("oioi", "Calling toRecipe() for RecipeDto: $recipeDto")
+            val recipeList = queryResponse.recipeList.map { recipeListDto ->
+                recipeListDto.recipe
+            }
+            val recipeModel = recipeList.map { recipeDto ->
                 recipeDto.toRecipe()
-                
-            }))
-            Log.i("oi", "getRecipeFromQuery: ${queryResponse.recipeList.map { it.toRecipe() }}")
-            
+            }
+            emit(Resource.Success(recipeModel))
+            Log.i("RecipeRepository", "getRecipeFromQuery: ${recipeModel}")
         } catch (e: Exception) {
             Log.e("RecipeRepository", "$e")
             emit(Resource.Error("Insira o ingrediente novamente"))
@@ -46,7 +46,13 @@ class RecipeRepositoryImpl(
             emit(Resource.Loading())
 
             val cuisineResponse = service.getRecipeFromCuisine(cuisineType = cuisineType)
-            emit(Resource.Success(cuisineResponse.recipeList.map { it.toRecipe() }))
+            val recipeList = cuisineResponse.recipeList.map { recipeListDto ->
+                recipeListDto.recipe
+            }
+            val recipeModel = recipeList.map { recipeDto ->
+                recipeDto.toRecipe()
+            }
+            emit(Resource.Success(recipeModel))
 
         } catch (e: Exception) {
             Log.e("RecipeRepository", "$e")
@@ -61,7 +67,13 @@ class RecipeRepositoryImpl(
             emit(Resource.Loading())
 
             val dishResponse = service.getRecipeFromDish(dishType = dishType)
-            emit(Resource.Success(dishResponse.recipeList.map { it.toRecipe() }))
+            val recipeList = dishResponse.recipeList.map { recipeListDto ->
+                recipeListDto.recipe
+            }
+            val recipeModel = recipeList.map { recipeDto ->
+                recipeDto.toRecipe()
+            }
+            emit(Resource.Success(recipeModel))
 
         } catch (e: Exception) {
             Log.e("RecipeRepository", "$e")
@@ -78,7 +90,13 @@ class RecipeRepositoryImpl(
 
             val queryCuisineResponse =
                 service.getRecipeFromQueryCuisine(query = query, cuisineType = cuisineType)
-            emit(Resource.Success(queryCuisineResponse.recipeList.map { it.toRecipe() }))
+            val recipeList = queryCuisineResponse.recipeList.map { recipeListDto ->
+                recipeListDto.recipe
+            }
+            val recipeModel = recipeList.map { recipeDto ->
+                recipeDto.toRecipe()
+            }
+            emit(Resource.Success(recipeModel))
 
         } catch (e: Exception) {
             Log.e("RecipeRepository", "$e")
@@ -95,7 +113,13 @@ class RecipeRepositoryImpl(
 
             val queryDishResponse =
                 service.getRecipeFromQueryDish(query = query, dishType = dishType)
-            emit(Resource.Success(queryDishResponse.recipeList.map { it.toRecipe() }))
+            val recipeList = queryDishResponse.recipeList.map { recipeListDto ->
+                recipeListDto.recipe
+            }
+            val recipeModel = recipeList.map { recipeDto ->
+                recipeDto.toRecipe()
+            }
+            emit(Resource.Success(recipeModel))
 
         } catch (e: Exception) {
             Log.e("RecipeRepository", "$e")
@@ -112,7 +136,13 @@ class RecipeRepositoryImpl(
 
             val cuisineDishResponse =
                 service.getRecipeFromCuisineDish(cuisineType = cuisineType, dishType = dishType)
-            emit(Resource.Success(cuisineDishResponse.recipeList.map { it.toRecipe() }))
+            val recipeList = cuisineDishResponse.recipeList.map { recipeListDto ->
+                recipeListDto.recipe
+            }
+            val recipeModel = recipeList.map { recipeDto ->
+                recipeDto.toRecipe()
+            }
+            emit(Resource.Success(recipeModel))
 
         } catch (e: Exception) {
             Log.e("RecipeRepository", "$e")
@@ -133,8 +163,13 @@ class RecipeRepositoryImpl(
                 cuisineType = cuisineType,
                 dishType = dishType
             )
-            emit(Resource.Success(queryCuisineDishResponse.recipeList.map { it.toRecipe() }))
-
+            val recipeList = queryCuisineDishResponse.recipeList.map { recipeListDto ->
+                recipeListDto.recipe
+            }
+            val recipeModel = recipeList.map { recipeDto ->
+                recipeDto.toRecipe()
+            }
+            emit(Resource.Success(recipeModel))
         } catch (e: Exception) {
             Log.e("RecipeRepository", "$e")
             emit(Resource.Error("Insira as informações novamente"))
