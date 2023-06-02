@@ -26,7 +26,7 @@ class RecipeListFragment : Fragment() {
     
     private lateinit var recipeAdapter: RecipeAdapter
     private val args by navArgs<RecipeListFragmentArgs>()
-    private val viewModel by viewModel<ListViewModel>()
+    private val viewModel by viewModel<RecipeListViewModel>()
     
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

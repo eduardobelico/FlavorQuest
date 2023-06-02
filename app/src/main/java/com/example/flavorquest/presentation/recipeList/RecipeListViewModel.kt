@@ -9,8 +9,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-
-class ListViewModel(
+class RecipeListViewModel(
     private val getRecipeListUseCase: GetRecipeListUseCase
 ) : ViewModel() {
     
