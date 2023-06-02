@@ -6,16 +6,16 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.flavorquest.core.loadImage
 import com.example.flavorquest.core.removeBrackets
-import com.example.flavorquest.databinding.RecipeCardBinding
+import com.example.flavorquest.databinding.RecipeListItemBinding
 import com.example.flavorquest.domain.model.Recipe
 
-class RecipeAdapter(
+class ListAdapter(
     var selectedRecipe: (recipe: Recipe) -> Unit = {}
-) : RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder>() {
+) : RecyclerView.Adapter<ListAdapter.RecipeViewHolder>() {
     
     private var recipeList = emptyList<Recipe>()
     
-    inner class RecipeViewHolder(val binding: RecipeCardBinding) :
+    inner class RecipeViewHolder(val binding: RecipeListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         private lateinit var recipe: Recipe
         
@@ -40,7 +40,7 @@ class RecipeAdapter(
     
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = RecipeCardBinding.inflate(inflater, parent, false)
+        val binding = RecipeListItemBinding.inflate(inflater, parent, false)
         
         return RecipeViewHolder(binding)
     }

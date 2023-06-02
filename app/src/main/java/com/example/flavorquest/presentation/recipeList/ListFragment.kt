@@ -11,7 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.flavorquest.R
-import com.example.flavorquest.core.Constants.TOOLBAR_TITLE
+import com.example.flavorquest.core.Constants.TOOLBAR_LIST_TITLE
 import com.example.flavorquest.core.visibilityGone
 import com.example.flavorquest.core.visibilityVisible
 import com.example.flavorquest.databinding.FragmentRecipeListBinding
@@ -19,14 +19,14 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class RecipeListFragment : Fragment() {
+class ListFragment : Fragment() {
     
     private var _binding: FragmentRecipeListBinding? = null
     private val binding get() = _binding!!
     
-    private lateinit var recipeAdapter: RecipeAdapter
+    private lateinit var listAdapter: ListAdapter
     private val args by navArgs<RecipeListFragmentArgs>()
-    private val viewModel by viewModel<RecipeListViewModel>()
+    private val viewModel by viewModel<ListViewModel>()
     
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,28 +51,33 @@ class RecipeListFragment : Fragment() {
     }
     
     private fun getSearchArgs() {
-        viewModel.getRecipes(query = args.query ?: "apple", cuisineType = args.cuisineType, dishType = args.dishType)
+        viewModel.getRecipes(
+            query = args.query,
+            cuisineType = args.cuisineType,
+            dishType = args.dishType
+        )
     }
     
     private fun setToolbar() {
         val activity = activity as AppCompatActivity
         activity.setSupportActionBar(binding.listToolbar)
-        activity.title = TOOLBAR_TITLE
+        activity.title = TOOLBAR_LIST_TITLE
     }
     
     private fun initRecyclerView() {
-        recipeAdapter = RecipeAdapter()
-        binding.recipeListRecyclerview.adapter = recipeAdapter
+        listAdapter = ListAdapter()
+        binding.recipeListRecyclerview.adapter = listAdapter
         binding.recipeListRecyclerview.setHasFixedSize(true)
         
-        recipeAdapter.selectedRecipe = {
+        listAdapter.selectedRecipe = {
             toDetailsFragment(recipeId = it.id)
         }
     }
     
     private fun toDetailsFragment(recipeId: String) {
         val navController = findNavController()
-        val action = RecipeListFragmentDirections.recipeListFragmentToRecipeDetailsFragment(recipeId)
+        val action =
+            RecipeListFragmentDirections.recipeListFragmentToRecipeDetailsFragment(recipeId)
         
         if (navController.currentDestination?.id == R.id.recipeListFragment) {
             return navController.navigate(action)
@@ -83,15 +88,15 @@ class RecipeListFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.recipeList.collectLatest { result ->
                 when (result) {
-                    is RecipeListState.Data -> {
+                    is ListState.Data -> {
                         Toast.makeText(requireContext(), "Data", Toast.LENGTH_SHORT).show()
                         with(binding.searchError) {
                             errorMessage.visibilityGone()
                             progressBar.visibilityGone()
                         }
-                        recipeAdapter.setData(result.recipeList)
+                        listAdapter.setData(result.recipeList)
                     }
-                    is RecipeListState.Error -> {
+                    is ListState.Error -> {
                         Toast.makeText(requireContext(), "Erro", Toast.LENGTH_SHORT).show()
                         with(binding.searchError) {
                             errorMessage.visibilityVisible()
@@ -99,7 +104,7 @@ class RecipeListFragment : Fragment() {
                             errorMessage.text = result.message
                         }
                     }
-                    RecipeListState.Loading -> {
+                    ListState.Loading -> {
                         Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
                         with(binding.searchError) {
                             errorMessage.visibilityGone()

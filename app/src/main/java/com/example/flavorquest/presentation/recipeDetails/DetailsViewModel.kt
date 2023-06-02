@@ -8,28 +8,28 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class RecipeDetailsViewModel(
+class DetailsViewModel(
     private val getDetailsUseCase: GetRecipeDetailsUseCase
 ) : ViewModel() {
     
-    private val _recipeDetails = MutableStateFlow<RecipeDetailsState>(RecipeDetailsState.Loading)
-    val recipeDetails: StateFlow<RecipeDetailsState> get() = _recipeDetails
+    private val _recipeDetails = MutableStateFlow<DetailsState>(DetailsState.Loading)
+    val recipeDetails: StateFlow<DetailsState> get() = _recipeDetails
     
     fun getRecipeDetails(id: String) {
         viewModelScope.launch {
             getDetailsUseCase(id).collect { result ->
                 when (result) {
                     is Resource.Loading -> {
-                        _recipeDetails.value = RecipeDetailsState.Loading
+                        _recipeDetails.value = DetailsState.Loading
                     }
                     is Resource.Error -> {
                         result.message?.let { message ->
-                            _recipeDetails.value = RecipeDetailsState.Error(message)
+                            _recipeDetails.value = DetailsState.Error(message)
                         }
                     }
                     is Resource.Success -> {
                         result.data?.let { recipeDetails ->
-                            _recipeDetails.value = RecipeDetailsState.Data(recipeDetails)
+                            _recipeDetails.value = DetailsState.Data(recipeDetails)
                         }
                     }
                 }

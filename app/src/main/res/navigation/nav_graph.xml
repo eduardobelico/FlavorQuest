@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/recipeListFragment"
-        android:name="com.example.flavorquest.presentation.recipeList.RecipeListFragment"
+        android:name="com.example.flavorquest.presentation.recipeList.ListFragment"
         android:label=""
         tools:layout="@layout/fragment_recipe_list" >
         <argument
@@ -39,7 +39,7 @@
     </fragment>
     <fragment
         android:id="@+id/recipeDetailsFragment"
-        android:name="com.example.flavorquest.presentation.recipeDetails.RecipeDetailsFragment"
+        android:name="com.example.flavorquest.presentation.recipeDetails.DetailsFragment"
         android:label=""
         tools:layout="@layout/fragment_recipe_details">
         <argument

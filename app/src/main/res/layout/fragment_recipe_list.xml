@@ -22,7 +22,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/list_toolbar"
-        tools:context=".presentation.recipeList.RecipeListFragment">
+        tools:context=".presentation.recipeList.ListFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recipe_list_recyclerview"
@@ -34,7 +34,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/recipe_card" />
+            tools:listitem="@layout/recipe_list_item" />
 
         <include
             android:id="@+id/search_error"

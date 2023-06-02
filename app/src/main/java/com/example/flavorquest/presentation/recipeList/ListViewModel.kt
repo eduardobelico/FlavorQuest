@@ -9,12 +9,12 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-class RecipeListViewModel(
+class ListViewModel(
     private val getRecipeListUseCase: GetRecipeListUseCase
 ) : ViewModel() {
     
-    private val _recipeList = MutableStateFlow<RecipeListState>(RecipeListState.Loading)
-    val recipeList: StateFlow<RecipeListState> get() = _recipeList
+    private val _recipeList = MutableStateFlow<ListState>(ListState.Loading)
+    val recipeList: StateFlow<ListState> get() = _recipeList
     
     fun getRecipes(
         query: String?,
@@ -29,16 +29,16 @@ class RecipeListViewModel(
             ).collectLatest { result ->
                 when (result) {
                     is Resource.Loading -> {
-                        _recipeList.value = RecipeListState.Loading
+                        _recipeList.value = ListState.Loading
                     }
                     is Resource.Error -> {
                         result.message?.let { message ->
-                            _recipeList.value = RecipeListState.Error(message)
+                            _recipeList.value = ListState.Error(message)
                         }
                     }
                     is Resource.Success -> {
                         result.data?.let { recipeList ->
-                            _recipeList.value = RecipeListState.Data(recipeList)
+                            _recipeList.value = ListState.Data(recipeList)
                         }
                     }
                 }
