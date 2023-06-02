@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.flavorquest.core.loadImage
+import com.example.flavorquest.core.removeBrackets
 import com.example.flavorquest.databinding.RecipeCardBinding
 import com.example.flavorquest.domain.model.Recipe
 
@@ -29,12 +30,11 @@ class RecipeAdapter(
         
         fun bindView(recipe: Recipe) {
             this.recipe = recipe
-            Log.i("oi", "bindView: $recipe")
             with(binding) {
                 recipeImageUrl.loadImage(recipe.imageUrl)
                 recipeName.text = recipe.name
-                recipeDishType.text = recipe.dishType.toString()
-                recipeCuisineType.text = recipe.cuisineType.toString()
+                recipeDishType.text = recipe.dishType.toString().removeBrackets()
+                recipeCuisineType.text = recipe.cuisineType.toString().removeBrackets()
             }
         }
     }

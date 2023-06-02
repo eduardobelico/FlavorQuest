@@ -102,7 +102,9 @@ class HomeFragment : Fragment() {
             selectedCuisineType,
             selectedDishType
         )
-        navController.navigate(action)
+        if (navController.currentDestination?.id == R.id.homeFragment) {
+            navController.navigate(action)
+        }
     }
     
     private fun dropdownItemsBinding() {

@@ -10,6 +10,10 @@ fun String.getRecipeId(): String {
    return this.replace(BASE_RECIPE_URI, "")
 }
 
+fun String.removeBrackets(): String {
+   return this.replace("[", "").replace("]", "")
+}
+
 fun ImageView.loadImage(url: String? = null) {
    if (url != null) {
       visibilityVisible()
