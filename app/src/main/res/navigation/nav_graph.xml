@@ -34,12 +34,22 @@
             app:argType="string"
             app:nullable="true" />
         <action
-            android:id="@+id/action_recipeListFragment_to_recipeDetailsFragment"
+            android:id="@+id/recipeListFragment_to_recipeDetailsFragment"
             app:destination="@id/recipeDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/recipeDetailsFragment"
         android:name="com.example.flavorquest.presentation.recipeDetails.RecipeDetailsFragment"
         android:label=""
-        tools:layout="@layout/fragment_recipe_details" />
+        tools:layout="@layout/fragment_recipe_details">
+        <argument
+            android:name="recipeId"
+            app:argType="string" />
+        <action
+            android:id="@+id/recipeDetailsFragment_to_recipeListFragment"
+            app:destination="@id/recipeListFragment" />
+        <action
+            android:id="@+id/recipeDetailsFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>

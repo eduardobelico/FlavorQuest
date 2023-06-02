@@ -11,6 +11,7 @@ interface RecipeRepository {
     fun getRecipeFromDish(dishType: String): Flow<Resource<List<Recipe>>>
     fun getRecipeFromQueryCuisine(query: String, cuisineType: String): Flow<Resource<List<Recipe>>>
     fun getRecipeFromQueryDish(query: String, dishType: String): Flow<Resource<List<Recipe>>>
+   
     fun getRecipeFromCuisineDish(
         cuisineType: String,
         dishType: String
@@ -21,4 +22,6 @@ interface RecipeRepository {
         cuisineType: String,
         dishType: String
     ): Flow<Resource<List<Recipe>>>
+    
+    fun getRecipeFromId(id: String): Flow<Resource<Recipe>>
 }

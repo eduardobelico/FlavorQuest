@@ -13,11 +13,11 @@ import kotlinx.coroutines.flow.flow
 class RecipeRepositoryImpl(
     private val service: RecipeServices
 ) : RecipeRepository {
-
+    
     /**
      * Pega a lista de receitas de acordo com cada combinação de parâmetros
      */
-
+    
     override fun getRecipeFromQuery(
         query: String
     ): Flow<Resource<List<Recipe>>> = flow {
@@ -38,13 +38,13 @@ class RecipeRepositoryImpl(
             emit(Resource.Error("Insira o ingrediente novamente"))
         }
     }
-
+    
     override fun getRecipeFromCuisine(
         cuisineType: String
     ): Flow<Resource<List<Recipe>>> = flow {
         try {
             emit(Resource.Loading())
-
+            
             val cuisineResponse = service.getRecipeFromCuisine(cuisineType = cuisineType)
             val recipeList = cuisineResponse.recipeList.map { recipeListDto ->
                 recipeListDto.recipe
@@ -53,19 +53,19 @@ class RecipeRepositoryImpl(
                 recipeDto.toRecipe()
             }
             emit(Resource.Success(recipeModel))
-
+            
         } catch (e: Exception) {
             Log.e("RecipeRepository", "$e")
             emit(Resource.Error("Insira as informações novamente"))
         }
     }
-
+    
     override fun getRecipeFromDish(
         dishType: String
     ): Flow<Resource<List<Recipe>>> = flow {
         try {
             emit(Resource.Loading())
-
+            
             val dishResponse = service.getRecipeFromDish(dishType = dishType)
             val recipeList = dishResponse.recipeList.map { recipeListDto ->
                 recipeListDto.recipe
@@ -74,20 +74,20 @@ class RecipeRepositoryImpl(
                 recipeDto.toRecipe()
             }
             emit(Resource.Success(recipeModel))
-
+            
         } catch (e: Exception) {
             Log.e("RecipeRepository", "$e")
             emit(Resource.Error("Insira as informações novamente"))
         }
     }
-
+    
     override fun getRecipeFromQueryCuisine(
         query: String,
         cuisineType: String
     ): Flow<Resource<List<Recipe>>> = flow {
         try {
             emit(Resource.Loading())
-
+            
             val queryCuisineResponse =
                 service.getRecipeFromQueryCuisine(query = query, cuisineType = cuisineType)
             val recipeList = queryCuisineResponse.recipeList.map { recipeListDto ->
@@ -97,20 +97,20 @@ class RecipeRepositoryImpl(
                 recipeDto.toRecipe()
             }
             emit(Resource.Success(recipeModel))
-
+            
         } catch (e: Exception) {
             Log.e("RecipeRepository", "$e")
             emit(Resource.Error("Insira as informações novamente"))
         }
     }
-
+    
     override fun getRecipeFromQueryDish(
         query: String,
         dishType: String
     ): Flow<Resource<List<Recipe>>> = flow {
         try {
             emit(Resource.Loading())
-
+            
             val queryDishResponse =
                 service.getRecipeFromQueryDish(query = query, dishType = dishType)
             val recipeList = queryDishResponse.recipeList.map { recipeListDto ->
@@ -120,20 +120,20 @@ class RecipeRepositoryImpl(
                 recipeDto.toRecipe()
             }
             emit(Resource.Success(recipeModel))
-
+            
         } catch (e: Exception) {
             Log.e("RecipeRepository", "$e")
             emit(Resource.Error("Insira as informações novamente"))
         }
     }
-
+    
     override fun getRecipeFromCuisineDish(
         cuisineType: String,
         dishType: String
     ): Flow<Resource<List<Recipe>>> = flow {
         try {
             emit(Resource.Loading())
-
+            
             val cuisineDishResponse =
                 service.getRecipeFromCuisineDish(cuisineType = cuisineType, dishType = dishType)
             val recipeList = cuisineDishResponse.recipeList.map { recipeListDto ->
@@ -143,13 +143,13 @@ class RecipeRepositoryImpl(
                 recipeDto.toRecipe()
             }
             emit(Resource.Success(recipeModel))
-
+            
         } catch (e: Exception) {
             Log.e("RecipeRepository", "$e")
             emit(Resource.Error("Insira as informações novamente"))
         }
     }
-
+    
     override fun getRecipeFromQueryCuisineDish(
         query: String,
         cuisineType: String,
@@ -157,7 +157,7 @@ class RecipeRepositoryImpl(
     ): Flow<Resource<List<Recipe>>> = flow {
         try {
             emit(Resource.Loading())
-
+            
             val queryCuisineDishResponse = service.getRecipeFromQueryCuisineDish(
                 query = query,
                 cuisineType = cuisineType,
@@ -173,6 +173,21 @@ class RecipeRepositoryImpl(
         } catch (e: Exception) {
             Log.e("RecipeRepository", "$e")
             emit(Resource.Error("Insira as informações novamente"))
+        }
+    }
+    
+    override fun getRecipeFromId(
+        id: String
+    ): Flow<Resource<Recipe>> = flow {
+        try {
+            emit(Resource.Loading())
+            
+            val idResponse = service.getRecipeFromId(id = id)
+            emit(Resource.Success(idResponse.recipe.toRecipe()))
+            
+        } catch (e: Exception) {
+            Log.e("RecipeRepository", "$e")
+            emit(Resource.Error("Não foi possível encontrar a receita"))
         }
     }
 }

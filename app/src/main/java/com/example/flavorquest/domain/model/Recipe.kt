@@ -1,7 +1,7 @@
 package com.example.flavorquest.domain.model
 
 class Recipe(
-    val id: String?,
+    val id: String,
     val name: String,
     val imageUrl: String?,
     val ingredients: List<String>,

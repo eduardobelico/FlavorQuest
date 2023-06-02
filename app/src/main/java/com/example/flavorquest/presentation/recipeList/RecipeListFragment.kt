@@ -8,7 +8,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.flavorquest.R
 import com.example.flavorquest.core.Constants.TOOLBAR_TITLE
 import com.example.flavorquest.core.visibilityGone
 import com.example.flavorquest.core.visibilityVisible
@@ -62,6 +64,19 @@ class RecipeListFragment : Fragment() {
         recipeAdapter = RecipeAdapter()
         binding.recipeListRecyclerview.adapter = recipeAdapter
         binding.recipeListRecyclerview.setHasFixedSize(true)
+        
+        recipeAdapter.selectedRecipe = {
+            toDetailsFragment(recipeId = it.id)
+        }
+    }
+    
+    private fun toDetailsFragment(recipeId: String) {
+        val navController = findNavController()
+        val action = RecipeListFragmentDirections.recipeListFragmentToRecipeDetailsFragment(recipeId)
+        
+        if (navController.currentDestination?.id == R.id.recipeListFragment) {
+            return navController.navigate(action)
+        }
     }
     
     private fun populateRecyclerView() {
