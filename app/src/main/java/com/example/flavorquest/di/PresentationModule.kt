@@ -14,7 +14,7 @@ object PresentationModule {
     private fun viewModelModule(): Module {
         return module {
             factory { HomeViewModel() }
-            factory { ListViewModel(requestUseCase = get()) }
+            factory { ListViewModel(getRecipeListUseCase = get()) }
         }
     }
 }

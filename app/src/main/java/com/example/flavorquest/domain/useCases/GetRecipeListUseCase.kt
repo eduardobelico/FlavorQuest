@@ -1,11 +1,11 @@
-package com.example.flavorquest.domain.useCases.recipeUseCases
+package com.example.flavorquest.domain.useCases
 
 import com.example.flavorquest.core.Resource
 import com.example.flavorquest.domain.model.Recipe
 import com.example.flavorquest.domain.repository.RecipeRepository
 import kotlinx.coroutines.flow.Flow
 
-class RequestUseCase(
+class GetRecipeListUseCase(
     private val repository: RecipeRepository
 ) {
     operator fun invoke(

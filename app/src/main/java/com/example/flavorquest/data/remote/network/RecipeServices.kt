@@ -78,5 +78,4 @@ interface RecipeServices {
         @Query("app_id") appId: String = APP_ID,
         @Query("app_key") appKey: String = APP_KEY
     ): RecipeListDto
-    
 }
