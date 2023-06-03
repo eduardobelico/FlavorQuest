@@ -1,6 +1,7 @@
 package com.example.flavorquest.di
 
 import com.example.flavorquest.presentation.home.HomeViewModel
+import com.example.flavorquest.presentation.recipeDetails.DetailsViewModel
 import com.example.flavorquest.presentation.recipeList.ListViewModel
 import org.koin.core.context.loadKoinModules
 import org.koin.core.module.Module
@@ -15,6 +16,7 @@ object PresentationModule {
         return module {
             factory { HomeViewModel() }
             factory { ListViewModel(getRecipeListUseCase = get()) }
+            factory { DetailsViewModel(getDetailsUseCase = get()) }
         }
     }
 }

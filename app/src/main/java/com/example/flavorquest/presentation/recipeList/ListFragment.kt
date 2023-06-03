@@ -25,7 +25,7 @@ class ListFragment : Fragment() {
     private val binding get() = _binding!!
     
     private lateinit var listAdapter: ListAdapter
-    private val args by navArgs<RecipeListFragmentArgs>()
+    private val args by navArgs<ListFragmentArgs>()
     private val viewModel by viewModel<ListViewModel>()
     
     override fun onCreateView(
@@ -51,11 +51,7 @@ class ListFragment : Fragment() {
     }
     
     private fun getSearchArgs() {
-        viewModel.getRecipes(
-            query = args.query,
-            cuisineType = args.cuisineType,
-            dishType = args.dishType
-        )
+        viewModel.getRecipes(query = args.query, cuisineType = args.cuisineType, dishType = args.dishType)
     }
     
     private fun setToolbar() {
@@ -76,8 +72,7 @@ class ListFragment : Fragment() {
     
     private fun toDetailsFragment(recipeId: String) {
         val navController = findNavController()
-        val action =
-            RecipeListFragmentDirections.recipeListFragmentToRecipeDetailsFragment(recipeId)
+        val action = ListFragmentDirections.recipeListFragmentToRecipeDetailsFragment(recipeId)
         
         if (navController.currentDestination?.id == R.id.recipeListFragment) {
             return navController.navigate(action)
