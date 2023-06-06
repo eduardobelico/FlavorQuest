@@ -8,6 +8,7 @@ class Recipe(
     val cuisineType: List<String>,
     val mealType: List<String>,
     val dishType: List<String>,
+    val diet: List<String>,
     val source: String,
     val url: String?
 )

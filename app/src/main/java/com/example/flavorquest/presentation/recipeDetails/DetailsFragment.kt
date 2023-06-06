@@ -4,11 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
-import com.example.flavorquest.core.Constants.TOOLBAR_DETAILS_TITLE
 import com.example.flavorquest.core.loadImage
 import com.example.flavorquest.core.removeBrackets
 import com.example.flavorquest.core.visibilityGone
@@ -37,19 +35,12 @@ class DetailsFragment : Fragment() {
     
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setToolbar()
         initRecipeDetails()
     }
     
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-    
-    private fun setToolbar() {
-        val activity = requireActivity() as AppCompatActivity
-        activity.setSupportActionBar(binding.detailsToolbar)
-        activity.title = TOOLBAR_DETAILS_TITLE
     }
     
     private fun getDetailsArgs() {
@@ -90,10 +81,11 @@ class DetailsFragment : Fragment() {
         with(binding) {
             detailsImageUrl.loadImage(recipe.imageUrl)
             detailsName.text = recipe.name
-            detailsDishType.text = recipe.dishType.toString().removeBrackets()
-            detailsCuisineType.text = recipe.cuisineType.toString().removeBrackets()
-            detailsMealType.text = recipe.mealType.toString().removeBrackets()
+            detailsDishType.text = recipe.dishType.toString().removeBrackets().replaceFirstChar { it.uppercase() }
+            detailsCuisineType.text = recipe.cuisineType.toString().removeBrackets().replaceFirstChar { it.uppercase() }
+            detailsMealType.text = recipe.mealType.toString().removeBrackets().replaceFirstChar { it.uppercase() }
             detailsIngredients.text = recipe.ingredients.joinToString("\n").removeBrackets()
+            detailsDiet.text = recipe.diet.toString().removeBrackets().replaceFirstChar { it.uppercase() }
             detailsSource.text = recipe.source
             detailsUrl.text = recipe.url
         }

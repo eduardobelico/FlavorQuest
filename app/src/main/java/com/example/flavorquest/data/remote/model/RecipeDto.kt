@@ -13,6 +13,8 @@ data class RecipeDto(
     val cuisineType: List<String>?,
     val mealType: List<String>?,
     val dishType: List<String>?,
+    @SerializedName("dietLabels")
+    val diet: List<String>?,
     val source: String?,
     val url: String?
 )

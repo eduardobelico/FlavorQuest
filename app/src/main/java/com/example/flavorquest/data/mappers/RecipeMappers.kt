@@ -15,6 +15,7 @@ fun RecipeDto.toRecipe(): Recipe {
         cuisineType = cuisineType?: emptyList(),
         mealType = mealType?: emptyList(),
         dishType = dishType?: emptyList(),
+        diet = diet?: emptyList(),
         source = source ?: "",
         url = url ?: ""
     )
