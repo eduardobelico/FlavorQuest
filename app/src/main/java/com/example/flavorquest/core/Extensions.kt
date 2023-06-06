@@ -5,10 +5,6 @@ import android.widget.ImageView
 import coil.load
 import com.example.flavorquest.R
 import com.example.flavorquest.core.Constants.BASE_RECIPE_URI
-import com.google.mlkit.nl.translate.TranslateLanguage
-import com.google.mlkit.nl.translate.Translation
-import com.google.mlkit.nl.translate.Translator
-import com.google.mlkit.nl.translate.TranslatorOptions
 
 fun String.getRecipeId(): String {
    return this.replace(BASE_RECIPE_URI, "")
@@ -44,13 +40,4 @@ fun View.visibilityGone() {
 
 fun View.visibilityInvisible() {
    this.visibility = View.INVISIBLE
-}
-
-fun createTranslator(): Translator {
-   val options = TranslatorOptions.Builder()
-      .setSourceLanguage(TranslateLanguage.ENGLISH)
-      .setTargetLanguage(TranslateLanguage.PORTUGUESE)
-      .build()
-   
-   return Translation.getClient(options)
 }

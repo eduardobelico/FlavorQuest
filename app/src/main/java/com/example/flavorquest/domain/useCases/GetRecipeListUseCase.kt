@@ -8,11 +8,56 @@ import kotlinx.coroutines.flow.Flow
 class GetRecipeListUseCase(
     private val repository: RecipeRepository
 ) {
+    
+    private val cuisineTypeMap = mapOf(
+        "Americana" to "american",
+        "Asiática" to "asian",
+        "Britânica" to "british",
+        "Caribenha" to "caribbean",
+        "Centro-Europeia" to "central europe",
+        "Chinesa" to "chinese",
+        "Francesa" to "french",
+        "Indiana" to "indian",
+        "Italiana" to "italian",
+        "Japonesa" to "japanese",
+        "Kosher" to "kosher",
+        "Leste-Europeia" to "eastern europe",
+        "Médio-Oriental" to "middle eastern",
+        "Mediterrânea" to "mediterranean",
+        "Mexicana" to "mexican",
+        "Nórdica" to "nordic",
+        "Sulamericana" to "south american",
+        "Sul-asiática" to "south east asian"
+    )
+    
+    
+    private val dishTypeMap = mapOf(
+        "Acompanhamentos" to "side dish",
+        "Biscoitos" to "biscuits and cookies",
+        "Cereais" to "cereals",
+        "Condimentos" to "condiments and sauces",
+        "Doces" to "desserts",
+        "Drinks" to "drinks",
+        "Entradas" to "starter",
+        "Pães" to "bread",
+        "Panquecas" to "pancake",
+        "Prato Principal" to "main course",
+        "Preparativos" to "preps",
+        "Preservados" to "preserve",
+        "Saladas" to "salad",
+        "Sanduíches" to "sandwiches",
+        "Sobremesas" to "desserts",
+        "Sopas" to "soup"
+    )
+    
     operator fun invoke(
         query: String?,
         cuisineType: String?,
         dishType: String?
     ): Flow<Resource<List<Recipe>>> {
+    
+        val mappedCuisineType = cuisineTypeMap[cuisineType] ?: ""
+        val mappedDishType = dishTypeMap[dishType] ?: ""
         
         return if (cuisineType.isNullOrBlank() && dishType.isNullOrBlank() && !query.isNullOrBlank()) {
             repository.getRecipeFromQuery(
@@ -20,32 +65,32 @@ class GetRecipeListUseCase(
             )
         } else if (!cuisineType.isNullOrBlank() && dishType.isNullOrBlank() && query.isNullOrBlank()) {
             repository.getRecipeFromCuisine(
-                cuisineType = cuisineType
+                cuisineType = mappedCuisineType
             )
         } else if (cuisineType.isNullOrBlank() && !dishType.isNullOrBlank() && query.isNullOrBlank()) {
             repository.getRecipeFromDish(
-                dishType = dishType
+                dishType = mappedDishType
             )
         } else if (!cuisineType.isNullOrBlank() && dishType.isNullOrBlank() && !query.isNullOrBlank()) {
             repository.getRecipeFromQueryCuisine(
                 query = query,
-                cuisineType = cuisineType
+                cuisineType = mappedCuisineType
             )
         } else if (cuisineType.isNullOrBlank() && !dishType.isNullOrBlank() && !query.isNullOrBlank()) {
             repository.getRecipeFromQueryDish(
                 query = query,
-                dishType = dishType
+                dishType = mappedDishType
             )
         } else if (!cuisineType.isNullOrBlank() && !dishType.isNullOrBlank() && query.isNullOrBlank()) {
             repository.getRecipeFromCuisineDish(
-                cuisineType = cuisineType,
-                dishType = dishType
+                cuisineType = mappedCuisineType,
+                dishType = mappedDishType
             )
         } else {
             repository.getRecipeFromQueryCuisineDish(
                 query = query!!,
-                cuisineType = cuisineType!!,
-                dishType = dishType!!
+                cuisineType = mappedCuisineType,
+                dishType = mappedDishType
             )
         }
     }

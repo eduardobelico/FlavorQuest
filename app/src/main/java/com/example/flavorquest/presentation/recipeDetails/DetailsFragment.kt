@@ -93,7 +93,7 @@ class DetailsFragment : Fragment() {
             detailsDishType.text = recipe.dishType.toString().removeBrackets()
             detailsCuisineType.text = recipe.cuisineType.toString().removeBrackets()
             detailsMealType.text = recipe.mealType.toString().removeBrackets()
-            detailsIngredients.text = recipe.ingredients.toString().removeBrackets()
+            detailsIngredients.text = recipe.ingredients.joinToString("\n").removeBrackets()
             detailsSource.text = recipe.source
             detailsUrl.text = recipe.url
         }

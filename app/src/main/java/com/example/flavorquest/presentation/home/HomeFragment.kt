@@ -41,6 +41,11 @@ class HomeFragment : Fragment() {
         _binding = null
     }
     
+    override fun onResume() {
+        super.onResume()
+        dropdownItemsBinding()
+    }
+    
     override fun onPause() {
         super.onPause()
         viewModel.stateRefresh()
@@ -49,7 +54,6 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getResult()
-        dropdownItemsBinding()
     }
     
     private fun setSearchButton() {
@@ -118,4 +122,7 @@ class HomeFragment : Fragment() {
             ArrayAdapter(requireContext(), R.layout.dropdown_item, cuisineTypes)
         binding.cuisineTypeAutocompleteTextview.setAdapter(cuisineArrayAdapter)
     }
-}
+    }
+
+
+

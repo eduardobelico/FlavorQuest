@@ -27,16 +27,19 @@
         <item>Britânica</item>
         <item>Caribenha</item>
         <item>Centro-Europeia</item>
-        <item>Coreana</item>
+        <item>Chinesa</item>
         <item>Francesa</item>
-        <item>Grega</item>
         <item>Indiana</item>
         <item>Italiana</item>
-        <item>Leste-Europeia</item>
         <item>Japonesa</item>
+        <item>Kosher</item>
+        <item>Leste-Europeia</item>
+        <item>Médio-Oriental</item>
         <item>Mediterrânea</item>
+        <item>Mexicana</item>
         <item>Nórdica</item>
         <item>Sulamericana</item>
+        <item>Sul-asiática</item>
     </string-array>
 
     <string-array name="meal">
@@ -51,24 +54,18 @@
         <item>Acompanhamentos</item>
         <item>Biscoitos</item>
         <item>Cereais</item>
-        <item>Confeitaria</item>
-        <item>Coquetéis</item>
+        <item>Condimentos</item>
         <item>Doces</item>
         <item>Drinks</item>
         <item>Entradas</item>
-        <item>Frutos do Mar</item>
-        <item>Massas</item>
-        <item>Molhos</item>
-        <item>Ovo</item>
         <item>Pães</item>
-        <item>Panqueca</item>
-        <item>Pizzas</item>
+        <item>Panquecas</item>
         <item>Prato Principal</item>
+        <item>Preparativos</item>
+        <item>Preservados</item>
         <item>Saladas</item>
         <item>Sanduíches</item>
         <item>Sobremesas</item>
         <item>Sopas</item>
-        <item>Sorvete</item>
-        <item>Tortas</item>
     </string-array>
 </resources>
