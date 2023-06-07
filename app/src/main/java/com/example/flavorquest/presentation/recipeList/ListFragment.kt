@@ -84,7 +84,6 @@ class ListFragment : Fragment() {
             viewModel.recipeList.collectLatest { result ->
                 when (result) {
                     is ListState.Data -> {
-                        Toast.makeText(requireContext(), "Data", Toast.LENGTH_SHORT).show()
                         with(binding.searchError) {
                             errorMessage.visibilityGone()
                             progressBar.visibilityGone()
@@ -92,7 +91,6 @@ class ListFragment : Fragment() {
                         listAdapter.setData(result.recipeList)
                     }
                     is ListState.Error -> {
-                        Toast.makeText(requireContext(), "Erro", Toast.LENGTH_SHORT).show()
                         with(binding.searchError) {
                             errorMessage.visibilityVisible()
                             progressBar.visibilityGone()
@@ -100,7 +98,6 @@ class ListFragment : Fragment() {
                         }
                     }
                     ListState.Loading -> {
-                        Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
                         with(binding.searchError) {
                             errorMessage.visibilityGone()
                             progressBar.visibilityVisible()

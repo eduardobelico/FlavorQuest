@@ -10,17 +10,6 @@
     <string name="dish_type">Tipo</string>
     <string name="msg_error">Falha na conexão</string>
 
-    <string-array name="health">
-        <item>Baixo Açúcar</item>
-        <item>Baixo Sal</item>
-        <item>Sem Álcool</item>
-        <item>Sem Amendoim</item>
-        <item>Sem Glúten</item>
-        <item>Sem Lactose</item>
-        <item>Vegano</item>
-        <item>Vegetariano</item>
-    </string-array>
-
     <string-array name="cuisine">
         <item>Americana</item>
         <item>Asiática</item>
@@ -42,21 +31,13 @@
         <item>Sul-asiática</item>
     </string-array>
 
-    <string-array name="meal">
-        <item>Almoco/Jantar</item>
-        <item>Brunch</item>
-        <item>Café da Manhã</item>
-        <item>Chá da Tarde</item>
-        <item>Lanche</item>
-    </string-array>
-
     <string-array name="dish">
         <item>Acompanhamentos</item>
+        <item>Bebidas</item>
         <item>Biscoitos</item>
         <item>Cereais</item>
         <item>Condimentos</item>
         <item>Doces</item>
-        <item>Drinks</item>
         <item>Entradas</item>
         <item>Pães</item>
         <item>Panquecas</item>
@@ -68,4 +49,5 @@
         <item>Sobremesas</item>
         <item>Sopas</item>
     </string-array>
+
 </resources>

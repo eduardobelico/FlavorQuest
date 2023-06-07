@@ -3,7 +3,10 @@ package com.example.flavorquest.domain.useCases
 import com.example.flavorquest.core.Resource
 import com.example.flavorquest.domain.model.Recipe
 import com.example.flavorquest.domain.repository.RecipeRepository
+import com.google.mlkit.nl.translate.Translator
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
+import java.util.PrimitiveIterator
 
 class GetRecipeListUseCase(
     private val repository: RecipeRepository
@@ -37,7 +40,7 @@ class GetRecipeListUseCase(
         "Cereais" to "cereals",
         "Condimentos" to "condiments and sauces",
         "Doces" to "desserts",
-        "Drinks" to "drinks",
+        "Bebidas" to "drinks",
         "Entradas" to "starter",
         "Pães" to "bread",
         "Panquecas" to "pancake",
@@ -55,7 +58,7 @@ class GetRecipeListUseCase(
         cuisineType: String?,
         dishType: String?
     ): Flow<Resource<List<Recipe>>> {
-    
+        
         val mappedCuisineType = cuisineTypeMap[cuisineType] ?: ""
         val mappedDishType = dishTypeMap[dishType] ?: ""
         

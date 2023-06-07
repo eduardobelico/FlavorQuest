@@ -11,6 +11,7 @@ class GetRecipeDetailsUseCase(
     operator fun invoke(
         id: String
     ): Flow<Resource<Recipe>> {
+        
         return repository.getRecipeFromId(
             id = id
         )

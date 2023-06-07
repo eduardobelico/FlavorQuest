@@ -15,19 +15,19 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object DataModule {
-
+    
     fun load() {
         loadKoinModules(repositoryModule() + networkModule())
     }
-
+    
     private fun repositoryModule(): Module {
         return module {
             single<RecipeRepository> {
-                RecipeRepositoryImpl(service =  get())
+                RecipeRepositoryImpl(service = get())
             }
         }
     }
-
+    
     private fun networkModule(): Module {
         return module {
             single<RecipeServices> {
@@ -44,7 +44,7 @@ object DataModule {
             }
         }
     }
-
+    
     private fun createService(
         client: OkHttpClient
     ): RecipeServices {
@@ -55,4 +55,5 @@ object DataModule {
             .build()
             .create(RecipeServices::class.java)
     }
+    
 }
