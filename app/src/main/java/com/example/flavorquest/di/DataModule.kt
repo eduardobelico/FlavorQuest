@@ -3,6 +3,7 @@ package com.example.flavorquest.di
 import android.util.Log
 import com.example.flavorquest.core.Constants.BASE_URL
 import com.example.flavorquest.core.Constants.OK_HTTP
+import com.example.flavorquest.data.local.RecipeDatabase
 import com.example.flavorquest.data.remote.network.RecipeServices
 import com.example.flavorquest.data.repository.RecipeRepositoryImpl
 import com.example.flavorquest.domain.repository.RecipeRepository
@@ -17,7 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object DataModule {
     
     fun load() {
-        loadKoinModules(repositoryModule() + networkModule())
+        loadKoinModules(repositoryModule() + networkModule() + localModule())
     }
     
     private fun repositoryModule(): Module {
@@ -25,6 +26,12 @@ object DataModule {
             single<RecipeRepository> {
                 RecipeRepositoryImpl(service = get())
             }
+        }
+    }
+    
+    private fun  localModule(): Module {
+        return module {
+            single { RecipeDatabase.getInstance(context = get()) }
         }
     }
     
