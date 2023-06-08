@@ -3,17 +3,23 @@ package com.example.flavorquest.presentation.recipeDetails
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.flavorquest.core.Resource
+import com.example.flavorquest.domain.model.Recipe
+import com.example.flavorquest.domain.useCases.FavoriteRecipesUseCases
 import com.example.flavorquest.domain.useCases.GetRecipeDetailsUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class DetailsViewModel(
-    private val getDetailsUseCase: GetRecipeDetailsUseCase
+    private val getDetailsUseCase: GetRecipeDetailsUseCase,
+    private val favoriteRecipesUseCases: FavoriteRecipesUseCases
 ) : ViewModel() {
     
     private val _recipeDetails = MutableStateFlow<DetailsState>(DetailsState.Loading)
     val recipeDetails: StateFlow<DetailsState> get() = _recipeDetails
+    
+    private val _recipeSaved = MutableStateFlow<Boolean?>(null)
+    val recipeSaved: StateFlow<Boolean?> get() = _recipeSaved
     
     fun getRecipeDetails(id: String) {
         viewModelScope.launch {
@@ -36,4 +42,12 @@ class DetailsViewModel(
             }
         }
     }
+    
+    fun saveRecipe(recipe: Recipe) {
+        viewModelScope.launch {
+            favoriteRecipesUseCases.saveFavoriteRecipe(recipe)
+            _recipeSaved.value = true
+        }
+    }
+    
 }

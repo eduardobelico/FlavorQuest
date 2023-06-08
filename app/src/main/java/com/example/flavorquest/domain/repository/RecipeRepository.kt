@@ -28,4 +28,6 @@ interface RecipeRepository {
     suspend fun insertRecipe(recipe: Recipe)
     
     suspend fun deleteRecipe(recipe: Recipe)
+    
+    fun getFavoriteRecipes(): Flow<List<Recipe>>
 }

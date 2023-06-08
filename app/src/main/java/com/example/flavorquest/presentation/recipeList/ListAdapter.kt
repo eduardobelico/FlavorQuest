@@ -1,11 +1,9 @@
 package com.example.flavorquest.presentation.recipeList
 
-import android.provider.Settings.Global.getString
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.flavorquest.R
 import com.example.flavorquest.core.TranslatorFactory
 import com.example.flavorquest.core.loadImage
 import com.example.flavorquest.core.removeBrackets
@@ -13,7 +11,7 @@ import com.example.flavorquest.databinding.RecipeListItemBinding
 import com.example.flavorquest.domain.model.Recipe
 
 class ListAdapter(
-    var selectedRecipe: (recipe: Recipe) -> Unit = {}
+    var selectedRecipe: (recipe: Recipe) -> Unit = {},
 ) : RecyclerView.Adapter<ListAdapter.RecipeViewHolder>() {
     
     private var recipeList = emptyList<Recipe>()
@@ -45,7 +43,8 @@ class ListAdapter(
                     .addOnFailureListener { _ ->
                         recipeName.text = name
                     }
-                val dishType = recipe.dishType.toString().removeBrackets().replaceFirstChar { it.uppercase() }
+                val dishType =
+                    recipe.dishType.toString().removeBrackets().replaceFirstChar { it.uppercase() }
                 englishPortugueseTranslator.translate(dishType)
                     .addOnSuccessListener { translatedText ->
                         recipeDishType.text = translatedText
@@ -53,7 +52,8 @@ class ListAdapter(
                     .addOnFailureListener { _ ->
                         recipeDishType.text = dishType
                     }
-                val cuisineType = recipe.cuisineType.toString().removeBrackets().replaceFirstChar { it.uppercase() }
+                val cuisineType = recipe.cuisineType.toString().removeBrackets()
+                    .replaceFirstChar { it.uppercase() }
                 englishPortugueseTranslator.translate(cuisineType)
                     .addOnSuccessListener { translatedText ->
                         val modifiedText = translatedText

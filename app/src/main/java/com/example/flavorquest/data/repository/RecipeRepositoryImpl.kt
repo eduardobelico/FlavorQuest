@@ -12,6 +12,7 @@ import com.example.flavorquest.domain.repository.RecipeRepository
 import kotlinx.coroutines.flow.Flow
 
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
 
 class RecipeRepositoryImpl(
     private val service: RecipeServices,
@@ -202,4 +203,11 @@ class RecipeRepositoryImpl(
     override suspend fun deleteRecipe(recipe: Recipe) {
         dao.deleteRecipe(recipe.toRecipeEntity())
     }
+    
+    override fun getFavoriteRecipes(): Flow<List<Recipe>> {
+        return dao.getFavoriteRecipes().map { entities ->
+            entities.map { it.toRecipe() }
+        }
+    }
+    
 }

@@ -10,10 +10,8 @@ import androidx.navigation.fragment.navArgs
 import com.example.flavorquest.core.*
 import com.example.flavorquest.databinding.FragmentRecipeDetailsBinding
 import com.example.flavorquest.domain.model.Recipe
-import com.google.mlkit.nl.translate.Translator
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
-
 
 class DetailsFragment : Fragment() {
     
@@ -22,8 +20,6 @@ class DetailsFragment : Fragment() {
     
     private val viewModel by viewModel<DetailsViewModel>()
     private val args by navArgs<DetailsFragmentArgs>()
-    
-    private var translator: Translator? = null
     
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -137,6 +133,12 @@ class DetailsFragment : Fragment() {
                 }
             detailsSource.text = recipe.source
             detailsUrl.text = recipe.url
+        }
+        
+        val saveTextView = binding.detailsSave
+        
+        saveTextView.setOnClickListener {
+            viewModel.saveRecipe(recipe)
         }
     }
 }
