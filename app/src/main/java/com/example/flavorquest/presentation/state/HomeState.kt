@@ -1,4 +1,4 @@
-package com.example.flavorquest.presentation.home
+package com.example.flavorquest.presentation.state
 
 sealed class HomeState {
     object Success : HomeState()

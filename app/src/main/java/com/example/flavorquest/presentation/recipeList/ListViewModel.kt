@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.flavorquest.core.Resource
 import com.example.flavorquest.domain.useCases.GetRecipeListUseCase
+import com.example.flavorquest.presentation.state.ListState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest

@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.flavorquest.R
 import com.example.flavorquest.databinding.FragmentHomeBinding
+import com.example.flavorquest.presentation.state.HomeState
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel

@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.flavorquest.databinding.FragmentFavoriteRecipesBinding
-import com.example.flavorquest.presentation.recipeList.ListAdapter
+import com.example.flavorquest.presentation.adapters.ListAdapter
 
 class FavoriteRecipesFragment : Fragment() {
     

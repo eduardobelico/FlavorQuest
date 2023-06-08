@@ -1,4 +1,4 @@
-package com.example.flavorquest.presentation.recipeList
+package com.example.flavorquest.presentation.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

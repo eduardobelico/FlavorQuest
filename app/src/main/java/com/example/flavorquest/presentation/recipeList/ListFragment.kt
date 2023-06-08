@@ -15,6 +15,8 @@ import com.example.flavorquest.core.Constants.TOOLBAR_LIST_TITLE
 import com.example.flavorquest.core.visibilityGone
 import com.example.flavorquest.core.visibilityVisible
 import com.example.flavorquest.databinding.FragmentRecipeListBinding
+import com.example.flavorquest.presentation.adapters.ListAdapter
+import com.example.flavorquest.presentation.state.ListState
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel

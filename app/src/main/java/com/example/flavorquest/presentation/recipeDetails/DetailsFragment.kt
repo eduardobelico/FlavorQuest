@@ -10,6 +10,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.flavorquest.core.*
 import com.example.flavorquest.databinding.FragmentRecipeDetailsBinding
 import com.example.flavorquest.domain.model.Recipe
+import com.example.flavorquest.presentation.state.DetailsState
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
