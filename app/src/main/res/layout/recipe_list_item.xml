@@ -10,7 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        app:cardCornerRadius="6dp"
+        android:background="@drawable/border_details_items"
+        app:strokeColor="@color/black"
+        app:strokeWidth="3dp"
         app:cardElevation="4dp"
         app:cardBackgroundColor="@color/white"
         app:cardPreventCornerOverlap="true"
@@ -28,6 +30,9 @@
                 android:layout_width="0dp"
                 android:layout_height="120dp"
                 android:layout_margin="16dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/border_details_items"
+                android:cropToPadding="true"
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -38,16 +43,32 @@
             <TextView
                 android:id="@+id/recipe_name"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:layout_margin="16dp"
-                android:ellipsize="end"
                 android:fontFamily="@font/old_school_adventures"
+                android:textColor="@color/black"
+                android:textSize="14sp"
                 android:maxLines="2"
-                android:textSize="16sp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:padding="8dp"
+                android:background="@drawable/border_details_items"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/recipe_image_url"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="@tools:sample/lorem/random" />
+
+            <ImageView
+                android:id="@+id/dish_type_icon"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginVertical="12dp"
+                android:layout_marginHorizontal="6dp"
+                android:background="@drawable/losango"
+                app:layout_constraintStart_toStartOf="@id/recipe_name"
+                app:layout_constraintEnd_toStartOf="@id/recipe_dish_type"
+                app:layout_constraintTop_toBottomOf="@id/recipe_name"
+                />
 
             <TextView
                 android:id="@+id/recipe_dish_type"
@@ -56,12 +77,23 @@
                 android:layout_marginVertical="8dp"
                 android:ellipsize="end"
                 android:fontFamily="@font/old_school_adventures"
+                android:textColor="@color/black"
                 android:maxLines="1"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@+id/recipe_name"
-                app:layout_constraintStart_toStartOf="@+id/recipe_name"
+                app:layout_constraintStart_toEndOf="@+id/dish_type_icon"
                 app:layout_constraintTop_toBottomOf="@id/recipe_name"
                 tools:text="@tools:sample/lorem/random" />
+
+            <ImageView
+                android:id="@+id/cuisine_type_icon"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginVertical="12dp"
+                android:background="@drawable/losango"
+                app:layout_constraintStart_toStartOf="@id/dish_type_icon"
+                app:layout_constraintTop_toBottomOf="@id/dish_type_icon"
+                />
 
             <TextView
                 android:id="@+id/recipe_cuisine_type"
@@ -70,10 +102,11 @@
                 android:layout_marginVertical="8dp"
                 android:ellipsize="end"
                 android:fontFamily="@font/old_school_adventures"
+                android:textColor="@color/black"
                 android:maxLines="1"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@+id/recipe_name"
-                app:layout_constraintStart_toStartOf="@+id/recipe_name"
+                app:layout_constraintStart_toStartOf="@+id/recipe_dish_type"
                 app:layout_constraintTop_toBottomOf="@id/recipe_dish_type"
                 tools:text="@tools:sample/lorem/random" />
 

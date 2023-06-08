@@ -91,6 +91,7 @@ class ListFragment : Fragment() {
                         listAdapter.setData(result.recipeList)
                     }
                     is ListState.Error -> {
+                        Toast.makeText(requireContext(), "Erro", Toast.LENGTH_SHORT).show()
                         with(binding.searchError) {
                             errorMessage.visibilityVisible()
                             progressBar.visibilityGone()
