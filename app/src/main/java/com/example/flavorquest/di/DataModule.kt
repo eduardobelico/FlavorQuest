@@ -24,7 +24,7 @@ object DataModule {
     private fun repositoryModule(): Module {
         return module {
             single<RecipeRepository> {
-                RecipeRepositoryImpl(service = get())
+                RecipeRepositoryImpl(service = get() , dao = get())
             }
         }
     }

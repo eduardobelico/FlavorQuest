@@ -21,19 +21,19 @@ fun RecipeDto.toRecipe(): Recipe {
     )
 }
 
-fun RecipeDto.toRecipeEntity(): RecipeEntity {
+fun Recipe.toRecipeEntity(): RecipeEntity {
     
     return RecipeEntity(
-        id = uri?.getRecipeId() ?: "",
-        imageUrl = imageUrl?: "",
-        name = name ?: "",
-        ingredients = ingredients?: emptyList(),
-        cuisineType = cuisineType?: emptyList(),
-        mealType = mealType?: emptyList(),
-        dishType = dishType?: emptyList(),
-        diet = diet?: emptyList(),
-        source = source ?: "",
-        url = url ?: ""
+        id = id,
+        imageUrl = imageUrl,
+        name = name,
+        ingredients = ingredients,
+        cuisineType = cuisineType,
+        mealType = mealType,
+        dishType = dishType,
+        diet = diet,
+        source = source,
+        url = url
     )
 }
 

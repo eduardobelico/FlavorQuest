@@ -2,7 +2,10 @@ package com.example.flavorquest.data.repository
 
 import android.util.Log
 import com.example.flavorquest.core.Resource
+import com.example.flavorquest.data.local.RecipeDao
 import com.example.flavorquest.data.mappers.toRecipe
+import com.example.flavorquest.data.mappers.toRecipeEntity
+import com.example.flavorquest.data.remote.model.RecipeDto
 import com.example.flavorquest.data.remote.network.RecipeServices
 import com.example.flavorquest.domain.model.Recipe
 import com.example.flavorquest.domain.repository.RecipeRepository
@@ -11,7 +14,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class RecipeRepositoryImpl(
-    private val service: RecipeServices
+    private val service: RecipeServices,
+    private val dao: RecipeDao
 ) : RecipeRepository {
     
     /**
@@ -189,5 +193,13 @@ class RecipeRepositoryImpl(
             Log.e("RecipeRepository", "$e")
             emit(Resource.Error("Não foi possível encontrar a receita"))
         }
+    }
+    
+    override suspend fun insertRecipe(recipe: Recipe) {
+        dao.saveRecipe(recipe.toRecipeEntity())
+    }
+    
+    override suspend fun deleteRecipe(recipe: Recipe) {
+        dao.deleteRecipe(recipe.toRecipeEntity())
     }
 }

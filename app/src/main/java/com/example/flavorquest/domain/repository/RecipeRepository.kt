@@ -24,4 +24,8 @@ interface RecipeRepository {
     ): Flow<Resource<List<Recipe>>>
     
     fun getRecipeFromId(id: String): Flow<Resource<Recipe>>
+    
+    suspend fun insertRecipe(recipe: Recipe)
+    
+    suspend fun deleteRecipe(recipe: Recipe)
 }
