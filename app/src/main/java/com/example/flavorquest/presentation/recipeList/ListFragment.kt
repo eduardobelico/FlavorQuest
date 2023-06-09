@@ -104,6 +104,7 @@ class ListFragment : Fragment() {
                         with(binding.searchError) {
                             errorMessage.visibilityGone()
                             progressBar.visibilityVisible()
+                            
                         }
                     }
                 }

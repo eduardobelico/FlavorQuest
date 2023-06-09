@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.flavorquest.R
 import com.example.flavorquest.databinding.FragmentHomeBinding
 import com.example.flavorquest.presentation.state.HomeState

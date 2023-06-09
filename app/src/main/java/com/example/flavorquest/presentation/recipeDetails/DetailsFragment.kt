@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
+import com.example.flavorquest.R
 import com.example.flavorquest.core.*
 import com.example.flavorquest.databinding.FragmentRecipeDetailsBinding
 import com.example.flavorquest.domain.model.Recipe
@@ -28,6 +30,7 @@ class DetailsFragment : Fragment() {
     ): View {
         _binding = FragmentRecipeDetailsBinding.inflate(inflater, container, false)
         getDetailsArgs()
+        
         return binding.root
     }
     
@@ -102,6 +105,7 @@ class DetailsFragment : Fragment() {
             englishPortugueseTranslator.translate(cuisineType)
                 .addOnSuccessListener { translatedText ->
                     detailsCuisineType.text = translatedText
+                   
                 }
                 .addOnFailureListener { _ ->
                     detailsCuisineType.text = cuisineType
@@ -133,13 +137,22 @@ class DetailsFragment : Fragment() {
                     detailsDiet.text = diet
                 }
             detailsSource.text = recipe.source
-            detailsUrl.text = recipe.url
+//            detailsUrl.text = recipe.url
         }
         
-        val saveTextView = binding.detailsSave
-        
-        saveTextView.setOnClickListener {
+        binding.bottomInteractionSave.setOnClickListener {
             viewModel.saveRecipe(recipe)
+            Toast.makeText(requireContext(), "Receita Salva", Toast.LENGTH_SHORT).show()
         }
     }
+    
+//    fun setLevelView() {
+//
+//        val drawableResId = when (cuisineType) {
+//            "drink" -> R.drawable.level_easy
+//            "main dishes", "soups" -> R.drawable.level_mid
+//            "desserts" -> R.drawable.level_hard
+//            else -> R.drawable.border_details_items
+//        }
+//    }
 }

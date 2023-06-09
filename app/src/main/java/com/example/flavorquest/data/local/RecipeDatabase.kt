@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.example.flavorquest.data.local.converters.ListToStringConverters
 
 @Database(
     entities = [RecipeEntity::class],
@@ -11,6 +13,7 @@ import androidx.room.RoomDatabase
     exportSchema = false
 )
 
+@TypeConverters(ListToStringConverters::class)
 abstract class RecipeDatabase : RoomDatabase() {
     
     abstract val dao: RecipeDao

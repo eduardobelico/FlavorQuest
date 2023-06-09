@@ -1,7 +1,9 @@
 package com.example.flavorquest.data.local
 
+import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+@Entity
 data class RecipeEntity(
     @PrimaryKey
     val id: String,

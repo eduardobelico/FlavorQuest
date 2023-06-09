@@ -1,5 +1,6 @@
 package com.example.flavorquest.di
 
+import com.example.flavorquest.presentation.favoriteList.FavoriteRecipesViewModel
 import com.example.flavorquest.presentation.home.HomeViewModel
 import com.example.flavorquest.presentation.recipeDetails.DetailsViewModel
 import com.example.flavorquest.presentation.recipeList.ListViewModel
@@ -16,7 +17,8 @@ object PresentationModule {
         return module {
             factory { HomeViewModel() }
             factory { ListViewModel(getRecipeListUseCase = get()) }
-            factory { DetailsViewModel(getDetailsUseCase = get()) }
+            factory { DetailsViewModel(getDetailsUseCase = get(), favoriteRecipesUseCases = get()) }
+            factory { FavoriteRecipesViewModel(favoriteRecipesUseCases = get()) }
         }
     }
 }

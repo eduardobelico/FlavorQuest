@@ -9,6 +9,7 @@ import com.example.flavorquest.data.repository.RecipeRepositoryImpl
 import com.example.flavorquest.domain.repository.RecipeRepository
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.loadKoinModules
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -31,7 +32,7 @@ object DataModule {
     
     private fun  localModule(): Module {
         return module {
-            single { RecipeDatabase.getInstance(context = get()) }
+            single { RecipeDatabase.getInstance(androidContext()).dao }
         }
     }
     
