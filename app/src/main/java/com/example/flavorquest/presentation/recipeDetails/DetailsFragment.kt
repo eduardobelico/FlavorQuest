@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.example.flavorquest.R
 import com.example.flavorquest.core.*
+import com.example.flavorquest.core.typeListing.DishTypesLevel
 import com.example.flavorquest.databinding.FragmentRecipeDetailsBinding
 import com.example.flavorquest.domain.model.Recipe
 import com.example.flavorquest.presentation.state.DetailsState
@@ -96,6 +97,7 @@ class DetailsFragment : Fragment() {
             englishPortugueseTranslator.translate(dishType)
                 .addOnSuccessListener { translatedText ->
                     detailsDishType.text = translatedText
+                    setLevelView(translatedText)
                 }
                 .addOnFailureListener { _ ->
                     detailsDishType.text = dishType
@@ -105,7 +107,6 @@ class DetailsFragment : Fragment() {
             englishPortugueseTranslator.translate(cuisineType)
                 .addOnSuccessListener { translatedText ->
                     detailsCuisineType.text = translatedText
-                   
                 }
                 .addOnFailureListener { _ ->
                     detailsCuisineType.text = cuisineType
@@ -146,13 +147,24 @@ class DetailsFragment : Fragment() {
         }
     }
     
-//    fun setLevelView() {
-//
-//        val drawableResId = when (cuisineType) {
-//            "drink" -> R.drawable.level_easy
-//            "main dishes", "soups" -> R.drawable.level_mid
-//            "desserts" -> R.drawable.level_hard
-//            else -> R.drawable.border_details_items
-//        }
-//    }
+    private fun setLevelView(dishType: String) {
+        val drawableResId =
+            if (DishTypesLevel.easyDishTypes.any {
+                    it == dishType
+                }) {
+                R.drawable.level_easy
+            } else if (DishTypesLevel.midDishTypes.any {
+                    it == dishType
+                }) {
+                R.drawable.level_mid
+            } else if (DishTypesLevel.hardDishTypes.any {
+                    it == dishType
+                }) {
+                R.drawable.level_hard
+            } else {
+                R.drawable.border_details_items
+            }
+        binding.detailsRecipeLevel.setImageResource(drawableResId)
+    }
 }
+
