@@ -11,32 +11,32 @@
     <string name="msg_error">Falha na conexão</string>
 
     <string-array name="cuisine">
+        <item>"         "</item>
         <item>Americana</item>
         <item>Asiática</item>
         <item>Britânica</item>
         <item>Caribenha</item>
-        <item>Centro-Europeia</item>
         <item>Chinesa</item>
+        <item>Europa Central</item>
+        <item>Europa Oriental</item>
         <item>Francesa</item>
         <item>Indiana</item>
         <item>Italiana</item>
         <item>Japonesa</item>
         <item>Kosher</item>
-        <item>Leste-Europeia</item>
-        <item>Médio-Oriental</item>
         <item>Mediterrânea</item>
         <item>Mexicana</item>
         <item>Nórdica</item>
+        <item>Oriente Médio</item>
         <item>Sulamericana</item>
         <item>Sul-asiática</item>
     </string-array>
 
     <string-array name="dish">
-        <item>Acompanhamentos</item>
         <item>Bebidas</item>
-        <item>Biscoitos</item>
+        <item>Biscoitos e Cookies</item>
         <item>Cereais</item>
-        <item>Condimentos</item>
+        <item>Condimentos e Molhos</item>
         <item>Doces</item>
         <item>Entradas</item>
         <item>Pães</item>
@@ -48,6 +48,7 @@
         <item>Sanduíches</item>
         <item>Sobremesas</item>
         <item>Sopas</item>
+        <item></item>
     </string-array>
 
 </resources>

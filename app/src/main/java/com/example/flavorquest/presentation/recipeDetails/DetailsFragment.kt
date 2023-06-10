@@ -96,8 +96,9 @@ class DetailsFragment : Fragment() {
                 recipe.dishType.toString().removeBrackets().replaceFirstChar { it.uppercase() }
             englishPortugueseTranslator.translate(dishType)
                 .addOnSuccessListener { translatedText ->
-                    detailsDishType.text = translatedText
-                    setLevelView(translatedText)
+                    val modifiedTranslatedText = adjustTranslatedDishType(translatedText)
+                    detailsDishType.text = modifiedTranslatedText
+                    setLevelView(modifiedTranslatedText)
                 }
                 .addOnFailureListener { _ ->
                     detailsDishType.text = dishType
@@ -106,7 +107,8 @@ class DetailsFragment : Fragment() {
                 recipe.cuisineType.toString().removeBrackets().replaceFirstChar { it.uppercase() }
             englishPortugueseTranslator.translate(cuisineType)
                 .addOnSuccessListener { translatedText ->
-                    detailsCuisineType.text = translatedText
+                    val modifiedTranslatedText = adjustTranslatedCuisineType(translatedText)
+                    detailsCuisineType.text = modifiedTranslatedText
                 }
                 .addOnFailureListener { _ ->
                     detailsCuisineType.text = cuisineType

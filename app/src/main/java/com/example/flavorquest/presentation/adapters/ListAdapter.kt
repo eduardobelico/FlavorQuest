@@ -4,9 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.flavorquest.core.TranslatorFactory
-import com.example.flavorquest.core.loadImage
-import com.example.flavorquest.core.removeBrackets
+import com.example.flavorquest.core.*
 import com.example.flavorquest.databinding.RecipeListItemBinding
 import com.example.flavorquest.domain.model.Recipe
 
@@ -47,7 +45,8 @@ class ListAdapter(
                     recipe.dishType.toString().removeBrackets().replaceFirstChar { it.uppercase() }
                 englishPortugueseTranslator.translate(dishType)
                     .addOnSuccessListener { translatedText ->
-                        recipeDishType.text = translatedText
+                        val modifiedTranslatedText = adjustTranslatedDishType(translatedText)
+                        recipeDishType.text = modifiedTranslatedText
                     }
                     .addOnFailureListener { _ ->
                         recipeDishType.text = dishType
@@ -56,13 +55,8 @@ class ListAdapter(
                     .replaceFirstChar { it.uppercase() }
                 englishPortugueseTranslator.translate(cuisineType)
                     .addOnSuccessListener { translatedText ->
-                        val modifiedText = translatedText
-                            .replace("Americano", "Americana")
-                            .replace("Sul americano", "Sulamericana")
-                            .replace("Mediterrâneo", "Mediterrânea")
-                            .replace("Francês", "Francesa")
-                            .replace("Mundo", "Global")
-                        recipeCuisineType.text = modifiedText
+                        val modifiedTranslatedText = adjustTranslatedCuisineType(translatedText)
+                        recipeCuisineType.text = modifiedTranslatedText
                     }
                     .addOnFailureListener { _ ->
                         recipeCuisineType.text = cuisineType

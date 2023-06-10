@@ -11,7 +11,6 @@ import com.google.mlkit.nl.translate.Translation
 import com.google.mlkit.nl.translate.Translator
 import com.google.mlkit.nl.translate.TranslatorOptions
 
-
 object TranslatorFactory {
     private var englishPortugueseTranslator: Translator? = null
     
@@ -28,9 +27,40 @@ object TranslatorFactory {
                 .build()
             englishPortugueseTranslator!!.downloadModelIfNeeded(conditions)
         }
-        
         return englishPortugueseTranslator!!
     }
+}
+
+fun adjustTranslatedCuisineType(translatedText: String): String {
+    return translatedText
+        .replace("Americano", "Americana")
+        .replace("Sul americano", "Sulamericana")
+        .replace("Mediterrâneo", "Mediterrânea")
+        .replace("Francês", "Francesa")
+        .replace("Chinês", "Chinesa")
+        .replace("Mundo", "Global")
+        .replace("Italiano", "Italiana")
+        .replace("Indiano", "Indiana")
+        .replace("Ásia", "Asiática")
+        .replace("Asian", "Asiática")
+        .replace("Japonês", "Japonesa")
+        .replace("Caribe", "Caribenha")
+        .replace("Sudeste Asiático", "Sul-asiática")
+        .replace("Nórdico", "Nórdica")
+        .replace("Nordic", "Nórdica")
+}
+
+fun adjustTranslatedDishType(translatedText: String): String {
+    return translatedText
+        .replace("Pão", "Pães")
+        .replace("Iniciante", "Entradas")
+        .replace("Starter", "Entradas")
+        .replace("Salada", "Saladas")
+        .replace("Pancake", "Panquecas")
+        .replace("Alcohol cocktail", "Bebidas")
+        .replace("Sopa", "Sopas")
+        .replace("Preservar", "Preservados")
+        .replace("Preps", "Preparativos")
 }
 
 fun String.getRecipeId(): String {
@@ -52,7 +82,6 @@ fun ImageView.loadImage(url: String? = null) {
         }
     }
 }
-
 
 /**
  * Trabalhando com a visibilidade de uma view em 3 diferentes estados.
