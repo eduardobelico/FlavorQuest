@@ -78,7 +78,7 @@
                 android:textColor="@color/cadet_blue"
                 android:maxLines="1"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="@+id/recipe_name"
+                app:layout_constraintEnd_toStartOf="@id/favorite_icon"
                 app:layout_constraintStart_toEndOf="@+id/dish_type_icon"
                 app:layout_constraintTop_toBottomOf="@id/recipe_name"
                 tools:text="@tools:sample/lorem/random" />
@@ -103,10 +103,19 @@
                 android:textColor="@color/cadet_blue"
                 android:maxLines="1"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="@+id/recipe_name"
+                app:layout_constraintEnd_toStartOf="@id/favorite_icon"
                 app:layout_constraintStart_toStartOf="@+id/recipe_dish_type"
                 app:layout_constraintTop_toBottomOf="@id/recipe_dish_type"
                 tools:text="@tools:sample/lorem/random" />
+
+            <ImageView
+                android:id="@+id/favorite_icon"
+                android:src="@drawable/save_icon_unselected"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

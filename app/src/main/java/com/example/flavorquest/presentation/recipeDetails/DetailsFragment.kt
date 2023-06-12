@@ -7,13 +7,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.flavorquest.R
 import com.example.flavorquest.core.*
 import com.example.flavorquest.core.typeListing.DishTypesLevel
 import com.example.flavorquest.databinding.FragmentRecipeDetailsBinding
 import com.example.flavorquest.domain.model.Recipe
-import com.example.flavorquest.presentation.state.DetailsState
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -142,10 +142,30 @@ class DetailsFragment : Fragment() {
             detailsSource.text = recipe.source
 //            detailsUrl.text = recipe.url
         }
-        
+        setBottomView(recipe)
+    }
+    
+    private fun setBottomView(recipe: Recipe) {
         binding.bottomInteractionSave.setOnClickListener {
             viewModel.saveRecipe(recipe)
             Toast.makeText(requireContext(), "Receita Salva", Toast.LENGTH_SHORT).show()
+        }
+    
+        binding.detailsToHome.setOnClickListener {
+            val navController = findNavController()
+            val action = DetailsFragmentDirections.recipeDetailsFragmentToHomeFragment()
+            if (navController.currentDestination?.id == R.id.recipeDetailsFragment) {
+                navController.navigate(action)
+            }
+        }
+    
+        binding.detailsToFavorites.setOnClickListener {
+            val navController = findNavController()
+            val action =
+                DetailsFragmentDirections.actionRecipeDetailsFragmentToFavoriteRecipesFragment()
+            if (navController.currentDestination?.id == R.id.recipeDetailsFragment) {
+                navController.navigate(action)
+            }
         }
     }
     

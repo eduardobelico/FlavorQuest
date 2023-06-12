@@ -15,12 +15,12 @@ object DomainModule {
         return module {
             factory { GetRecipeListUseCase(repository = get()) }
             factory { GetRecipeDetailsUseCase(repository = get()) }
-            factory { SaveRecipeUseCase(repository = get()) }
-            factory { RemoveRecipeUseCase(repository = get()) }
+            factory { SaveOrRemoveRecipeUseCase(repository = get()) }
+            factory { isFavoriteRecipeUseCase(repository = get()) }
             factory { GetFavoriteRecipesUseCase(repository = get()) }
             factory { FavoriteRecipesUseCases(
-                saveFavoriteRecipe = get(),
-                removeFromFavoriteRecipes = get(),
+                saveOrRemoveRecipeUseCase = get(),
+                isFavoriteRecipeUseCase = get(),
                 getFavoriteRecipes = get()
             ) }
         }

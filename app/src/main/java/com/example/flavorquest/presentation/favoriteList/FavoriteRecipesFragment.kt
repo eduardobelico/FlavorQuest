@@ -14,9 +14,7 @@ import com.example.flavorquest.core.Constants
 import com.example.flavorquest.core.visibilityGone
 import com.example.flavorquest.core.visibilityVisible
 import com.example.flavorquest.databinding.FragmentFavoriteRecipesBinding
-import com.example.flavorquest.domain.model.Recipe
 import com.example.flavorquest.presentation.adapters.ListAdapter
-import com.example.flavorquest.presentation.state.ListState
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -51,11 +49,7 @@ class FavoriteRecipesFragment : Fragment() {
     }
     
     private fun getFavoriteRecipes() {
-        viewModel.getFavoriteRecipes()
-    }
-    
-    private fun removeRecipeFromFavorites(recipe: Recipe) {
-        viewModel.removeFromFavorites(recipe)
+        viewModel.getFavoriteRecipes(FavoriteEvent.OnLoadRecipeList)
     }
     
     private fun setToolbar() {
@@ -71,6 +65,9 @@ class FavoriteRecipesFragment : Fragment() {
         
         listAdapter.selectedRecipe = {
             toDetailsFragment(recipeId = it.id)
+        }
+        listAdapter.addOrRemove = { recipe ->
+            viewModel.getFavoriteRecipes(FavoriteEvent.OnFavoriteClick(recipe))
         }
     }
     
@@ -90,14 +87,14 @@ class FavoriteRecipesFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.favoriteRecipes.collectLatest { result ->
                 when (result) {
-                    is ListState.Data -> {
+                    is FavoriteState.Data -> {
                         with(binding.favoriteSearchError) {
                             errorMessage.visibilityGone()
                             progressBar.visibilityGone()
                         }
-                        listAdapter.setData(result.recipeList)
+                        listAdapter.setData(result.favoritesList)
                     }
-                    is ListState.Error -> {
+                    is FavoriteState.Error -> {
                         Toast.makeText(requireContext(), "Erro", Toast.LENGTH_SHORT).show()
                         with(binding.favoriteSearchError) {
                             errorMessage.visibilityVisible()
@@ -105,7 +102,7 @@ class FavoriteRecipesFragment : Fragment() {
                             errorMessage.text = result.message
                         }
                     }
-                    ListState.Loading -> {
+                    FavoriteState.Loading -> {
                         with(binding.favoriteSearchError) {
                             errorMessage.visibilityGone()
                             progressBar.visibilityVisible()

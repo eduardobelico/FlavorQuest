@@ -13,9 +13,12 @@ interface RecipeDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveRecipe(recipe: RecipeEntity)
     
-    @Delete
-    suspend fun deleteRecipe(recipe: RecipeEntity)
+    @Query("DELETE FROM RecipeEntity WHERE id = :id")
+    suspend fun removeRecipe(id: String)
     
     @Query("SELECT * FROM RecipeEntity")
     fun getFavoriteRecipes(): Flow<List<RecipeEntity>>
+    
+    @Query("SELECT * FROM RecipeEntity WHERE id = :id")
+    suspend fun isFavorite(id: String): List<RecipeEntity>
 }

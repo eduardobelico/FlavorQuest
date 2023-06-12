@@ -5,7 +5,6 @@ import com.example.flavorquest.core.Resource
 import com.example.flavorquest.data.local.RecipeDao
 import com.example.flavorquest.data.mappers.toRecipe
 import com.example.flavorquest.data.mappers.toRecipeEntity
-import com.example.flavorquest.data.remote.model.RecipeDto
 import com.example.flavorquest.data.remote.network.RecipeServices
 import com.example.flavorquest.domain.model.Recipe
 import com.example.flavorquest.domain.repository.RecipeRepository
@@ -200,14 +199,19 @@ class RecipeRepositoryImpl(
         dao.saveRecipe(recipe.toRecipeEntity())
     }
     
-    override suspend fun deleteRecipe(recipe: Recipe) {
-        dao.deleteRecipe(recipe.toRecipeEntity())
+    override suspend fun deleteRecipe(id: String) {
+        dao.removeRecipe(id)
     }
     
     override fun getFavoriteRecipes(): Flow<List<Recipe>> {
         return dao.getFavoriteRecipes().map { entities ->
             entities.map { it.toRecipe() }
         }
+    }
+    
+    override suspend fun isFavorite(id: String): Boolean {
+        val favoriteList = dao.isFavorite(id)
+        return favoriteList.isNotEmpty()
     }
     
 }

@@ -27,7 +27,9 @@ interface RecipeRepository {
     
     suspend fun insertRecipe(recipe: Recipe)
     
-    suspend fun deleteRecipe(recipe: Recipe)
+    suspend fun deleteRecipe(id: String)
     
     fun getFavoriteRecipes(): Flow<List<Recipe>>
+    
+    suspend fun isFavorite(id: String): Boolean
 }

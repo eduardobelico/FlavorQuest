@@ -16,7 +16,6 @@ import com.example.flavorquest.core.visibilityGone
 import com.example.flavorquest.core.visibilityVisible
 import com.example.flavorquest.databinding.FragmentRecipeListBinding
 import com.example.flavorquest.presentation.adapters.ListAdapter
-import com.example.flavorquest.presentation.state.ListState
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -53,7 +52,12 @@ class ListFragment : Fragment() {
     }
     
     private fun getSearchArgs() {
-        viewModel.getRecipes(query = args.query, cuisineType = args.cuisineType, dishType = args.dishType)
+        viewModel.onEvent(
+            ListEvent.OnLoadList(
+                query = args.query, cuisineType = args.cuisineType, dishType = args.dishType
+            )
+        )
+        
     }
     
     private fun setToolbar() {
@@ -69,6 +73,9 @@ class ListFragment : Fragment() {
         
         listAdapter.selectedRecipe = {
             toDetailsFragment(recipeId = it.id)
+        }
+        listAdapter.addOrRemove = { recipe ->
+            viewModel.onEvent(ListEvent.OnFavoriteClick(recipe))
         }
     }
     

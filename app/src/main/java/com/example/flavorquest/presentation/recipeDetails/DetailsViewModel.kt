@@ -6,7 +6,6 @@ import com.example.flavorquest.core.Resource
 import com.example.flavorquest.domain.model.Recipe
 import com.example.flavorquest.domain.useCases.FavoriteRecipesUseCases
 import com.example.flavorquest.domain.useCases.GetRecipeDetailsUseCase
-import com.example.flavorquest.presentation.state.DetailsState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -46,7 +45,7 @@ class DetailsViewModel(
     
     fun saveRecipe(recipe: Recipe) {
         viewModelScope.launch {
-            favoriteRecipesUseCases.saveFavoriteRecipe(recipe)
+            favoriteRecipesUseCases.saveOrRemoveRecipeUseCase(recipe)
             _recipeSaved.value = true
         }
     }

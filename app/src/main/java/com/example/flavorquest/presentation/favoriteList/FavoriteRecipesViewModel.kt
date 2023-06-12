@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.flavorquest.domain.model.Recipe
 import com.example.flavorquest.domain.useCases.FavoriteRecipesUseCases
-import com.example.flavorquest.presentation.state.ListState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
@@ -14,24 +13,40 @@ class FavoriteRecipesViewModel(
     private val favoriteRecipesUseCases: FavoriteRecipesUseCases
 ) : ViewModel() {
     
-    private val _favoriteRecipes = MutableStateFlow<ListState>(ListState.Loading)
-    val favoriteRecipes: StateFlow<ListState> get() = _favoriteRecipes
+    private val _favoriteRecipes = MutableStateFlow<FavoriteState>(FavoriteState.Loading)
+    val favoriteRecipes: StateFlow<FavoriteState> get() = _favoriteRecipes
     
-    fun getFavoriteRecipes() {
-        viewModelScope.launch {
-            favoriteRecipesUseCases.getFavoriteRecipes().collectLatest { result ->
-                try {
-                    _favoriteRecipes.value = ListState.Data(result)
-                } catch (e: Exception) {
-                    _favoriteRecipes.value = ListState.Error(e.message ?: "Unknown error occurred")
+    fun getFavoriteRecipes(event: FavoriteEvent) {
+        when (event) {
+            is FavoriteEvent.OnLoadRecipeList -> {
+                viewModelScope.launch {
+                    favoriteRecipesUseCases.getFavoriteRecipes().collectLatest { result ->
+                            val favoritesList = result.map { recipe ->
+                                val isFavorite = favoriteRecipesUseCases.isFavoriteRecipeUseCase(recipe.id)
+                                Recipe(
+                                    recipe.id,
+                                    recipe.name,
+                                    recipe.imageUrl,
+                                    recipe.ingredients,
+                                    recipe.cuisineType,
+                                    recipe.mealType,
+                                    recipe.dishType,
+                                    recipe.diet,
+                                    recipe.source,
+                                    recipe.url
+                                ).apply {
+                                    this.isFavorite = isFavorite
+                                }
+                            }
+                            _favoriteRecipes.value = FavoriteState.Data(favoritesList)
+                        }
+                    }
+            }
+            is FavoriteEvent.OnFavoriteClick -> {
+                viewModelScope.launch {
+                    favoriteRecipesUseCases.saveOrRemoveRecipeUseCase(event.recipe)
                 }
             }
-        }
-    }
-    
-    fun removeFromFavorites(recipe: Recipe) {
-        viewModelScope.launch {
-            favoriteRecipesUseCases.removeFromFavoriteRecipes(recipe)
         }
     }
 }

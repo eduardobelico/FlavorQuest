@@ -61,6 +61,7 @@ fun adjustTranslatedDishType(translatedText: String): String {
         .replace("Sopa", "Sopas")
         .replace("Preservar", "Preservados")
         .replace("Preps", "Preparativos")
+        .replace("Prato principal", "Prato Principal")
 }
 
 fun String.getRecipeId(): String {

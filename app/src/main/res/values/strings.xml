@@ -11,7 +11,6 @@
     <string name="msg_error">Falha na conexão</string>
 
     <string-array name="cuisine">
-        <item>"         "</item>
         <item>Americana</item>
         <item>Asiática</item>
         <item>Britânica</item>
@@ -30,6 +29,7 @@
         <item>Oriente Médio</item>
         <item>Sulamericana</item>
         <item>Sul-asiática</item>
+        <item>nenhuma</item>
     </string-array>
 
     <string-array name="dish">
@@ -48,7 +48,7 @@
         <item>Sanduíches</item>
         <item>Sobremesas</item>
         <item>Sopas</item>
-        <item></item>
+        <item>nenhum</item>
     </string-array>
 
 </resources>

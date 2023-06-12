@@ -9,10 +9,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.bumptech.glide.Glide
 import com.example.flavorquest.R
 import com.example.flavorquest.databinding.FragmentHomeBinding
-import com.example.flavorquest.presentation.state.HomeState
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -34,6 +32,7 @@ class HomeFragment : Fragment() {
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         setSearchButton()
+        setFavoriteRecipesButton()
         
         return binding.root
     }
@@ -111,6 +110,15 @@ class HomeFragment : Fragment() {
         if (navController.currentDestination?.id == R.id.homeFragment) {
             navController.navigate(action)
         }
+    }
+    
+    private fun setFavoriteRecipesButton() {
+        binding.favoriteRecipesIcon.setOnClickListener {
+            val navController = findNavController()
+            val action = HomeFragmentDirections.actionHomeFragmentToFavoriteRecipesFragment()
+            if (navController.currentDestination?.id == R.id.homeFragment) {
+                navController.navigate(action)
+            } }
     }
     
     private fun dropdownItemsBinding() {

@@ -3,10 +3,7 @@ package com.example.flavorquest.domain.useCases
 import com.example.flavorquest.core.Resource
 import com.example.flavorquest.domain.model.Recipe
 import com.example.flavorquest.domain.repository.RecipeRepository
-import com.google.mlkit.nl.translate.Translator
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
-import java.util.PrimitiveIterator
 
 class GetRecipeListUseCase(
     private val repository: RecipeRepository
@@ -30,7 +27,9 @@ class GetRecipeListUseCase(
         "Mexicana" to "mexican",
         "Nórdica" to "nordic",
         "Sulamericana" to "south american",
-        "Sul-asiática" to "south east asian"
+        "Sul-asiática" to "south east asian",
+        "nenhuma" to null
+    
     )
     
     
@@ -49,7 +48,8 @@ class GetRecipeListUseCase(
         "Saladas" to "salad",
         "Sanduíches" to "sandwiches",
         "Sobremesas" to "desserts",
-        "Sopas" to "soup"
+        "Sopas" to "soup",
+        "nenhum" to null
     )
     
     operator fun invoke(
