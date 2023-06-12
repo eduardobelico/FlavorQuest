@@ -298,7 +298,7 @@
             style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="8dp"
             android:ellipsize="end"
             android:fontFamily="@font/old_school_adventures"
             android:gravity="center_vertical|center_horizontal"
@@ -309,9 +309,10 @@
             android:textStyle="bold"
             app:icon="@drawable/losango"
             app:iconTint="@color/beaver"
-            app:layout_constraintTop_toBottomOf="@id/source_text"
             app:layout_constraintEnd_toEndOf="@+id/source_text"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@id/source_text"
+            app:layout_constraintTop_toBottomOf="@id/source_text"
             tools:text="@tools:sample/lorem/random" />
 
         <androidx.constraintlayout.widget.ConstraintLayout

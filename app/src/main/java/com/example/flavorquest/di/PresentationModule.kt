@@ -16,7 +16,7 @@ object PresentationModule {
     private fun viewModelModule(): Module {
         return module {
             factory { HomeViewModel() }
-            factory { ListViewModel(getRecipeListUseCase = get()) }
+            factory { ListViewModel(getRecipeListUseCase = get(), favoriteRecipesUseCases = get()) }
             factory { DetailsViewModel(getDetailsUseCase = get(), favoriteRecipesUseCases = get()) }
             factory { FavoriteRecipesViewModel(favoriteRecipesUseCases = get()) }
         }

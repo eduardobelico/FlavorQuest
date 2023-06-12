@@ -57,7 +57,6 @@ class ListFragment : Fragment() {
                 query = args.query, cuisineType = args.cuisineType, dishType = args.dishType
             )
         )
-        
     }
     
     private fun setToolbar() {

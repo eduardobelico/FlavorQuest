@@ -29,6 +29,12 @@ class ListAdapter(
             binding.favoriteIcon.setOnClickListener {
                 if (::recipe.isInitialized) {
                     addOrRemove(recipe)
+                    val drawableResId = if (recipe.isFavorite) {
+                        R.drawable.save_icon
+                    } else {
+                        R.drawable.save_icon_unselected
+                    }
+                    binding.favoriteIcon.setImageResource(drawableResId)
                 }
             }
         }
@@ -76,7 +82,6 @@ class ListAdapter(
             }
         }
     }
-    
     
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
         val inflater = LayoutInflater.from(parent.context)

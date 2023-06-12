@@ -1,5 +1,7 @@
 package com.example.flavorquest.presentation.recipeDetails
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -140,10 +142,16 @@ class DetailsFragment : Fragment() {
                     detailsDiet.text = diet
                 }
             detailsSource.text = recipe.source
-//            detailsUrl.text = recipe.url
+            detailsSource.setOnClickListener {
+                val url = recipe.url
+                val urlIntent = Intent(Intent.ACTION_VIEW,
+                Uri.parse(url))
+                startActivity(urlIntent)
+            }
         }
         setBottomView(recipe)
     }
+    
     
     private fun setBottomView(recipe: Recipe) {
         binding.bottomInteractionSave.setOnClickListener {

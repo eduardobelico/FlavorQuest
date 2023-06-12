@@ -49,5 +49,4 @@ class DetailsViewModel(
             _recipeSaved.value = true
         }
     }
-    
 }
