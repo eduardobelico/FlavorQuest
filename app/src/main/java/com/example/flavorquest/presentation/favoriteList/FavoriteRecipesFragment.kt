@@ -56,6 +56,10 @@ class FavoriteRecipesFragment : Fragment() {
         val activity = activity as AppCompatActivity
         activity.setSupportActionBar(binding.favoriteToolbar)
         activity.title = Constants.TOOLBAR_FAVORITES_TITLE
+        
+        binding.favoriteToolbar.setNavigationOnClickListener {
+            toHomeFragment()
+        }
     }
     
     private fun initRecyclerView() {
@@ -74,9 +78,18 @@ class FavoriteRecipesFragment : Fragment() {
     private fun toDetailsFragment(recipeId: String) {
         val navController = findNavController()
         val action =
-            FavoriteRecipesFragmentDirections.actionFavoriteRecipesFragmentToRecipeDetailsFragment(
+            FavoriteRecipesFragmentDirections.favoriteRecipesFragmentToRecipeDetailsFragment(
                 recipeId
             )
+        
+        if (navController.currentDestination?.id == R.id.favoriteRecipesFragment) {
+            return navController.navigate(action)
+        }
+    }
+    
+    private fun toHomeFragment() {
+        val navController = findNavController()
+        val action = FavoriteRecipesFragmentDirections.favoriteRecipesFragmentToHomeFragment()
         
         if (navController.currentDestination?.id == R.id.favoriteRecipesFragment) {
             return navController.navigate(action)

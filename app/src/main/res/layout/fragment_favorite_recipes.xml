@@ -8,11 +8,12 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/favorite_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@color/white"
+        android:layout_height="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:navigationIcon="@drawable/ic_home"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"  />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/favorite_recyclerview_layout"

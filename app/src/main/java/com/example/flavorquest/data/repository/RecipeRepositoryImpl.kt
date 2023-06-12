@@ -214,4 +214,8 @@ class RecipeRepositoryImpl(
         return favoriteList.isNotEmpty()
     }
     
+    override fun getAmountOfFavoriteRecipes(): Flow<Int> {
+        return dao.getFavoriteRecipesCount()
+    }
+    
 }

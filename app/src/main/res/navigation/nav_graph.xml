@@ -14,8 +14,14 @@
             android:id="@+id/homeFragment_to_recipeListFragment"
             app:destination="@id/recipeListFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_favoriteRecipesFragment"
+            android:id="@+id/homeFragment_to_favoriteRecipesFragment"
             app:destination="@id/favoriteRecipesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_self"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_userLevelFragment"
+            app:destination="@id/userLevelFragment" />
     </fragment>
     <fragment
         android:id="@+id/recipeListFragment"
@@ -39,6 +45,9 @@
         <action
             android:id="@+id/recipeListFragment_to_recipeDetailsFragment"
             app:destination="@id/recipeDetailsFragment" />
+        <action
+            android:id="@+id/recipeListFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/recipeDetailsFragment"
@@ -55,7 +64,7 @@
             android:id="@+id/recipeDetailsFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
         <action
-            android:id="@+id/action_recipeDetailsFragment_to_favoriteRecipesFragment"
+            android:id="@+id/recipeDetailsFragment_to_favoriteRecipesFragment"
             app:destination="@id/favoriteRecipesFragment" />
     </fragment>
     <fragment
@@ -64,7 +73,15 @@
         android:label="FavoriteRecipesFragment"
         tools:layout="@layout/fragment_favorite_recipes">
         <action
-            android:id="@+id/action_favoriteRecipesFragment_to_recipeDetailsFragment"
+            android:id="@+id/favoriteRecipesFragment_to_recipeDetailsFragment"
             app:destination="@id/recipeDetailsFragment" />
+        <action
+            android:id="@+id/favoriteRecipesFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/userLevelFragment"
+        android:name="com.example.flavorquest.presentation.userLevel.UserLevelFragment"
+        android:label="fragment_user_level"
+        tools:layout="@layout/fragment_user_level" />
 </navigation>

@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.ui.AppBarConfiguration
 import com.example.flavorquest.R
 import com.example.flavorquest.core.Constants.TOOLBAR_LIST_TITLE
 import com.example.flavorquest.core.visibilityGone
@@ -63,6 +64,10 @@ class ListFragment : Fragment() {
         val activity = activity as AppCompatActivity
         activity.setSupportActionBar(binding.listToolbar)
         activity.title = TOOLBAR_LIST_TITLE
+        
+        binding.listToolbar.setNavigationOnClickListener {
+            toHomeFragment()
+        }
     }
     
     private fun initRecyclerView() {
@@ -81,6 +86,15 @@ class ListFragment : Fragment() {
     private fun toDetailsFragment(recipeId: String) {
         val navController = findNavController()
         val action = ListFragmentDirections.recipeListFragmentToRecipeDetailsFragment(recipeId)
+        
+        if (navController.currentDestination?.id == R.id.recipeListFragment) {
+            return navController.navigate(action)
+        }
+    }
+    
+    private fun toHomeFragment() {
+        val navController = findNavController()
+        val action = ListFragmentDirections.recipeListFragmentToHomeFragment()
         
         if (navController.currentDestination?.id == R.id.recipeListFragment) {
             return navController.navigate(action)

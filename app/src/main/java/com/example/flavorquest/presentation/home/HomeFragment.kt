@@ -1,11 +1,17 @@
 package com.example.flavorquest.presentation.home
 
+import android.graphics.Typeface
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.ForegroundColorSpan
+import android.text.style.StyleSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -55,6 +61,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getResult()
+        userLevelBinding()
     }
     
     private fun setSearchButton() {
@@ -82,6 +89,42 @@ class HomeFragment : Fragment() {
         dishTypeTextView.setOnItemClickListener { parent, _, position, _ ->
             selectedDishType = parent.getItemAtPosition(position).toString()
         }
+    }
+    
+    private fun userLevelBinding() {
+        val introductionTemplate = getString(R.string.introduction_text)
+        
+        val count = viewModel.numFavoriteRecipes.value
+        val userLevel: String = when {
+            count >= 1 && count < 10 -> getString(R.string.user_level_1)
+            count >= 10 && count < 20 -> getString(R.string.user_level_2)
+            count >= 20 && count < 30 -> getString(R.string.user_level_3)
+            count >= 30 && count < 50 -> getString(R.string.user_level_4)
+            count >= 50 && count < 100 -> getString(R.string.user_level_5)
+            count >= 100 -> getString(R.string.user_level_6)
+            else -> getString(R.string.user_level_0)
+        }
+        
+        val spannableBuilder = SpannableStringBuilder()
+        spannableBuilder.append(String.format(introductionTemplate, userLevel))
+        
+        val spanStart = spannableBuilder.indexOf(userLevel)
+        val spanEnd = spanStart + userLevel.length
+        
+        spannableBuilder.setSpan(
+            StyleSpan(Typeface.BOLD),
+            spanStart,
+            spanEnd,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        val color = ContextCompat.getColor(requireContext(), R.color.darker_cadet_blue)
+        spannableBuilder.setSpan(
+            ForegroundColorSpan(color),
+            spanStart,
+            spanEnd,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        binding.introductionText.text = spannableBuilder
     }
     
     private fun getResult() {
@@ -115,10 +158,11 @@ class HomeFragment : Fragment() {
     private fun setFavoriteRecipesButton() {
         binding.favoriteRecipesIcon.setOnClickListener {
             val navController = findNavController()
-            val action = HomeFragmentDirections.actionHomeFragmentToFavoriteRecipesFragment()
+            val action = HomeFragmentDirections.homeFragmentToFavoriteRecipesFragment()
             if (navController.currentDestination?.id == R.id.homeFragment) {
                 navController.navigate(action)
-            } }
+            }
+        }
     }
     
     private fun dropdownItemsBinding() {
@@ -132,7 +176,7 @@ class HomeFragment : Fragment() {
             ArrayAdapter(requireContext(), R.layout.dropdown_item, cuisineTypes)
         binding.cuisineTypeAutocompleteTextview.setAdapter(cuisineArrayAdapter)
     }
-    }
+}
 
 
 

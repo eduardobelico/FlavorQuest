@@ -20,7 +20,7 @@ class FavoriteRecipesViewModel(
         when (event) {
             is FavoriteEvent.OnLoadRecipeList -> {
                 viewModelScope.launch {
-                    favoriteRecipesUseCases.getFavoriteRecipes().collectLatest { result ->
+                    favoriteRecipesUseCases.getFavoriteRecipesUseCase().collectLatest { result ->
                             val favoritesList = result.map { recipe ->
                                 val isFavorite = favoriteRecipesUseCases.isFavoriteRecipeUseCase(recipe.id)
                                 Recipe(

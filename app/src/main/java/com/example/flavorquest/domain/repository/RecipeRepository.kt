@@ -32,4 +32,6 @@ interface RecipeRepository {
     fun getFavoriteRecipes(): Flow<List<Recipe>>
     
     suspend fun isFavorite(id: String): Boolean
+    
+    fun getAmountOfFavoriteRecipes(): Flow<Int>
 }

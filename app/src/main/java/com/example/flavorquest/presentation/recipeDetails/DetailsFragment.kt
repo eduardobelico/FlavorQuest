@@ -170,7 +170,7 @@ class DetailsFragment : Fragment() {
         binding.detailsToFavorites.setOnClickListener {
             val navController = findNavController()
             val action =
-                DetailsFragmentDirections.actionRecipeDetailsFragmentToFavoriteRecipesFragment()
+                DetailsFragmentDirections.recipeDetailsFragmentToFavoriteRecipesFragment()
             if (navController.currentDestination?.id == R.id.recipeDetailsFragment) {
                 navController.navigate(action)
             }

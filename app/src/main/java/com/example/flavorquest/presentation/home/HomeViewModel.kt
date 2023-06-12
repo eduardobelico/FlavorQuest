@@ -1,13 +1,35 @@
 package com.example.flavorquest.presentation.home
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.flavorquest.domain.useCases.FavoriteRecipesUseCases
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel(
+    private val favoriteRecipesUseCases: FavoriteRecipesUseCases
+) : ViewModel() {
     
     private val _state = MutableStateFlow<HomeState>(HomeState.Empty)
     val state: StateFlow<HomeState> get() = _state
+    
+    private val _numFavoriteRecipes = MutableStateFlow(0)
+    val numFavoriteRecipes: StateFlow<Int> get() = _numFavoriteRecipes
+    
+    init {
+        getNumberOfFavoriteRecipes()
+    }
+    
+    fun getNumberOfFavoriteRecipes() {
+        viewModelScope.launch {
+            favoriteRecipesUseCases.getNumberOfFavoriteRecipesUseCase()
+                .collectLatest { numRecipes ->
+                _numFavoriteRecipes.value = numRecipes
+            }
+        }
+    }
     
     fun checkParameters(
         query: String?,

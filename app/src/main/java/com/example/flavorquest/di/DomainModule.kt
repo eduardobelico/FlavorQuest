@@ -18,10 +18,12 @@ object DomainModule {
             factory { SaveOrRemoveRecipeUseCase(repository = get()) }
             factory { isFavoriteRecipeUseCase(repository = get()) }
             factory { GetFavoriteRecipesUseCase(repository = get()) }
+            factory { GetNumberOfFavoriteRecipesUseCase(repository = get()) }
             factory { FavoriteRecipesUseCases(
                 saveOrRemoveRecipeUseCase = get(),
                 isFavoriteRecipeUseCase = get(),
-                getFavoriteRecipes = get()
+                getFavoriteRecipesUseCase = get(),
+                getNumberOfFavoriteRecipesUseCase = get()
             ) }
         }
     }

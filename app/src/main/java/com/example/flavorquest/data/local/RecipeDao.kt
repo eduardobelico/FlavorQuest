@@ -21,4 +21,7 @@ interface RecipeDao {
     
     @Query("SELECT * FROM RecipeEntity WHERE id = :id")
     suspend fun isFavorite(id: String): List<RecipeEntity>
+    
+    @Query("SELECT COUNT(*) FROM RecipeEntity")
+    fun getFavoriteRecipesCount(): Flow<Int>
 }
