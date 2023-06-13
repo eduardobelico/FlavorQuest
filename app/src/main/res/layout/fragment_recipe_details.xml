@@ -320,9 +320,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginVertical="30dp"
+            android:layout_marginTop="28dp"
             android:background="@drawable/border_details_items"
             android:padding="8dp"
             app:layout_constraintEnd_toEndOf="@id/details_name"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/details_name"
             app:layout_constraintTop_toBottomOf="@id/ingredients_constraint">
 
@@ -401,7 +403,33 @@
                 app:iconTint="@color/beaver"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/bottom_interaction_save"
-                app:layout_constraintTop_toBottomOf="@+id/details_to_home"/>
+                app:layout_constraintTop_toBottomOf="@+id/details_to_home" />
+
+            <ImageView
+                android:id="@+id/square_low_one"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/square_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <ImageView
+                android:id="@+id/square_low_two"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/square_icon"
+                app:layout_constraintBottom_toTopOf="@id/square_low_one"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <ImageView
+                android:id="@+id/square_low_thre"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/square_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/square_low_one" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <include

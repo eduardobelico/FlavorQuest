@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.flavorquest.R
 import com.example.flavorquest.core.Constants
 import com.example.flavorquest.databinding.FragmentUserLevelBinding
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class UserLevelFragment : Fragment() {
@@ -36,6 +38,7 @@ class UserLevelFragment : Fragment() {
     
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        userLevelBinding()
     }
     
     private fun setToolbar() {
@@ -53,6 +56,25 @@ class UserLevelFragment : Fragment() {
         val action = UserLevelFragmentDirections.userLevelFragmentToHomeFragment()
         if (navController.currentDestination?.id == R.id.userLevelFragment) {
             navController.navigate(action)
+        }
+    }
+    
+    private fun userLevelBinding() {
+        lifecycleScope.launch {
+            viewModel.numFavoriteRecipes.collect { count ->
+    
+                val userLevel: String = when {
+                    count >= 1 && count < 10 -> getString(R.string.user_level_1)
+                    count >= 10 && count < 30 -> getString(R.string.user_level_2)
+                    count >= 30 && count < 50 -> getString(R.string.user_level_3)
+                    count >= 50 && count < 100 -> getString(R.string.user_level_4)
+                    count >= 100 -> getString(R.string.user_level_5)
+                    else -> getString(R.string.user_level_0)
+                }
+    
+                binding.userLevel.text = userLevel
+                binding.recipeAmount.text = count.toString()
+            }
         }
     }
 }

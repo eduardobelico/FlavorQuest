@@ -39,6 +39,7 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         setSearchButton()
         setFavoriteRecipesButton()
+        setUserLevelButton()
         
         return binding.root
     }
@@ -92,9 +93,11 @@ class HomeFragment : Fragment() {
     }
     
     private fun userLevelBinding() {
+        lifecycleScope.launch {
+            viewModel.numFavoriteRecipes.collect { count ->
+            
         val introductionTemplate = getString(R.string.introduction_text)
         
-        val count = viewModel.numFavoriteRecipes.value
         val userLevel: String = when {
             count >= 1 && count < 10 -> getString(R.string.user_level_1)
             count >= 10 && count < 30 -> getString(R.string.user_level_2)
@@ -124,6 +127,8 @@ class HomeFragment : Fragment() {
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
         binding.introductionText.text = spannableBuilder
+            }
+        }
     }
     
     private fun getResult() {
@@ -158,6 +163,16 @@ class HomeFragment : Fragment() {
         binding.favoriteRecipesIcon.setOnClickListener {
             val navController = findNavController()
             val action = HomeFragmentDirections.homeFragmentToFavoriteRecipesFragment()
+            if (navController.currentDestination?.id == R.id.homeFragment) {
+                navController.navigate(action)
+            }
+        }
+    }
+    
+    private fun setUserLevelButton() {
+        binding.userLevelIcon.setOnClickListener {
+            val navController = findNavController()
+            val action = HomeFragmentDirections.homeFragmentToUserLevelFragment()
             if (navController.currentDestination?.id == R.id.homeFragment) {
                 navController.navigate(action)
             }

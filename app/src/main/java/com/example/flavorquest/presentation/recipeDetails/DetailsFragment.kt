@@ -152,7 +152,6 @@ class DetailsFragment : Fragment() {
         setBottomView(recipe)
     }
     
-    
     private fun setBottomView(recipe: Recipe) {
         binding.bottomInteractionSave.setOnClickListener {
             viewModel.saveRecipe(recipe)

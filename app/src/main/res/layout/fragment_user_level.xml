@@ -32,17 +32,53 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/user_level_toolbar">
 
+            <ImageView
+                android:id="@+id/square_mid_one"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/square_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/square_mid_two"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/square_icon"
+                app:layout_constraintEnd_toStartOf="@id/square_mid_one"
+                app:layout_constraintTop_toTopOf="@id/square_mid_one" />
+
+            <ImageView
+                android:id="@+id/square_mid_three"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/square_icon"
+                app:layout_constraintEnd_toStartOf="@id/square_mid_two"
+                app:layout_constraintTop_toTopOf="@id/square_mid_one" />
+
+            <ImageView
+                android:id="@+id/square_mid_four"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/square_icon"
+                app:layout_constraintEnd_toStartOf="@id/square_mid_three"
+                app:layout_constraintTop_toTopOf="@id/square_mid_one" />
+
             <TextView
                 android:id="@+id/user_level_intro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/old_school_adventures"
                 android:text="@string/user_level_introduction"
                 android:textColor="@color/cadet_blue"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/square_mid_one" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/user_info_container"
@@ -264,6 +300,43 @@
                 app:layout_constraintEnd_toEndOf="@id/user_level_intro"
                 app:layout_constraintStart_toEndOf="@id/user_level_5_icon"
                 app:layout_constraintTop_toBottomOf="@id/user_level_4_text" />
+
+            <ImageView
+                android:id="@+id/square_mid_low_one"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/square_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/user_level_5_text" />
+
+            <ImageView
+                android:id="@+id/square_mid_low_two"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/square_icon"
+                app:layout_constraintStart_toEndOf="@id/square_mid_low_one"
+                app:layout_constraintTop_toTopOf="@id/square_mid_low_one" />
+
+            <ImageView
+                android:id="@+id/square_mid_low_three"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/square_icon"
+                app:layout_constraintStart_toEndOf="@id/square_mid_low_two"
+                app:layout_constraintTop_toTopOf="@id/square_mid_low_one" />
+
+            <ImageView
+                android:id="@+id/square_mid_low_four"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/square_icon"
+                app:layout_constraintStart_toEndOf="@id/square_mid_low_three"
+                app:layout_constraintTop_toTopOf="@id/square_mid_low_one" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,58 +11,165 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/app_logo"
-            android:layout_width="140dp"
-            android:layout_height="160dp"
-            android:layout_marginVertical="16dp"
-            android:layout_marginHorizontal="60dp"
-            android:background="@drawable/flavorquestlogo"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/top_container_left"
+            android:layout_width="160dp"
+            android:layout_height="62dp"
+            android:background="@drawable/border_details_items"
+            android:padding="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/app_logo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/secondary_logo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/top_container"
-            android:layout_width="140dp"
-            android:layout_height="70dp"
+            android:id="@+id/top_container_right"
+            android:layout_width="160dp"
+            android:layout_height="62dp"
             android:background="@drawable/border_details_items"
             android:padding="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                android:id="@+id/square_top_one"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/square_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/favorite_recipes_icon" />
+
+            <ImageView
+                android:id="@+id/square_top_two"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginHorizontal="4dp"
+                android:background="@drawable/square_icon"
+                app:layout_constraintStart_toEndOf="@id/square_top_one"
+                app:layout_constraintTop_toTopOf="@id/square_top_one" />
+
+            <ImageView
+                android:id="@+id/square_top_three"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/square_icon"
+                app:layout_constraintStart_toStartOf="@id/square_top_one"
+                app:layout_constraintTop_toBottomOf="@id/square_top_one" />
+
+            <ImageView
+                android:id="@+id/square_top_four"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:background="@drawable/square_icon"
+                app:layout_constraintStart_toStartOf="@id/square_top_two"
+                app:layout_constraintTop_toTopOf="@id/square_top_three" />
+
+            <ImageView
+                android:id="@+id/square_top_five"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/square_icon"
+                app:layout_constraintStart_toStartOf="@id/square_top_one"
+                app:layout_constraintTop_toBottomOf="@id/square_top_three" />
+
+            <ImageView
+                android:id="@+id/square_top_six"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:background="@drawable/square_icon"
+                app:layout_constraintStart_toStartOf="@id/square_top_two"
+                app:layout_constraintTop_toTopOf="@id/square_top_five" />
+
+            <ImageView
+                android:id="@+id/user_level_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="16dp"
+                android:background="@drawable/user_icon"
+                app:layout_constraintEnd_toStartOf="@+id/favorite_recipes_icon"
+                app:layout_constraintTop_toTopOf="@id/favorite_recipes_icon" />
+
+            <ImageView
                 android:id="@+id/favorite_recipes_icon"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@drawable/save_icon"
+                android:background="@drawable/favorites_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/mid_container"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="32dp"
             android:background="@drawable/border_details_items"
             android:padding="16dp"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/app_logo"
-            >
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/top_container_left">
+
+            <ImageView
+                android:id="@+id/square_mid_one"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/square_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/square_mid_two"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/square_icon"
+                app:layout_constraintEnd_toStartOf="@id/square_mid_one"
+                app:layout_constraintTop_toTopOf="@id/square_mid_one" />
+
+            <ImageView
+                android:id="@+id/square_mid_three"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/square_icon"
+                app:layout_constraintEnd_toStartOf="@id/square_mid_two"
+                app:layout_constraintTop_toTopOf="@id/square_mid_one" />
+
+            <ImageView
+                android:id="@+id/square_mid_four"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/square_icon"
+                app:layout_constraintEnd_toStartOf="@id/square_mid_three"
+                app:layout_constraintTop_toTopOf="@id/square_mid_one" />
 
             <TextView
                 android:id="@+id/introduction_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/old_school_adventures"
                 android:text="@string/introduction_text"
                 android:textColor="@color/cadet_blue"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/square_mid_one" />
 
             <ImageView
                 android:id="@+id/ingredient_icon"
@@ -78,7 +185,8 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
-                android:layout_margin="16dp"
+                android:layout_marginVertical="16dp"
+                android:layout_marginStart="8dp"
                 android:hint="@string/search_query_hint"
                 android:textColorHint="@color/cadet_blue"
                 app:boxStrokeColor="@color/box_stroke_color"
@@ -111,7 +219,8 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
-                android:layout_margin="16dp"
+                android:layout_marginVertical="16dp"
+                android:layout_marginStart="8dp"
                 android:hint="Tipo"
                 android:textColorHint="@color/cadet_blue"
                 app:boxStrokeColor="@color/box_stroke_color"
@@ -145,7 +254,8 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
-                android:layout_margin="16dp"
+                android:layout_marginVertical="16dp"
+                android:layout_marginStart="8dp"
                 android:hint="Culinária"
                 android:textColorHint="@color/cadet_blue"
                 app:boxStrokeColor="@color/box_stroke_color"
@@ -169,25 +279,61 @@
                 android:id="@+id/search_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_marginVertical="16dp"
                 android:fontFamily="@font/old_school_adventures"
                 android:text="Com esses dados, encontraremos a receita que procura. Vamos lá, pressione o botão! "
                 android:textColor="@color/cadet_blue"
                 android:textSize="14sp"
-
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/introduction_text"
+                app:layout_constraintStart_toStartOf="@id/introduction_text"
                 app:layout_constraintTop_toBottomOf="@id/cuisine_type_menu_layout" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/square_mid_low_one"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/square_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/search_text" />
 
+            <ImageView
+                android:id="@+id/square_mid_low_two"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/square_icon"
+                app:layout_constraintStart_toEndOf="@id/square_mid_low_one"
+                app:layout_constraintTop_toTopOf="@id/square_mid_low_one" />
+
+            <ImageView
+                android:id="@+id/square_mid_low_three"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/square_icon"
+                app:layout_constraintStart_toEndOf="@id/square_mid_low_two"
+                app:layout_constraintTop_toTopOf="@id/square_mid_low_one" />
+
+            <ImageView
+                android:id="@+id/square_mid_low_four"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/square_icon"
+                app:layout_constraintStart_toEndOf="@id/square_mid_low_three"
+                app:layout_constraintTop_toTopOf="@id/square_mid_low_one" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
             android:id="@+id/search_button"
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_margin="32dp"
             android:backgroundTint="@color/beaver"
             android:fontFamily="@font/old_school_adventures"
             android:gravity="center"
@@ -197,10 +343,10 @@
             android:textColor="@color/white"
             android:textSize="12sp"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/mid_container"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mid_container" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
