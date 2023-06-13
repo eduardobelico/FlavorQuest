@@ -3,12 +3,28 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="search_query_hint">Ingrediente</string>
-    <string name="introduction_text">Olá, aventureiro! Antes de iniciar a sua jornada, nos diga o que procura em uma receita...</string>
+    <string name="introduction_text">Olá, %1$s! Antes de iniciar a sua jornada, nos diga o que procura em uma receita...</string>
     <string name="health_specs">Saúde</string>
     <string name="cuisine_type">Culinária</string>
     <string name="meal_type">Refeicao</string>
     <string name="dish_type">Tipo</string>
     <string name="msg_error">Falha na conexão</string>
+    <string name="user_level_0">Aprendiz</string>
+    <string name="user_level_1">Aventureiro</string>
+    <string name="user_level_2">Guerreiro</string>
+    <string name="user_level_3">Paladino</string>
+    <string name="user_level_4">Herói</string>
+    <string name="user_level_5">Mestre</string>
+    <string name="user_level_introduction">Seja bem-vindo à sua tela de nível de usuário! Aqui poderá aprender um pouco mais sobre como avançar na sua aventura.</string>
+    <string name="user_level_title">Nível de Usuário:</string>
+    <string name="saved_recipes_title">Receitas Salvas:</string>
+    <string name="user_level_explainer">A jornada para se tornar um verdadeiro mestre da cozinha é longa, mas nada árdua com a ajuda do FlavorQuest! Ao longo da sua trajetória, você terá que aprender muitas receitas e a medida que for salvando a sua experiência (com cada receita salva), seu nível subirá:</string>
+    <string name="user_level_0_explainer">Aprendiz - Ainda sem nenhuma receita salva, há um longo caminho pela frente!</string>
+    <string name="user_level_1_explainer">Aventureiro - Já tem sua primeira receita, mas para existe um mundo de receitas para desbravar Você conquista seu primeiro ponto de destreza!</string>
+    <string name="user_level_2_explainer">Guerreiro - Com 10 receitas no cinto, você é um guerreiro da cozinha. +10 pontos de experiência!</string>
+    <string name="user_level_3_explainer">Paladino - Depois de 30 receitas conquistadas, você segue a trilha da justiça e da bondade, e se torna um paladino. Você ganha +1 de Força e +1 de Carisma.</string>
+    <string name="user_level_4_explainer">Herói - Após 50 impressionantes receitas salvas, o seu poder passa a ser reconhecido e você se torna um Herói!</string>
+    <string name="user_level_5_explainer">Mestre - Você alcançou os céus da culinária! São 100 receitas, a jornada nunca termina. Continue cozinhando e se divertindo!</string>
 
     <string-array name="cuisine">
         <item>Americana</item>

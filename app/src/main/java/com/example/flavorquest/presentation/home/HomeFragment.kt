@@ -97,11 +97,10 @@ class HomeFragment : Fragment() {
         val count = viewModel.numFavoriteRecipes.value
         val userLevel: String = when {
             count >= 1 && count < 10 -> getString(R.string.user_level_1)
-            count >= 10 && count < 20 -> getString(R.string.user_level_2)
-            count >= 20 && count < 30 -> getString(R.string.user_level_3)
-            count >= 30 && count < 50 -> getString(R.string.user_level_4)
-            count >= 50 && count < 100 -> getString(R.string.user_level_5)
-            count >= 100 -> getString(R.string.user_level_6)
+            count >= 10 && count < 30 -> getString(R.string.user_level_2)
+            count >= 30 && count < 50 -> getString(R.string.user_level_3)
+            count >= 50 && count < 100 -> getString(R.string.user_level_4)
+            count >= 100 -> getString(R.string.user_level_5)
             else -> getString(R.string.user_level_0)
         }
         

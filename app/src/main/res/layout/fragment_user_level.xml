@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/pastel_grey"
+    tools:context=".presentation.userLevel.UserLevelFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/user_level_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_home" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/mid_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/border_details_items"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_level_toolbar">
+
+            <TextView
+                android:id="@+id/user_level_intro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/old_school_adventures"
+                android:text="@string/user_level_introduction"
+                android:textColor="@color/cadet_blue"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/user_info_container"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="16dp"
+                android:background="@drawable/border_details_items"
+                android:padding="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/user_level_intro">
+
+                <TextView
+                    android:id="@+id/user_level_label"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/old_school_adventures"
+                    android:text="@string/user_level_title"
+                    android:textColor="@color/darker_cadet_blue"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@id/user_level"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/user_level"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/old_school_adventures"
+                    android:textColor="@color/darker_cadet_blue"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/user_level_label"
+                    app:layout_constraintTop_toTopOf="@id/user_level_label" />
+
+                <TextView
+                    android:id="@+id/recipe_amount_label"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="16dp"
+                    android:fontFamily="@font/old_school_adventures"
+                    android:text="@string/saved_recipes_title"
+                    android:textColor="@color/darker_cadet_blue"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@id/recipe_amount"
+                    app:layout_constraintStart_toStartOf="@id/user_level_label"
+                    app:layout_constraintTop_toBottomOf="@id/user_level_label" />
+
+                <TextView
+                    android:id="@+id/recipe_amount"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/old_school_adventures"
+                    android:textColor="@color/darker_cadet_blue"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/recipe_amount_label"
+                    app:layout_constraintTop_toTopOf="@id/recipe_amount_label" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/user_level_explainer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="16dp"
+                android:fontFamily="@font/old_school_adventures"
+                android:text="@string/user_level_explainer"
+                android:textColor="@color/cadet_blue"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@id/user_level_intro"
+                app:layout_constraintStart_toStartOf="@id/user_level_intro"
+                app:layout_constraintTop_toBottomOf="@id/user_info_container" />
+
+            <ImageView
+                android:id="@+id/user_level_0_icon"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="6dp"
+                android:background="@drawable/losango"
+                app:layout_constraintEnd_toStartOf="@id/user_level_0_text"
+                app:layout_constraintStart_toStartOf="@id/user_level_intro"
+                app:layout_constraintTop_toTopOf="@id/user_level_0_text" />
+
+            <TextView
+                android:id="@+id/user_level_0_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="16dp"
+                android:fontFamily="@font/old_school_adventures"
+                android:text="@string/user_level_0_explainer"
+                android:textColor="@color/cadet_blue"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@id/user_level_intro"
+                app:layout_constraintStart_toEndOf="@id/user_level_0_icon"
+                app:layout_constraintTop_toBottomOf="@id/user_level_explainer" />
+
+            <ImageView
+                android:id="@+id/user_level_1_icon"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="6dp"
+                android:background="@drawable/losango"
+                app:layout_constraintEnd_toStartOf="@id/user_level_1_text"
+                app:layout_constraintStart_toStartOf="@id/user_level_intro"
+                app:layout_constraintTop_toTopOf="@id/user_level_1_text" />
+
+            <TextView
+                android:id="@+id/user_level_1_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="16dp"
+                android:fontFamily="@font/old_school_adventures"
+                android:text="@string/user_level_1_explainer"
+                android:textColor="@color/cadet_blue"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@id/user_level_intro"
+                app:layout_constraintStart_toEndOf="@id/user_level_1_icon"
+                app:layout_constraintTop_toBottomOf="@id/user_level_0_text" />
+
+            <ImageView
+                android:id="@+id/user_level_2_icon"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="6dp"
+                android:background="@drawable/losango"
+                app:layout_constraintEnd_toStartOf="@id/user_level_2_text"
+                app:layout_constraintStart_toStartOf="@id/user_level_intro"
+                app:layout_constraintTop_toTopOf="@id/user_level_2_text" />
+
+            <TextView
+                android:id="@+id/user_level_2_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="16dp"
+                android:fontFamily="@font/old_school_adventures"
+                android:text="@string/user_level_2_explainer"
+                android:textColor="@color/cadet_blue"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@id/user_level_intro"
+                app:layout_constraintStart_toEndOf="@id/user_level_2_icon"
+                app:layout_constraintTop_toBottomOf="@id/user_level_1_text" />
+
+            <ImageView
+                android:id="@+id/user_level_3_icon"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="6dp"
+                android:background="@drawable/losango"
+                app:layout_constraintEnd_toStartOf="@id/user_level_3_text"
+                app:layout_constraintStart_toStartOf="@id/user_level_intro"
+                app:layout_constraintTop_toTopOf="@id/user_level_3_text" />
+
+            <TextView
+                android:id="@+id/user_level_3_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="16dp"
+                android:fontFamily="@font/old_school_adventures"
+                android:text="@string/user_level_3_explainer"
+                android:textColor="@color/cadet_blue"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@id/user_level_intro"
+                app:layout_constraintStart_toEndOf="@id/user_level_3_icon"
+                app:layout_constraintTop_toBottomOf="@id/user_level_2_text" />
+
+            <ImageView
+                android:id="@+id/user_level_4_icon"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="6dp"
+                android:background="@drawable/losango"
+                app:layout_constraintEnd_toStartOf="@id/user_level_4_text"
+                app:layout_constraintStart_toStartOf="@id/user_level_intro"
+                app:layout_constraintTop_toTopOf="@id/user_level_4_text" />
+
+            <TextView
+                android:id="@+id/user_level_4_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="16dp"
+                android:fontFamily="@font/old_school_adventures"
+                android:text="@string/user_level_4_explainer"
+                android:textColor="@color/cadet_blue"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@id/user_level_intro"
+                app:layout_constraintStart_toEndOf="@id/user_level_4_icon"
+                app:layout_constraintTop_toBottomOf="@id/user_level_3_text" />
+
+            <ImageView
+                android:id="@+id/user_level_5_icon"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="6dp"
+                android:background="@drawable/losango"
+                app:layout_constraintEnd_toStartOf="@id/user_level_5_text"
+                app:layout_constraintStart_toStartOf="@id/user_level_intro"
+                app:layout_constraintTop_toTopOf="@id/user_level_5_text" />
+
+            <TextView
+                android:id="@+id/user_level_5_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="16dp"
+                android:fontFamily="@font/old_school_adventures"
+                android:text="@string/user_level_5_explainer"
+                android:textColor="@color/cadet_blue"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@id/user_level_intro"
+                app:layout_constraintStart_toEndOf="@id/user_level_5_icon"
+                app:layout_constraintTop_toBottomOf="@id/user_level_4_text" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
