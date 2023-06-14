@@ -12,6 +12,6 @@ object Constants {
     const val OK_HTTP = "Ok http"
     const val TOOLBAR_LIST_TITLE = "Receitas"
     const val TOOLBAR_FAVORITES_TITLE = "Receitas Salvas"
-    const val TOOLBAR_USER_LEVEL_TITLE = "Receitas Salvas"
+    const val TOOLBAR_USER_LEVEL_TITLE = "Nível de Cozinheiro"
 
 }
