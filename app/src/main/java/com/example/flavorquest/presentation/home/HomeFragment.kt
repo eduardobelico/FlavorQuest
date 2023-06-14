@@ -37,6 +37,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        parametersBinding()
         setSearchButton()
         setFavoriteRecipesButton()
         setUserLevelButton()
@@ -68,7 +69,7 @@ class HomeFragment : Fragment() {
     private fun setSearchButton() {
         val searchButton = binding.searchButton
         searchButton.setOnClickListener {
-            parametersBinding()
+            selectedQuery = binding.searchQuery.text.toString().trim()
             
             viewModel.checkParameters(
                 query = selectedQuery,
@@ -79,7 +80,6 @@ class HomeFragment : Fragment() {
     }
     
     private fun parametersBinding() {
-        selectedQuery = binding.searchQuery.text.toString()
         
         val cuisineTypeTextView = binding.cuisineTypeAutocompleteTextview
         cuisineTypeTextView.setOnItemClickListener { parent, _, position, _ ->

@@ -35,6 +35,7 @@ class ListAdapter(
                         R.drawable.save_icon_unselected
                     }
                     binding.favoriteIcon.setImageResource(drawableResId)
+                    notifyItemChanged(adapterPosition)
                 }
             }
         }
@@ -75,7 +76,6 @@ class ListAdapter(
                     .addOnFailureListener { _ ->
                         recipeCuisineType.text = cuisineType
                     }
-                
                 if (recipe.isFavorite)
                     binding.favoriteIcon.setImageResource(R.drawable.save_icon)
                 else binding.favoriteIcon.setImageResource(R.drawable.save_icon_unselected)

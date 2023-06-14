@@ -22,7 +22,7 @@
             app:navigationIcon="@drawable/ic_home" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/mid_container"
+            android:id="@+id/mid_container_one"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"

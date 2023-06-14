@@ -15,6 +15,7 @@ object DishTypesLevel {
         "Sopas",
         "Prato Principal",
         "Biscoitos",
+        "Biscoitos e cookies",
         "Doces",
         "Pães"
     )

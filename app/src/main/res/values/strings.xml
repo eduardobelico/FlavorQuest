@@ -25,6 +25,7 @@
     <string name="user_level_3_explainer">Paladino - Depois de 30 receitas conquistadas, você segue a trilha da justiça e da bondade, e se torna um paladino. Você ganha +1 de Força e +1 de Carisma.</string>
     <string name="user_level_4_explainer">Herói - Após 50 impressionantes receitas salvas, o seu poder passa a ser reconhecido e você se torna um Herói!</string>
     <string name="user_level_5_explainer">Mestre - Você alcançou os céus da culinária! São 100 receitas, a jornada nunca termina. Continue cozinhando e se divertindo!</string>
+    <string name="search_text">Com esses dados, encontraremos a receita que procura. Vamos lá, pressione o botão e inicie a sua aventura!</string>
 
     <string-array name="cuisine">
         <item>Americana</item>
