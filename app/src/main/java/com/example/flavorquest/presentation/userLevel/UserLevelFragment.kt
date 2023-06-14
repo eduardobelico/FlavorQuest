@@ -1,10 +1,16 @@
 package com.example.flavorquest.presentation.userLevel
 
+import android.graphics.Typeface
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.ForegroundColorSpan
+import android.text.style.StyleSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -62,7 +68,7 @@ class UserLevelFragment : Fragment() {
     private fun userLevelBinding() {
         lifecycleScope.launch {
             viewModel.numFavoriteRecipes.collect { count ->
-    
+                
                 val userLevel: String = when {
                     count >= 1 && count < 10 -> getString(R.string.user_level_1)
                     count >= 10 && count < 30 -> getString(R.string.user_level_2)
@@ -71,9 +77,31 @@ class UserLevelFragment : Fragment() {
                     count >= 100 -> getString(R.string.user_level_5)
                     else -> getString(R.string.user_level_0)
                 }
-    
+                
                 binding.userLevel.text = userLevel
                 binding.recipeAmount.text = count.toString()
+                
+                val userLevelExplainer = getString(R.string.user_level_explainer)
+                val spannableBuilder = SpannableStringBuilder()
+                spannableBuilder.append(String.format(userLevelExplainer, "FlavorQuest"))
+                
+                val spanStart = spannableBuilder.indexOf("FlavorQuest")
+                val spanEnd = spanStart + "FlavorQuest".length
+    
+                spannableBuilder.setSpan(
+                    StyleSpan(Typeface.BOLD),
+                    spanStart,
+                    spanEnd,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+                val color = ContextCompat.getColor(requireContext(), R.color.darker_cadet_blue)
+                spannableBuilder.setSpan(
+                    ForegroundColorSpan(color),
+                    spanStart,
+                    spanEnd,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+                binding.userLevelExplainer.text = spannableBuilder
             }
         }
     }

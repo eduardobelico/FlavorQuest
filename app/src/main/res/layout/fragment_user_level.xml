@@ -19,7 +19,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/ic_home" />
+            app:navigationIcon="@drawable/base" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/mid_container_one"
@@ -96,6 +96,7 @@
                     android:id="@+id/user_level_label"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:fontFamily="@font/old_school_adventures"
                     android:text="@string/user_level_title"
                     android:textColor="@color/darker_cadet_blue"
@@ -113,6 +114,7 @@
                     android:textColor="@color/darker_cadet_blue"
                     android:textSize="12sp"
                     android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/user_level_label"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/user_level_label"
                     app:layout_constraintTop_toTopOf="@id/user_level_label" />
@@ -122,6 +124,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="16dp"
+                    android:layout_marginTop="16dp"
                     android:fontFamily="@font/old_school_adventures"
                     android:text="@string/saved_recipes_title"
                     android:textColor="@color/darker_cadet_blue"
@@ -129,7 +132,7 @@
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@id/recipe_amount"
                     app:layout_constraintStart_toStartOf="@id/user_level_label"
-                    app:layout_constraintTop_toBottomOf="@id/user_level_label" />
+                    app:layout_constraintTop_toBottomOf="@id/user_level" />
 
                 <TextView
                     android:id="@+id/recipe_amount"

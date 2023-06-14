@@ -2,7 +2,10 @@ package com.example.flavorquest.core
 
 import android.view.View
 import android.widget.ImageView
+import coil.ImageLoader
 import coil.load
+import coil.request.CachePolicy
+import coil.request.ImageRequest
 import com.example.flavorquest.R
 import com.example.flavorquest.core.Constants.BASE_RECIPE_URI
 import com.google.mlkit.common.model.DownloadConditions
@@ -75,8 +78,13 @@ fun String.removeBrackets(): String {
 fun ImageView.loadImage(url: String? = null) {
     if (url != null) {
         visibilityVisible()
-        
-        load(url) {
+    
+        val imgLoader = ImageLoader.Builder(context)
+            .memoryCachePolicy(CachePolicy.ENABLED)
+            .diskCachePolicy(CachePolicy.ENABLED)
+            .build()
+    
+        load(url, imgLoader) {
             error(R.drawable.erro)
             placeholder(R.drawable.placeholder)
             crossfade(1000)
