@@ -12,8 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.flavorquest.R
-import com.example.flavorquest.core.*
-import com.example.flavorquest.core.typeListing.DishTypesLevel
+import com.example.flavorquest.core.Extensions.*
 import com.example.flavorquest.databinding.FragmentRecipeDetailsBinding
 import com.example.flavorquest.domain.model.Recipe
 import kotlinx.coroutines.launch
@@ -90,14 +89,14 @@ class DetailsFragment : Fragment() {
             val name = recipe.name
             englishPortugueseTranslator.translate(name)
                 .addOnSuccessListener { translatedText ->
-                    detailsName.text = translatedText
-                }
-                .addOnFailureListener { _ ->
-                    if (name.isEmpty()) {
+                    if (name.isBlank()) {
                         detailsName.text = "--------"
                     } else {
-                        detailsName.text = name
+                        detailsName.text = translatedText
                     }
+                }
+                .addOnFailureListener { _ ->
+                    detailsName.text = name
                 }
             
             val dishType =
@@ -105,15 +104,15 @@ class DetailsFragment : Fragment() {
             englishPortugueseTranslator.translate(dishType)
                 .addOnSuccessListener { translatedText ->
                     val modifiedTranslatedText = adjustTranslatedDishType(translatedText)
-                    detailsDishType.text = modifiedTranslatedText
+                    if (dishType.isBlank()) {
+                        detailsDishType.text = "--------"
+                    } else {
+                        detailsDishType.text = modifiedTranslatedText
+                    }
                     setLevelView(modifiedTranslatedText)
                 }
                 .addOnFailureListener { _ ->
-                    if (dishType.isEmpty()) {
-                        detailsDishType.text = "--------"
-                    } else {
-                        detailsDishType.text = dishType
-                    }
+                    detailsDishType.text = dishType
                 }
             
             val cuisineType =
@@ -121,64 +120,67 @@ class DetailsFragment : Fragment() {
             englishPortugueseTranslator.translate(cuisineType)
                 .addOnSuccessListener { translatedText ->
                     val modifiedTranslatedText = adjustTranslatedCuisineType(translatedText)
-                    detailsCuisineType.text = modifiedTranslatedText
-                }
-                .addOnFailureListener { _ ->
-                    if (cuisineType.isEmpty()) {
+                    if (cuisineType.isBlank()) {
                         detailsCuisineType.text = "--------"
                     } else {
-                        detailsCuisineType.text = cuisineType
+                        detailsCuisineType.text = modifiedTranslatedText
                     }
+                }
+                .addOnFailureListener { _ ->
+                    detailsCuisineType.text = cuisineType
                 }
             
             val mealType =
                 recipe.mealType.toString().removeBrackets().replaceFirstChar { it.uppercase() }
             englishPortugueseTranslator.translate(mealType)
                 .addOnSuccessListener { translatedText ->
-                    detailsMealType.text = translatedText
-                }
-                .addOnFailureListener { _ ->
-                    if (mealType.isEmpty()) {
+                    if (mealType.isBlank()) {
                         detailsMealType.text = "--------"
                     } else {
-                        detailsMealType.text = mealType
+                        detailsMealType.text = translatedText
                     }
-                }
-            
-            val ingredients =
-                recipe.ingredients.joinToString("\n").removeBrackets()
-            englishPortugueseTranslator.translate(ingredients)
-                .addOnSuccessListener { translatedText ->
-                    detailsIngredients.text = translatedText
                 }
                 .addOnFailureListener { _ ->
-                    if (ingredients.isEmpty()) {
+                    detailsMealType.text = mealType
+                }
+            
+            val ingredients = recipe.ingredients.joinToString().removeBrackets()
+            
+            englishPortugueseTranslator.translate(ingredients)
+                .addOnSuccessListener { translatedText ->
+                    if (ingredients.isBlank()) {
                         detailsIngredients.text = "--------"
                     } else {
-                        detailsIngredients.text = ingredients
+                        val formatedText = translatedText.replace(",", ", \n \n")
+                        binding.detailsIngredients.text = formatedText
                     }
+                }
+                .addOnFailureListener { _ ->
+                    detailsIngredients.text = ingredients
                 }
             
             val diet =
                 recipe.diet.joinToString("\n").removeBrackets().replaceFirstChar { it.uppercase() }
             englishPortugueseTranslator.translate(diet)
                 .addOnSuccessListener { translatedText ->
-                    detailsDiet.text = translatedText
-                }
-                .addOnFailureListener { _ ->
-                    if (diet.isEmpty()) {
+                    if (diet.isBlank()) {
                         detailsDiet.text = "--------"
                     } else {
-                        detailsDiet.text = diet
+                        detailsDiet.text = translatedText
                     }
+                }
+                .addOnFailureListener { _ ->
+                    detailsDiet.text = diet
                 }
             
             detailsSource.text = recipe.source
             
             detailsSource.setOnClickListener {
                 val url = recipe.url
-                val urlIntent = Intent(Intent.ACTION_VIEW,
-                Uri.parse(url))
+                val urlIntent = Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(url)
+                )
                 startActivity(urlIntent)
             }
         }
@@ -190,7 +192,7 @@ class DetailsFragment : Fragment() {
             viewModel.saveRecipe(recipe)
             Toast.makeText(requireContext(), "Receita Salva", Toast.LENGTH_SHORT).show()
         }
-    
+        
         binding.detailsToHome.setOnClickListener {
             val navController = findNavController()
             val action = DetailsFragmentDirections.recipeDetailsFragmentToHomeFragment()
@@ -198,7 +200,7 @@ class DetailsFragment : Fragment() {
                 navController.navigate(action)
             }
         }
-    
+        
         binding.detailsToFavorites.setOnClickListener {
             val navController = findNavController()
             val action =

@@ -1,4 +1,9 @@
-package com.example.flavorquest.core.typeListing
+package com.example.flavorquest.core.Extensions
+
+/**
+ * Listagem dos tipos de receitas para uso da funcionalidade nível de receita
+ * do fragmento de detalhes.
+ * */
 
 object DishTypesLevel {
     val easyDishTypes = listOf(
@@ -17,7 +22,8 @@ object DishTypesLevel {
         "Biscoitos",
         "Biscoitos e cookies",
         "Doces",
-        "Pães"
+        "Pães",
+        "Condimentos e Molhos"
     )
     val hardDishTypes = listOf(
         "Sobremesas",

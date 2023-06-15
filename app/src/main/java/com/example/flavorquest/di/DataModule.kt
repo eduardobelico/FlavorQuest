@@ -18,6 +18,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object DataModule {
     
+    /**
+     * Load dos Módulos da camada de Data.
+     **/
+    
     fun load() {
         loadKoinModules(repositoryModule() + networkModule() + localModule())
     }
@@ -52,6 +56,10 @@ object DataModule {
             }
         }
     }
+    
+    /**
+     * Build do retrofit com a biblioteca Gson.
+     **/
     
     private fun createService(
         client: OkHttpClient

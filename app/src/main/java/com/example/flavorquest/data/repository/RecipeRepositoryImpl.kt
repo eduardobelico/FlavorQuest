@@ -180,6 +180,10 @@ class RecipeRepositoryImpl(
         }
     }
     
+    /**
+     * Pega uma receita de acordo com o id.
+     **/
+    
     override fun getRecipeFromId(
         id: String
     ): Flow<Resource<Recipe>> = flow {
@@ -195,13 +199,25 @@ class RecipeRepositoryImpl(
         }
     }
     
+    /**
+     * Adiciona receita aos favoritos.
+     **/
+    
     override suspend fun insertRecipe(recipe: Recipe) {
         dao.saveRecipe(recipe.toRecipeEntity())
     }
     
+    /**
+     * Remove receita dos favoritos.
+     **/
+    
     override suspend fun deleteRecipe(id: String) {
         dao.removeRecipe(id)
     }
+    
+    /**
+     * Pega a lista de receitas favoritadas.
+     **/
     
     override fun getFavoriteRecipes(): Flow<List<Recipe>> {
         return dao.getFavoriteRecipes().map { entities ->
@@ -209,10 +225,18 @@ class RecipeRepositoryImpl(
         }
     }
     
+    /**
+     * Checa se a receita está favoritada ou não.
+     **/
+    
     override suspend fun isFavorite(id: String): Boolean {
         val favoriteList = dao.isFavorite(id)
         return favoriteList.isNotEmpty()
     }
+    
+    /**
+     * Pega a quantidade de receitas favoritadas.
+     **/
     
     override fun getAmountOfFavoriteRecipes(): Flow<Int> {
         return dao.getFavoriteRecipesCount()

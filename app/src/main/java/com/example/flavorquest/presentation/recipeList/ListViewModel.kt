@@ -3,7 +3,6 @@ package com.example.flavorquest.presentation.recipeList
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.flavorquest.core.Resource
-import com.example.flavorquest.domain.model.Recipe
 import com.example.flavorquest.domain.useCases.FavoriteRecipesUseCases
 import com.example.flavorquest.domain.useCases.GetRecipeListUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,7 +17,6 @@ class ListViewModel(
     
     private val _recipeList = MutableStateFlow<ListState>(ListState.Loading)
     val recipeList: StateFlow<ListState> get() = _recipeList
-    
     
     fun onEvent(
         event: ListEvent
@@ -43,22 +41,11 @@ class ListViewModel(
                             is Resource.Success -> {
                                 result.data?.let { recipeList ->
                                     val filteredRecipeList = recipeList.map { recipe ->
-                                        val isFavorite =
-                                            favoriteRecipesUseCases.isFavoriteRecipeUseCase(recipe.id)
-                                        Recipe(
-                                            recipe.id,
-                                            recipe.name,
-                                            recipe.imageUrl,
-                                            recipe.ingredients,
-                                            recipe.cuisineType,
-                                            recipe.mealType,
-                                            recipe.dishType,
-                                            recipe.diet,
-                                            recipe.source,
-                                            recipe.url
-                                        ).apply {
-                                            this.isFavorite = isFavorite
-                                        }
+                                        
+                                        RecipeUiState(
+                                            isFavorite = favoriteRecipesUseCases.isFavoriteRecipeUseCase(recipe.id),
+                                            recipe = recipe
+                                        )
                                     }
                                     _recipeList.value = ListState.Data(filteredRecipeList)
                                 }
@@ -69,7 +56,7 @@ class ListViewModel(
             }
             is ListEvent.OnFavoriteClick -> {
                 viewModelScope.launch {
-                    favoriteRecipesUseCases.saveOrRemoveRecipeUseCase(event.recipe)
+                    favoriteRecipesUseCases.saveOrRemoveRecipeUseCase(event.recipeState.recipe)
                 }
             }
         }

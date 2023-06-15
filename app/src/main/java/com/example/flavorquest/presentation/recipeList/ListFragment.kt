@@ -10,11 +10,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.navigation.ui.AppBarConfiguration
 import com.example.flavorquest.R
 import com.example.flavorquest.core.Constants.TOOLBAR_LIST_TITLE
-import com.example.flavorquest.core.visibilityGone
-import com.example.flavorquest.core.visibilityVisible
+import com.example.flavorquest.core.Extensions.visibilityGone
+import com.example.flavorquest.core.Extensions.visibilityVisible
 import com.example.flavorquest.databinding.FragmentRecipeListBinding
 import com.example.flavorquest.presentation.adapters.ListAdapter
 import kotlinx.coroutines.flow.collectLatest
@@ -76,7 +75,7 @@ class ListFragment : Fragment() {
         binding.recipeListRecyclerview.setHasFixedSize(true)
         
         listAdapter.selectedRecipe = {
-            toDetailsFragment(recipeId = it.id)
+            toDetailsFragment(recipeId = it.recipe.id)
         }
         listAdapter.addOrRemove = { recipe ->
             viewModel.onEvent(ListEvent.OnFavoriteClick(recipe))

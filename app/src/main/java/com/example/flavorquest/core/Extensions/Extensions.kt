@@ -1,11 +1,10 @@
-package com.example.flavorquest.core
+package com.example.flavorquest.core.Extensions
 
 import android.view.View
 import android.widget.ImageView
 import coil.ImageLoader
 import coil.load
 import coil.request.CachePolicy
-import coil.request.ImageRequest
 import com.example.flavorquest.R
 import com.example.flavorquest.core.Constants.BASE_RECIPE_URI
 import com.google.mlkit.common.model.DownloadConditions
@@ -13,6 +12,11 @@ import com.google.mlkit.nl.translate.TranslateLanguage
 import com.google.mlkit.nl.translate.Translation
 import com.google.mlkit.nl.translate.Translator
 import com.google.mlkit.nl.translate.TranslatorOptions
+
+/**
+ * Builder do tradutor para passar as informações providas pela API.
+ * Inglês -> Português
+ * */
 
 object TranslatorFactory {
     private var englishPortugueseTranslator: Translator? = null
@@ -33,6 +37,10 @@ object TranslatorFactory {
         return englishPortugueseTranslator!!
     }
 }
+
+/**
+ * Funções para ajustar traduções incorretas.
+ * */
 
 fun adjustTranslatedCuisineType(translatedText: String): String {
     return translatedText
@@ -67,23 +75,35 @@ fun adjustTranslatedDishType(translatedText: String): String {
         .replace("Prato principal", "Prato Principal")
 }
 
+/**
+ * Função para coletar o id do uri da receita.
+ * */
+
 fun String.getRecipeId(): String {
     return this.replace(BASE_RECIPE_URI, "")
 }
+
+/**
+ * Função para remover colchetes dos arrays enviados pela API.
+ * */
 
 fun String.removeBrackets(): String {
     return this.replace("[", "").replace("]", "")
 }
 
+/**
+ * Função para carregar imagens a partir da url da receita.
+ * */
+
 fun ImageView.loadImage(url: String? = null) {
     if (url != null) {
         visibilityVisible()
-    
+        
         val imgLoader = ImageLoader.Builder(context)
             .memoryCachePolicy(CachePolicy.ENABLED)
             .diskCachePolicy(CachePolicy.ENABLED)
             .build()
-    
+        
         load(url, imgLoader) {
             error(R.drawable.erro)
             placeholder(R.drawable.placeholder)

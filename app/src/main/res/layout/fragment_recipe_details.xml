@@ -196,7 +196,6 @@
             app:layout_constraintEnd_toEndOf="@id/details_image_url"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
-
         <TextView
             android:id="@+id/details_recipe_level_label"
             android:layout_width="wrap_content"
@@ -235,6 +234,7 @@
                 android:id="@+id/ingredients_constraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:minHeight="90dp"
                 android:layout_marginVertical="10dp"
                 android:background="@drawable/border_details_items"
                 android:padding="8dp"
@@ -249,6 +249,7 @@
                     android:fontFamily="@font/old_school_adventures"
                     android:textColor="@color/black"
                     android:textSize="12sp"
+                    android:autoLink="all"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -261,7 +262,6 @@
                     expandableTextView:textMode="line"
                     expandableTextView:isExpanded="false" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-
 
         <TextView
             android:id="@+id/source_text"
@@ -324,7 +324,7 @@
                 android:padding="8dp"
                 android:text="Continue a sua aventura!"
                 android:textColor="@color/cadet_blue"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -343,7 +343,7 @@
                 android:text="Salvar"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/cadet_blue"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 app:icon="@drawable/ic_arrow"
                 app:iconTint="@color/beaver"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -363,7 +363,7 @@
                 android:text="Voltar para o Início"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/cadet_blue"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 app:icon="@drawable/ic_arrow"
                 app:iconTint="@color/beaver"
                 app:layout_constraintStart_toStartOf="@+id/bottom_interaction_save"
@@ -380,15 +380,16 @@
                 android:fontFamily="@font/old_school_adventures"
                 android:maxLines="1"
                 android:padding="8dp"
-                android:text="Ver receitas favoritas"
+                android:text="Receitas Favoritas"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/cadet_blue"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 app:icon="@drawable/ic_arrow"
                 app:iconTint="@color/beaver"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/bottom_interaction_save"
-                app:layout_constraintTop_toBottomOf="@+id/details_to_home" />
+                app:layout_constraintTop_toBottomOf="@+id/details_to_home"
+                app:layout_constraintVertical_bias="0.111" />
 
             <ImageView
                 android:id="@+id/square_low_one"

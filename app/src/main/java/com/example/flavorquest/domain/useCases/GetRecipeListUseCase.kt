@@ -5,9 +5,19 @@ import com.example.flavorquest.domain.model.Recipe
 import com.example.flavorquest.domain.repository.RecipeRepository
 import kotlinx.coroutines.flow.Flow
 
+/**
+ * Classe que faz a requisição ao repositório para coletar a lista de receitas enviando query,
+ * cuisineType e dishType como parâmetros.
+ **/
+
 class GetRecipeListUseCase(
     private val repository: RecipeRepository
 ) {
+    
+    /**
+     * Mapeamento das traduções para enviar as informações corretas à API de acordo com
+     * a seleção de tipo e culinária realizada pelo usuário.
+     **/
     
     private val cuisineTypeMap = mapOf(
         "Americana" to "american",
@@ -31,7 +41,6 @@ class GetRecipeListUseCase(
         "nenhuma" to null
     
     )
-    
     
     private val dishTypeMap = mapOf(
         "Biscoitos e Cookies" to "biscuits and cookies",

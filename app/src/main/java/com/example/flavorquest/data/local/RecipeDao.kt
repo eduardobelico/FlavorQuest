@@ -4,7 +4,7 @@ import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 
 /**
- * Classe de controle do banco de dados pelo Room
+ * Classe de controle do banco de dados pelo Room.
  * */
 
 @Dao

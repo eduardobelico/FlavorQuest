@@ -9,6 +9,10 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
+/**
+ * Serviços da API.
+ * */
+
 interface RecipeServices {
     
     @GET("api/recipes/v2")

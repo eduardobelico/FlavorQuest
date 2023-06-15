@@ -7,6 +7,10 @@ import org.koin.dsl.module
 
 object DomainModule {
     
+    /**
+     * Load do Módulos da camada de Domain.
+     **/
+    
     fun load() {
         loadKoinModules(useCasesModule())
     }
@@ -16,7 +20,7 @@ object DomainModule {
             factory { GetRecipeListUseCase(repository = get()) }
             factory { GetRecipeDetailsUseCase(repository = get()) }
             factory { SaveOrRemoveRecipeUseCase(repository = get()) }
-            factory { isFavoriteRecipeUseCase(repository = get()) }
+            factory { IsFavoriteRecipeUseCase(repository = get()) }
             factory { GetFavoriteRecipesUseCase(repository = get()) }
             factory { GetNumberOfFavoriteRecipesUseCase(repository = get()) }
             factory { FavoriteRecipesUseCases(

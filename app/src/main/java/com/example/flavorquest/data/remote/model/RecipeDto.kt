@@ -2,6 +2,10 @@ package com.example.flavorquest.data.remote.model
 
 import com.google.gson.annotations.SerializedName
 
+/**
+ * Modelo de como os dados de Receita são recebidos da API.
+ * */
+
 data class RecipeDto(
     val uri: String?,
     @SerializedName("label")

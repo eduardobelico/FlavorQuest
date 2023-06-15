@@ -1,7 +1,5 @@
 package com.example.flavorquest.presentation.recipeList
 
-import com.example.flavorquest.domain.model.Recipe
-
 sealed class ListEvent {
     data class OnLoadList(
         val query: String?,
@@ -9,5 +7,5 @@ sealed class ListEvent {
         val dishType: String?
     ) : ListEvent()
     
-    data class OnFavoriteClick(val recipe: Recipe) : ListEvent()
+    data class OnFavoriteClick(val recipeState: RecipeUiState) : ListEvent()
 }

@@ -3,6 +3,10 @@ package com.example.flavorquest.data.local
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+/**
+ * Entidade de Receita, para salvar dados no room.
+ * */
+
 @Entity
 data class RecipeEntity(
     @PrimaryKey(autoGenerate = false)

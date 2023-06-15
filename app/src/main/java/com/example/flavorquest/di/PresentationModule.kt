@@ -10,6 +10,11 @@ import org.koin.core.module.Module
 import org.koin.dsl.module
 
 object PresentationModule {
+    
+    /**
+     * Load de Modulos da camada de Presentation.
+     **/
+    
     fun load() {
         loadKoinModules(viewModelModule())
     }

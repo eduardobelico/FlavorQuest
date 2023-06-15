@@ -11,6 +11,4 @@ class Recipe(
     val diet: List<String>,
     val source: String,
     val url: String?
-) {
-    var isFavorite: Boolean = false
-}
+)
