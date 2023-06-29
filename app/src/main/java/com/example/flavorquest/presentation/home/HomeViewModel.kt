@@ -22,6 +22,11 @@ class HomeViewModel(
         getNumberOfFavoriteRecipes()
     }
     
+    /**
+     * Coleta a quantidade de receitas favoritadas para alterar o nome sobre o qual
+     * o usuário é referenciado.
+     */
+    
     fun getNumberOfFavoriteRecipes() {
         viewModelScope.launch {
             favoriteRecipesUseCases.getNumberOfFavoriteRecipesUseCase()
@@ -30,6 +35,11 @@ class HomeViewModel(
             }
         }
     }
+    
+    /**
+     * Realiza uma checagem para o caso de que todos os parâmetros sejam nulos,
+     * impossibilitando a busca.
+     */
     
     fun checkParameters(
         query: String?,

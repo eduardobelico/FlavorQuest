@@ -16,6 +16,10 @@ class FavoriteRecipesViewModel(
     private val _favoriteRecipes = MutableStateFlow<FavoriteState>(FavoriteState.Loading)
     val favoriteRecipes: StateFlow<FavoriteState> get() = _favoriteRecipes
     
+    /**
+     * Carrega lista de receitas favoritadas.
+     * */
+    
     fun getFavoriteRecipes(event: FavoriteEvent) {
         when (event) {
             is FavoriteEvent.OnLoadRecipeList -> {

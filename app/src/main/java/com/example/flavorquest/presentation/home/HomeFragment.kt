@@ -66,6 +66,11 @@ class HomeFragment : Fragment() {
         userLevelBinding()
     }
     
+    /**
+     * Set do botão de busca. A busca precisa de pelo menos um dos 3 parâmetros para acontecer,
+     * sendo o resultado enviado para o fragment de lista de receitas.
+     */
+    
     private fun setSearchButton() {
         val searchButton = binding.searchButton
         searchButton.setOnClickListener {
@@ -79,6 +84,11 @@ class HomeFragment : Fragment() {
         }
     }
     
+    /**
+     * Binding dos itens selecionados nos exposed dropdown menus que contém
+     * os tipos de receita e os tipos de culinária.
+     */
+    
     private fun parametersBinding() {
         
         val cuisineTypeTextView = binding.cuisineTypeAutocompleteTextview
@@ -91,6 +101,11 @@ class HomeFragment : Fragment() {
             selectedDishType = parent.getItemAtPosition(position).toString()
         }
     }
+    
+    /**
+     * Set da funcionalidade de alterar o nome ao que usuário é referido no textview
+     * de introdução.
+     */
     
     private fun userLevelBinding() {
         lifecycleScope.launch {
@@ -130,6 +145,10 @@ class HomeFragment : Fragment() {
             }
         }
     }
+    
+    /**
+     * Utiliza a função do ViewModel para navegar para o fragment de lista de receitas.
+     */
     
     private fun getResult() {
         lifecycleScope.launch {

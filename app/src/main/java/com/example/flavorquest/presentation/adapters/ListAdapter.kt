@@ -1,6 +1,7 @@
 package com.example.flavorquest.presentation.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +21,7 @@ class ListAdapter(
 ) : RecyclerView.Adapter<ListAdapter.RecipeViewHolder>() {
     
     private var recipeList = emptyList<RecipeUiState>()
+    var showFavoriteIcon: Boolean = true
     
     inner class RecipeViewHolder(val binding: RecipeListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -42,13 +44,18 @@ class ListAdapter(
                     }
                     
                     if (position != RecyclerView.NO_POSITION) {
-                        binding.favoriteIcon.setImageResource(drawableResId)
+                        binding.favoriteIcon.setBackgroundResource(drawableResId)
                         notifyItemChanged(adapterPosition)
                     }
                 }
             }
         }
-        
+    
+        /**
+         * Binding dos detalhes de receita com as modificações necessárias
+         * e utilizando o tradutor para entregar o resultado em português.
+         */
+
         fun bindView(recipeState: RecipeUiState) {
             this.recipe = recipeState
             val englishPortugueseTranslator =
@@ -85,9 +92,15 @@ class ListAdapter(
                     .addOnFailureListener { _ ->
                         recipeCuisineType.text = cuisineType
                     }
-                if (recipeState.isFavorite)
-                    binding.favoriteIcon.setImageResource(R.drawable.save_icon)
-                else binding.favoriteIcon.setImageResource(R.drawable.save_icon_unselected)
+                if (showFavoriteIcon) {
+                    binding.favoriteIcon.visibility = View.VISIBLE
+                    if (recipeState.isFavorite)
+                        binding.favoriteIcon.setBackgroundResource(R.drawable.save_icon)
+                    else
+                        binding.favoriteIcon.setBackgroundResource(R.drawable.save_icon_unselected)
+                } else {
+                    binding.favoriteIcon.visibility = View.GONE
+                }
             }
         }
     }
@@ -104,6 +117,10 @@ class ListAdapter(
     override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) {
         holder.bindView(recipeList[position])
     }
+    
+    /**
+     * Atualização do recyclerview para obter a versão mais recente da lista.
+     */
     
     fun setData(newRecipeList: List<RecipeUiState>) {
         val diffResults = DiffUtil.calculateDiff(RecipeDiffUtil(recipeList, newRecipeList))

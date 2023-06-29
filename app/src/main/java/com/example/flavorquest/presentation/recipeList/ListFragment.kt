@@ -69,18 +69,9 @@ class ListFragment : Fragment() {
         }
     }
     
-    private fun initRecyclerView() {
-        listAdapter = ListAdapter()
-        binding.recipeListRecyclerview.adapter = listAdapter
-        binding.recipeListRecyclerview.setHasFixedSize(true)
-        
-        listAdapter.selectedRecipe = {
-            toDetailsFragment(recipeId = it.recipe.id)
-        }
-        listAdapter.addOrRemove = { recipe ->
-            viewModel.onEvent(ListEvent.OnFavoriteClick(recipe))
-        }
-    }
+    /**
+     * Funções de apoio de navegação para os fragments respectivos.
+     **/
     
     private fun toDetailsFragment(recipeId: String) {
         val navController = findNavController()
@@ -99,6 +90,32 @@ class ListFragment : Fragment() {
             return navController.navigate(action)
         }
     }
+    
+    /**
+     * Inicia o recyclerview e ao clicar em algum item enviado para RecipeDetailsFragment
+     * com o ID da receita clicada, além de possibilitar a funcionalidade de adiocionar
+     * ou remover cada receita aos favoritos.
+     **/
+    
+    private fun initRecyclerView() {
+        listAdapter = ListAdapter()
+            .apply { showFavoriteIcon = false }
+        binding.recipeListRecyclerview.adapter = listAdapter
+        binding.recipeListRecyclerview.setHasFixedSize(true)
+        
+        listAdapter.selectedRecipe = {
+            toDetailsFragment(recipeId = it.recipe.id)
+        }
+    
+    }
+    
+    /**
+     * Coleta os dados da ViewModel
+     * Em caso de sucesso: é colocado em display a lista de receitas.
+     * Em caso de Loading: é colocado em display uma progressbar e escodido o resto
+     * do conteúdo.
+     * Em caso de Erro: é mostrado mensagem de erro.
+     **/
     
     private fun populateRecyclerView() {
         lifecycleScope.launch {

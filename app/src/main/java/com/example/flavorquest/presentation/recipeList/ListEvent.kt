@@ -6,6 +6,4 @@ sealed class ListEvent {
         val cuisineType: String?,
         val dishType: String?
     ) : ListEvent()
-    
-    data class OnFavoriteClick(val recipeState: RecipeUiState) : ListEvent()
 }

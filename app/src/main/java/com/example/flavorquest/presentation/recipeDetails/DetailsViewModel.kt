@@ -21,6 +21,10 @@ class DetailsViewModel(
     private val _recipeSaved = MutableStateFlow<Boolean?>(null)
     val recipeSaved: StateFlow<Boolean?> get() = _recipeSaved
     
+    /**
+     * Pega os detalhes da receita com base no UseCase.
+     */
+    
     fun getRecipeDetails(id: String) {
         viewModelScope.launch {
             getDetailsUseCase(id).collect { result ->
@@ -43,7 +47,11 @@ class DetailsViewModel(
         }
     }
     
-    fun saveRecipe(recipe: Recipe) {
+    /**
+     * Adiciona ou remove a receita dos favoritos
+     */
+    
+    fun saveOrDeleteRecipe(recipe: Recipe) {
         viewModelScope.launch {
             favoriteRecipesUseCases.saveOrRemoveRecipeUseCase(recipe)
             _recipeSaved.value = true

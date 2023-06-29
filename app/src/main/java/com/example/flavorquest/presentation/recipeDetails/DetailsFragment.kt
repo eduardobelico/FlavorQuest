@@ -80,6 +80,11 @@ class DetailsFragment : Fragment() {
         }
     }
     
+    /**
+     * Faz o binding dos detalhes da receita, realizando as formatações
+     * e traduções necessárias.
+     */
+    
     private fun bindView(recipe: Recipe) {
         val englishPortugueseTranslator = TranslatorFactory.createEnglishToPortugueseTranslator()
         
@@ -187,9 +192,13 @@ class DetailsFragment : Fragment() {
         setBottomView(recipe)
     }
     
+    /**
+     * Set de um "menu" interativo para salvar, voltar ao inicio ou ir para receitas favoritas.
+     */
+    
     private fun setBottomView(recipe: Recipe) {
         binding.bottomInteractionSave.setOnClickListener {
-            viewModel.saveRecipe(recipe)
+            viewModel.saveOrDeleteRecipe(recipe)
             Toast.makeText(requireContext(), "Receita Salva", Toast.LENGTH_SHORT).show()
         }
         
@@ -210,6 +219,10 @@ class DetailsFragment : Fragment() {
             }
         }
     }
+    
+    /**
+     * Set de uma funcionalidade de display de view a depender do tipo da receita.
+     */
     
     private fun setLevelView(dishType: String) {
         val drawableResId =

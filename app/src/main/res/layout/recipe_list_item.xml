@@ -10,15 +10,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        app:strokeColor="@color/cadet_blue"
-        app:strokeWidth="3dp"
-        app:cardElevation="4dp"
         app:cardBackgroundColor="@color/white"
+        app:cardElevation="4dp"
         app:cardPreventCornerOverlap="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/cadet_blue"
+        app:strokeWidth="3dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -60,13 +60,12 @@
                 android:id="@+id/dish_type_icon"
                 android:layout_width="12dp"
                 android:layout_height="12dp"
-                android:layout_marginVertical="12dp"
                 android:layout_marginHorizontal="6dp"
+                android:layout_marginVertical="12dp"
                 android:background="@drawable/losango"
-                app:layout_constraintStart_toStartOf="@id/recipe_name"
                 app:layout_constraintEnd_toStartOf="@id/recipe_dish_type"
-                app:layout_constraintTop_toBottomOf="@id/recipe_name"
-                />
+                app:layout_constraintStart_toStartOf="@id/recipe_name"
+                app:layout_constraintTop_toBottomOf="@id/recipe_name" />
 
             <TextView
                 android:id="@+id/recipe_dish_type"
@@ -75,8 +74,8 @@
                 android:layout_marginVertical="8dp"
                 android:ellipsize="end"
                 android:fontFamily="@font/old_school_adventures"
-                android:textColor="@color/cadet_blue"
                 android:maxLines="1"
+                android:textColor="@color/cadet_blue"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toStartOf="@id/favorite_icon"
                 app:layout_constraintStart_toEndOf="@+id/dish_type_icon"
@@ -90,8 +89,7 @@
                 android:layout_marginVertical="12dp"
                 android:background="@drawable/losango"
                 app:layout_constraintStart_toStartOf="@id/dish_type_icon"
-                app:layout_constraintTop_toBottomOf="@id/dish_type_icon"
-                />
+                app:layout_constraintTop_toBottomOf="@id/dish_type_icon" />
 
             <TextView
                 android:id="@+id/recipe_cuisine_type"
@@ -100,8 +98,8 @@
                 android:layout_marginVertical="8dp"
                 android:ellipsize="end"
                 android:fontFamily="@font/old_school_adventures"
-                android:textColor="@color/cadet_blue"
                 android:maxLines="1"
+                android:textColor="@color/cadet_blue"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toStartOf="@id/favorite_icon"
                 app:layout_constraintStart_toStartOf="@+id/recipe_dish_type"
@@ -110,12 +108,12 @@
 
             <ImageView
                 android:id="@+id/favorite_icon"
-                android:src="@drawable/save_icon_unselected"
+
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_margin="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

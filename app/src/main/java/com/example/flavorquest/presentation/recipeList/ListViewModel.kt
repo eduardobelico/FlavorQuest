@@ -18,6 +18,11 @@ class ListViewModel(
     private val _recipeList = MutableStateFlow<ListState>(ListState.Loading)
     val recipeList: StateFlow<ListState> get() = _recipeList
     
+    
+    /**
+     * Carrega lista de receitas e checa se a receita está favoritada ou não.
+     * */
+    
     fun onEvent(
         event: ListEvent
     ) {
@@ -52,11 +57,6 @@ class ListViewModel(
                             }
                         }
                     }
-                }
-            }
-            is ListEvent.OnFavoriteClick -> {
-                viewModelScope.launch {
-                    favoriteRecipesUseCases.saveOrRemoveRecipeUseCase(event.recipeState.recipe)
                 }
             }
         }
